@@ -319,82 +319,52 @@
             </div>
 
             <p class="text-[#DC143C] text-sm md:text-base font-bold mt-1 mb-4">
-                Make a wish and blow the candle 🎂<br>
-                <span class="text-xs text-[#DAA520] font-semibold">(use your voice or tap the flame!)</span>
+                Panjatkan doa dan tiup lilinnya 🎂<br>
+                <span class="text-xs text-[#DAA520] font-semibold">(gunakan suaramu atau ketuk apinya!)</span>
             </p>
 
-            <!-- 3-Tier Delicious Chocolate Birthday Cake Illustration with Candle on Top -->
+            <!-- 3-Tier Chocolate Birthday Cake Illustration with Candle Integrated Directly into Top Tier -->
             <div class="relative flex flex-col items-center justify-center my-2 cursor-pointer select-none" onclick="blowOutCandle()">
                 
-                <!-- Flame Container -->
-                <div id="candle-flame" class="relative z-30 animate-flicker transition-all duration-500 mb-[-6px]">
-                    <div class="w-8 h-12 bg-[#FFD700] rounded-full filter blur-sm absolute -top-1 -left-1 opacity-80"></div>
-                    <div class="w-6 h-10 bg-[#FFD700] rounded-t-full rounded-b-xl relative flex items-center justify-center shadow-lg">
-                        <div class="w-3 h-6 bg-[#FF4500] rounded-t-full rounded-b-lg"></div>
-                    </div>
-                </div>
-
-                <!-- Smoke Effect -->
-                <div id="candle-smoke" class="hidden relative z-30 flex flex-col items-center mb-[-12px] opacity-0 transition-opacity duration-700">
-                    <span class="text-gray-400 text-2xl animate-ping">💨</span>
-                    <span class="text-xs text-[#E61919] font-bold mt-1 bg-white/90 px-3 py-1 rounded-full shadow border border-[#FFD700]">Wish granted! ✨</span>
-                </div>
-
-                <!-- Candle Body (Striped Candle Standing on Top Tier) -->
-                <div class="w-5 h-14 bg-gradient-to-r from-[#FF6B6B] via-white to-[#E61919] rounded-t-sm shadow-md z-20 border-t-2 border-[#FFD700] relative mb-[-8px]">
-                    <div class="w-full h-1 bg-[#DC143C]/40 absolute top-3"></div>
-                    <div class="w-full h-1 bg-[#DC143C]/40 absolute top-7"></div>
-                </div>
-
-                <!-- Chocolate Cake SVG - 3 Tiers with Rich Ganache Drips & Delicious Toppings -->
-                <svg viewBox="0 0 320 230" class="w-72 md:w-80 h-auto drop-shadow-2xl z-10">
+                <!-- Chocolate Cake SVG - 3 Tiers with Candle Embedded into Top Tier -->
+                <svg viewBox="0 -40 320 270" class="w-72 md:w-80 h-auto drop-shadow-2xl z-10">
                     <!-- Base Plate -->
                     <ellipse cx="160" cy="220" rx="150" ry="10" fill="#cbd5e1"/>
                     <ellipse cx="160" cy="217" rx="142" ry="8" fill="#ffffff"/>
 
-                    <!-- ==================== TIER 1 (BOTTOM - LARGEST) ==================== -->
+                    <!-- ==================== TIER 1 (BOTTOM) ==================== -->
                     <path d="M 35 150 L 35 205 Q 160 228 285 205 L 285 150 Z" fill="#3d2314"/>
-                    <!-- Cream Texture Layer -->
                     <path d="M 35 175 Q 160 198 285 175 L 285 181 Q 160 204 35 181 Z" fill="#fef3c7" opacity="0.9"/>
                     <ellipse cx="160" cy="150" rx="125" ry="18" fill="#4a2c1d"/>
-
-                    <!-- Bottom Tier Chocolate Ganache Drips -->
                     <path d="M 35 150 Q 50 172 62 154 Q 78 180 92 152 Q 110 178 128 152 Q 148 185 160 154 Q 175 180 192 152 Q 210 175 225 152 Q 242 182 255 152 Q 268 170 285 150 Q 160 170 35 150 Z" fill="#23130a"/>
 
                     <!-- ==================== TIER 2 (MIDDLE) ==================== -->
                     <path d="M 65 95 L 65 145 Q 160 165 255 145 L 255 95 Z" fill="#4a2c1d"/>
-                    <!-- Middle Tier Cream Layer -->
                     <path d="M 65 116 Q 160 136 255 116 L 255 122 Q 160 142 65 122 Z" fill="#fef3c7" opacity="0.9"/>
                     <ellipse cx="160" cy="95" rx="95" ry="15" fill="#5c3826"/>
-
-                    <!-- Middle Tier Chocolate Ganache Drips -->
                     <path d="M 65 95 Q 80 115 92 97 Q 108 122 122 97 Q 140 125 160 98 Q 178 122 195 97 Q 212 118 228 97 Q 242 115 255 95 Q 160 112 65 95 Z" fill="#23130a"/>
 
-                    <!-- ==================== TIER 3 (TOP - SMALLEST) ==================== -->
+                    <!-- ==================== TIER 3 (TOP) ==================== -->
                     <path d="M 98 42 L 98 90 Q 160 108 222 90 L 222 42 Z" fill="#5c3826"/>
-                    <!-- Top Tier Cream Layer -->
                     <path d="M 98 62 Q 160 78 222 62 L 222 67 Q 160 83 98 67 Z" fill="#fef3c7" opacity="0.9"/>
                     <ellipse cx="160" cy="42" rx="62" ry="12" fill="#6d422d"/>
-
-                    <!-- Top Tier Chocolate Ganache Drips -->
                     <path d="M 98 42 Q 112 60 124 44 Q 138 65 152 44 Q 168 68 180 44 Q 195 62 210 44 Q 218 58 222 42 Q 160 56 98 42 Z" fill="#23130a"/>
 
                     <!-- ==================== TOPPINGS ==================== -->
-                    <!-- Whipped Cream Swirls on Top Tier -->
-                    <circle cx="112" cy="40" r="8" fill="#ffffff" stroke="#f1f5f9" stroke-width="1.5"/>
-                    <circle cx="134" cy="45" r="8" fill="#ffffff" stroke="#f1f5f9" stroke-width="1.5"/>
-                    <circle cx="160" cy="47" r="9" fill="#ffffff" stroke="#f1f5f9" stroke-width="1.5"/>
-                    <circle cx="186" cy="45" r="8" fill="#ffffff" stroke="#f1f5f9" stroke-width="1.5"/>
-                    <circle cx="208" cy="40" r="8" fill="#ffffff" stroke="#f1f5f9" stroke-width="1.5"/>
+                    <!-- Whipped Cream Swirls -->
+                    <circle cx="112" cy="40" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+                    <circle cx="134" cy="44" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+                    <circle cx="186" cy="44" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+                    <circle cx="208" cy="40" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
 
-                    <!-- Strawberries on Top Tier -->
-                    <g transform="translate(118, 26)">
+                    <!-- Strawberries -->
+                    <g transform="translate(112, 25)">
                         <path d="M 10 0 C 18 -4, 20 12, 10 20 C -1 12, 2 -4, 10 0 Z" fill="#E61919"/>
                         <circle cx="6" cy="6" r="0.8" fill="#FFD700"/>
                         <circle cx="12" cy="10" r="0.8" fill="#FFD700"/>
                         <path d="M 6 0 Q 10 -5 14 0 Q 10 2 6 0 Z" fill="#16a34a"/>
                     </g>
-                    <g transform="translate(180, 28)">
+                    <g transform="translate(180, 26)">
                         <path d="M 10 0 C 18 -4, 20 12, 10 20 C -1 12, 2 -4, 10 0 Z" fill="#DC143C"/>
                         <circle cx="6" cy="6" r="0.8" fill="#FFD700"/>
                         <circle cx="12" cy="10" r="0.8" fill="#FFD700"/>
@@ -402,14 +372,14 @@
                     </g>
 
                     <!-- Glossy Red Cherries -->
-                    <g transform="translate(142, 22)">
-                        <path d="M 10 10 Q 18 -6 25 -12" fill="none" stroke="#451a03" stroke-width="1.5" stroke-linecap="round"/>
-                        <circle cx="8" cy="11" r="8" fill="#E61919"/>
-                        <circle cx="6" cy="8" r="2" fill="#ffffff" opacity="0.6"/>
+                    <g transform="translate(136, 26)">
+                        <path d="M 8 10 Q 14 -4 20 -10" fill="none" stroke="#451a03" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="7" cy="11" r="6.5" fill="#E61919"/>
+                        <circle cx="5" cy="9" r="1.5" fill="#ffffff" opacity="0.6"/>
                     </g>
-                    <g transform="translate(162, 24)">
-                        <path d="M 8 10 Q 2 -6 -6 -12" fill="none" stroke="#451a03" stroke-width="1.5" stroke-linecap="round"/>
-                        <circle cx="8" cy="11" r="7.5" fill="#DC143C"/>
+                    <g transform="translate(164, 27)">
+                        <path d="M 8 10 Q 2 -4 -4 -10" fill="none" stroke="#451a03" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="8" cy="11" r="6.5" fill="#DC143C"/>
                         <circle cx="6" cy="9" r="1.8" fill="#ffffff" opacity="0.6"/>
                     </g>
 
@@ -419,27 +389,63 @@
                     <rect x="222" y="15" width="6" height="38" rx="2" fill="#78350f" transform="rotate(18 222 15)" stroke="#451a03" stroke-width="1"/>
                     <rect x="224" y="17" width="1.5" height="34" fill="#fef3c7" transform="rotate(18 222 15)"/>
 
-                    <!-- Colorful Sprinkles (On All 3 Tiers) -->
-                    <!-- Top Tier Sprinkles -->
+                    <!-- Sprinkles -->
                     <rect x="120" y="55" width="5" height="2.5" rx="1" fill="#FFD700" transform="rotate(25 120 55)"/>
                     <rect x="150" y="60" width="5" height="2.5" rx="1" fill="#FF4500" transform="rotate(-40 150 60)"/>
                     <rect x="190" y="55" width="5" height="2.5" rx="1" fill="#FF6B6B" transform="rotate(15 190 55)"/>
-                    <!-- Middle Tier Sprinkles -->
                     <rect x="85" y="108" width="6" height="3" rx="1.5" fill="#FFD700" transform="rotate(20 85 108)"/>
                     <rect x="130" y="118" width="6" height="3" rx="1.5" fill="#FF4500" transform="rotate(-30 130 118)"/>
                     <rect x="185" y="115" width="6" height="3" rx="1.5" fill="#FF6B6B" transform="rotate(15 185 115)"/>
-                    <rect x="228" y="108" width="6" height="3" rx="1.5" fill="#FFD700" transform="rotate(-45 228 108)"/>
-                    <!-- Bottom Tier Sprinkles -->
                     <rect x="60" y="165" width="7" height="3.5" rx="1.5" fill="#FFD700" transform="rotate(-20 60 165)"/>
                     <rect x="110" y="178" width="7" height="3.5" rx="1.5" fill="#FF4500" transform="rotate(35 110 178)"/>
                     <rect x="170" y="182" width="7" height="3.5" rx="1.5" fill="#FF6B6B" transform="rotate(-15 170 182)"/>
-                    <rect x="235" y="172" width="7" height="3.5" rx="1.5" fill="#FFD700" transform="rotate(50 235 172)"/>
+
+                    <!-- ==================== CANDLE EMBEDDED IN CAKE ==================== -->
+                    <!-- Candle Base Embedded Directly Into Cake Top -->
+                    <g id="candle-stick">
+                        <rect x="152" y="-2" width="16" height="46" rx="3" fill="url(#candleGradient)" stroke="#DC143C" stroke-width="1.5"/>
+                        <!-- Decorative Stripes on Candle -->
+                        <line x1="152" y1="8" x2="168" y2="8" stroke="#DC143C" stroke-width="2.5" opacity="0.6"/>
+                        <line x1="152" y1="18" x2="168" y2="18" stroke="#DC143C" stroke-width="2.5" opacity="0.6"/>
+                        <line x1="152" y1="28" x2="168" y2="28" stroke="#DC143C" stroke-width="2.5" opacity="0.6"/>
+                        <line x1="152" y1="38" x2="168" y2="38" stroke="#DC143C" stroke-width="2.5" opacity="0.6"/>
+                        <!-- Candle Wick -->
+                        <line x1="160" y1="-2" x2="160" y2="-10" stroke="#2d2d2d" stroke-width="2.5" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Candle Flame Group -->
+                    <g id="candle-flame" class="animate-flicker transition-all duration-500">
+                        <circle cx="160" cy="-22" r="18" fill="#FFD700" opacity="0.45" class="animate-pulse"/>
+                        <path d="M 160 -38 Q 172 -20 160 -10 Q 148 -20 160 -38 Z" fill="#FFD700"/>
+                        <path d="M 160 -32 Q 167 -18 160 -11 Q 153 -18 160 -32 Z" fill="#FF4500"/>
+                        <path d="M 160 -25 Q 163 -16 160 -12 Q 157 -16 160 -25 Z" fill="#ffffff"/>
+                    </g>
+
+                    <!-- Smoke Group -->
+                    <g id="candle-smoke" class="hidden opacity-0 transition-opacity duration-700">
+                        <path d="M 160 -12 Q 152 -22 158 -32 Q 166 -42 160 -52" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" opacity="0.7" class="animate-pulse"/>
+                    </g>
+
+                    <defs>
+                        <linearGradient id="candleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF6B6B"/>
+                            <stop offset="50%" stop-color="#ffffff"/>
+                            <stop offset="100%" stop-color="#E61919"/>
+                        </linearGradient>
+                    </defs>
                 </svg>
+
+                <!-- Smoke Text Badge Overlay -->
+                <div id="candle-smoke-badge" class="hidden opacity-0 transition-opacity duration-700 mt-[-10px] z-20">
+                    <span class="text-xs text-[#E61919] font-bold bg-white/95 px-3 py-1 rounded-full shadow border border-[#FFD700]">
+                        Keinginan terwujud! ✨
+                    </span>
+                </div>
             </div>
 
             <!-- Candle status notice with glassmorphism -->
-            <div id="blow-status" class="mt-6 glass-card px-6 py-2.5 rounded-full text-[#DC143C] text-xs font-semibold border border-[#FFD700]/50 shadow-md">
-                🎙️ Listening for a blow... (or tap the flame!)
+            <div id="blow-status" class="mt-4 glass-card px-6 py-2.5 rounded-full text-[#DC143C] text-xs font-semibold border border-[#FFD700]/50 shadow-md">
+                🎙️ Mendengarkan tiupanmu... (atau ketuk apinya!)
             </div>
         </div>
 
@@ -1038,18 +1044,21 @@
 
             const flame = document.getElementById('candle-flame');
             const smoke = document.getElementById('candle-smoke');
+            const smokeBadge = document.getElementById('candle-smoke-badge');
             const status = document.getElementById('blow-status');
 
-            flame.classList.add('opacity-0', 'scale-0');
+            if (flame) flame.classList.add('opacity-0', 'scale-0');
             setTimeout(() => {
-                flame.classList.add('hidden');
-                smoke.classList.remove('hidden');
+                if (flame) flame.classList.add('hidden');
+                if (smoke) smoke.classList.remove('hidden');
+                if (smokeBadge) smokeBadge.classList.remove('hidden');
                 setTimeout(() => {
-                    smoke.classList.remove('opacity-0');
+                    if (smoke) smoke.classList.remove('opacity-0');
+                    if (smokeBadge) smokeBadge.classList.opacity = "1";
                 }, 50);
             }, 300);
 
-            status.textContent = "🥳 Flame blown out! May all your wishes come true! ✨";
+            status.textContent = "🥳 Lilin berhasil ditiup! Semoga semua impianmu terwujud! ✨";
             status.classList.add('bg-[#DC143C]', 'text-white');
 
             triggerConfetti();
