@@ -1,15 +1,74 @@
 <!DOCTYPE html>
-        /* Smoke Effect (Hidden by default) */
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu Ucapan Ulang Tahun - Sayang </title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Fredoka) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Pulsating Loading Heart */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+        }
+        .animate-heartbeat {
+            animation: heartbeat 1.2s infinite ease-in-out;
+        }
+
+        /* Floating elements */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Rolling Gift Animation */
+        @keyframes giftRoll {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-15deg) scale(1.1); }
+            50% { transform: rotate(15deg) scale(1.1); }
+            75% { transform: rotate(-10deg) scale(1.05); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+        .animate-gift-roll {
+            animation: giftRoll 1s ease-in-out infinite;
+        }
+
+        /* Candle Flame Flicker */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.95) rotate(-2deg); }
+        }
+        .animate-flicker {
+            animation: flicker 0.6s infinite ease-in-out;
+        }
+
+        /* Smoke Effect */
         #candle-smoke {
             display: none;
         }
 
-        /* Hugging Bear & Panda subtle movement */
+        /* Gentle Sway Animation */
         @keyframes gentleSway {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-5px) rotate(1deg); }
         }
-
         .animate-sway {
             animation: gentleSway 3s ease-in-out infinite;
         }
@@ -32,7 +91,6 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.08); }
         }
-
         .animate-heart-pulse {
             animation: heartbeatBig 1.8s ease-in-out infinite;
         }
@@ -40,6 +98,7 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-between text-slate-800 relative bg-[#fdeef5] transition-colors duration-500" id="body-bg">
 
+    <!-- Floating Background Hearts Container -->
     <div id="heart-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
 
     <!-- Screen 1: Loading Screen -->
@@ -51,7 +110,7 @@
             </div>
             <!-- Loading Progress Bar -->
             <div class="w-16 h-[3.5px] bg-pink-200 rounded-full overflow-hidden mt-1">
-                <div id="progress-bar" class="h-full bg-pink-500 animate-loading rounded-full"></div>
+                <div id="progress-bar" class="h-full bg-pink-500 animate-pulse rounded-full"></div>
             </div>
         </div>
     </div>
@@ -78,9 +137,9 @@
                 </div>
             </div>
 
-            <!-- Center Image Circle with Cute Crowned Panda holding Cake -->
+            <!-- Center Image Circle with Crowned Panda holding Cake -->
             <div class="relative my-6 flex items-center justify-center animate-float">
-                <!-- Outer Glow / Halo -->
+                <!-- Outer Glow -->
                 <div class="absolute inset-0 rounded-full bg-pink-300 filter blur-md opacity-40 scale-105"></div>
                 
                 <!-- Pink Circular Frame -->
@@ -108,7 +167,7 @@
                         <circle cx="119" cy="147" r="3" fill="#000000"/>
                         <circle cx="181" cy="147" r="3" fill="#000000"/>
 
-                        <!-- Cute Rosy Cheeks -->
+                        <!-- Rosy Cheeks -->
                         <ellipse cx="100" cy="170" rx="14" ry="9" fill="#ff8fa3" opacity="0.8"/>
                         <ellipse cx="200" cy="170" rx="14" ry="9" fill="#ff8fa3" opacity="0.8"/>
 
@@ -147,7 +206,7 @@
                 <span class="absolute top-1/2 -left-6 text-pink-400 text-lg">💖</span>
             </div>
 
-            <!-- Middle Main Greeting -->
+            <!-- Middle Greeting -->
             <div class="text-center w-full my-2">
                 <h2 class="text-3xl font-extrabold text-pink-600 font-fredoka leading-tight tracking-snug">
                     Selamat Ulang Tahun<br>Sayang!
@@ -171,7 +230,7 @@
                 </p>
             </div>
 
-            <!-- Buka Hadiah Spesial Button (As seen in Image 1000233734.jpg) -->
+            <!-- Buka Hadiah Spesial Button -->
             <div class="w-full mt-8 flex justify-center">
                 <button onclick="goToGiftIntro()" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform active:scale-95 transition-all duration-200 flex items-center justify-center gap-3 text-lg">
                     <span class="text-2xl">🎁</span>
@@ -180,21 +239,16 @@
             </div>
         </div>
 
-        <!-- VIEW 2: GIFT INTRO SCREEN (As seen in Image 1000233736.jpg) -->
+        <!-- VIEW 2: GIFT INTRO SCREEN -->
         <div id="view-gift-intro" class="w-full hidden flex-col items-center justify-center min-h-[70vh] text-center">
             <div onclick="openGiftBox()" class="cursor-pointer transform hover:scale-105 transition-transform duration-300 my-8">
-                <!-- Large Red Gift Box SVG with Yellow Ribbon -->
+                <!-- Red Gift Box SVG -->
                 <svg width="220" height="220" viewBox="0 0 200 200" class="drop-shadow-2xl">
-                    <!-- Gift Box Base Base Pink/Red -->
                     <rect x="25" y="60" width="150" height="120" rx="12" fill="#ef4444"/>
-                    <!-- Ribbon Vertical -->
                     <rect x="85" y="60" width="30" height="120" fill="#facc15"/>
-                    <!-- Ribbon Horizontal -->
                     <rect x="25" y="110" width="150" height="25" fill="#facc15"/>
-                    <!-- Gift Box Lid -->
                     <rect x="15" y="45" width="170" height="25" rx="6" fill="#dc2626"/>
                     <rect x="85" y="45" width="30" height="25" fill="#eab308"/>
-                    <!-- Yellow Ribbon Bow Top Circle -->
                     <circle cx="100" cy="35" r="22" fill="#facc15"/>
                     <circle cx="100" cy="35" r="12" fill="#eab308"/>
                 </svg>
@@ -204,10 +258,9 @@
             </p>
         </div>
 
-        <!-- VIEW 3: GIFT LOADING SCREEN (As seen in Image 1000233738.jpg) -->
+        <!-- VIEW 3: GIFT LOADING SCREEN -->
         <div id="view-gift-loading" class="w-full hidden flex-col items-center justify-center min-h-[70vh] text-center">
             <div class="animate-gift-roll my-8">
-                <!-- Rolling Gift Icon -->
                 <div class="text-8xl">🎁</div>
             </div>
             <p class="text-pink-600 font-bold text-2xl tracking-wide font-fredoka animate-pulse mt-4">
@@ -215,9 +268,8 @@
             </p>
         </div>
 
-        <!-- VIEW 4: CANDLE & CAKE SCREEN (As seen in Image 1000233740.jpg) -->
+        <!-- VIEW 4: CANDLE & CAKE SCREEN -->
         <div id="view-candle" class="w-full hidden flex-col items-center justify-center min-h-[75vh] text-center text-white pt-4">
-            <!-- Candle content -->
             <div class="flex items-center justify-center gap-2 mb-2">
                 <span class="text-3xl animate-bounce">🎉</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-pink-200 neon-glow font-fredoka">
@@ -235,16 +287,13 @@
             <div class="relative flex flex-col items-center justify-center my-4 cursor-pointer" onclick="blowOutCandle()">
                 <!-- Flame Container -->
                 <div id="candle-flame" class="relative z-20 animate-flicker transition-all duration-500">
-                    <!-- Outer Flame Glow -->
                     <div class="w-8 h-12 bg-amber-400 rounded-full filter blur-sm absolute -top-1 -left-1 opacity-80"></div>
-                    <!-- Outer Yellow Flame -->
                     <div class="w-6 h-10 bg-amber-400 rounded-t-full rounded-b-xl relative flex items-center justify-center">
-                        <!-- Inner Red/Orange Core -->
                         <div class="w-3 h-6 bg-red-500 rounded-t-full rounded-b-lg"></div>
                     </div>
                 </div>
 
-                <!-- Smoke Effect (Hidden by default) -->
+                <!-- Smoke Effect -->
                 <div id="candle-smoke" class="hidden relative z-20 flex flex-col items-center -mt-4 opacity-0 transition-opacity duration-700">
                     <span class="text-gray-400 text-xl animate-ping">💨</span>
                     <span class="text-xs text-pink-300 font-bold mt-1">Wish granted! ✨</span>
@@ -255,13 +304,11 @@
 
                 <!-- Tier 1 Top Cake -->
                 <div class="w-48 h-16 bg-pink-300 rounded-t-2xl border-b-4 border-pink-400 shadow-lg relative flex items-center justify-center overflow-hidden -mt-1 z-0">
-                    <!-- Cream Trim -->
                     <div class="absolute top-0 w-full h-4 bg-white/90 rounded-t-2xl"></div>
                 </div>
 
                 <!-- Tier 2 Base Cake -->
                 <div class="w-64 h-20 bg-pink-100 rounded-t-2xl border-b-8 border-pink-200 shadow-2xl relative flex items-center justify-center overflow-hidden -mt-1">
-                    <!-- Cream Trim Base -->
                     <div class="absolute top-0 w-full h-5 bg-white rounded-t-2xl"></div>
                 </div>
             </div>
@@ -272,78 +319,60 @@
             </div>
         </div>
 
-        <!-- VIEW 5: COUNTDOWN TIMER VIEW (Hourglass ⏳ Icon View - Image 1000233837.jpg) -->
+        <!-- VIEW 5: COUNTDOWN TIMER VIEW (⏳ Icon View) -->
         <div id="view-countdown" class="w-full hidden flex-col items-center text-center pt-2 pb-10">
-            <!-- Header Title -->
             <h1 class="text-3xl font-black font-fredoka tracking-tight mb-4">
                 <span class="text-pink-600">The Birthday of </span>
                 <span class="text-purple-600">Laura</span>
             </h1>
 
-            <!-- Cute Animated Bear & Panda Graphic Container -->
             <div class="w-full max-w-xs bg-white rounded-3xl p-4 shadow-lg border border-pink-100 relative flex flex-col items-center animate-sway">
-                <!-- Floating Animated Hearts above characters -->
                 <div class="absolute -top-3 flex justify-center gap-3 w-full">
                     <span class="text-red-500 text-xl animate-bounce" style="animation-delay: 0.1s;">❤️</span>
                     <span class="text-pink-400 text-base animate-pulse" style="animation-delay: 0.3s;">💕</span>
                 </div>
 
-                <!-- SVG Cute Brown Bear Hugging Panda Illustration -->
+                <!-- SVG Bear Hugging Panda -->
                 <svg viewBox="0 0 300 260" class="w-full h-52 object-contain drop-shadow-sm">
-                    <!-- Floating Hearts Background -->
                     <path d="M 170 50 C 170 40, 185 40, 190 50 C 195 40, 210 40, 210 50 C 210 65, 190 75, 190 82 C 190 75, 170 65, 170 50 Z" fill="#ff7675" class="animate-pulse"/>
                     <path d="M 205 75 C 205 68, 216 68, 220 75 C 224 68, 235 68, 235 75 C 235 85, 220 92, 220 97 C 220 92, 205 85, 205 75 Z" fill="#ffabe7" class="animate-bounce"/>
 
-                    <!-- Bear (Left - Brown) -->
+                    <!-- Bear (Brown) -->
                     <g transform="translate(10, 20)">
-                        <!-- Ears -->
                         <circle cx="55" cy="65" r="22" fill="#8d5b4c"/>
                         <circle cx="55" cy="65" r="12" fill="#d29985"/>
                         <circle cx="145" cy="65" r="22" fill="#8d5b4c"/>
                         <circle cx="145" cy="65" r="12" fill="#d29985"/>
-                        <!-- Head -->
                         <ellipse cx="100" cy="115" rx="65" ry="55" fill="#a06a58"/>
-                        <!-- Snout -->
                         <ellipse cx="100" cy="125" rx="22" ry="16" fill="#fceade"/>
                         <ellipse cx="100" cy="118" rx="8" ry="6" fill="#3d2314"/>
                         <path d="M 94 125 Q 100 130 106 125" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
-                        <!-- Eyes -->
                         <circle cx="75" cy="110" r="5" fill="#3d2314"/>
                         <circle cx="125" cy="110" r="5" fill="#3d2314"/>
-                        <!-- Cheeks -->
                         <ellipse cx="65" cy="122" rx="10" ry="6" fill="#fca5a5" opacity="0.8"/>
-                        <!-- Body & Paws -->
                         <path d="M 50 160 Q 100 150 150 160 L 150 220 L 50 220 Z" fill="#a06a58"/>
                         <path d="M 80 165 Q 110 180 140 165" fill="none" stroke="#3d2314" stroke-width="4" stroke-linecap="round"/>
                     </g>
 
-                    <!-- Panda (Right - White & Black) Hugging -->
+                    <!-- Panda Hugging -->
                     <g transform="translate(110, 30)">
-                        <!-- Ears -->
                         <circle cx="60" cy="55" r="20" fill="#2d2d2d"/>
                         <circle cx="140" cy="55" r="20" fill="#2d2d2d"/>
-                        <!-- Head -->
                         <ellipse cx="100" cy="105" rx="60" ry="50" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
-                        <!-- Eye Patches -->
                         <ellipse cx="75" cy="102" rx="14" ry="18" fill="#2d2d2d" transform="rotate(-10 75 102)"/>
                         <ellipse cx="125" cy="102" rx="14" ry="18" fill="#2d2d2d" transform="rotate(10 125 102)"/>
-                        <!-- Eyes Happy Slits -->
                         <path d="M 70 102 Q 75 97 80 102" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
                         <path d="M 120 102 Q 125 97 130 102" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-                        <!-- Cheeks -->
                         <ellipse cx="60" cy="115" rx="12" ry="7" fill="#ff8fa3" opacity="0.85"/>
                         <ellipse cx="140" cy="115" rx="12" ry="7" fill="#ff8fa3" opacity="0.85"/>
-                        <!-- Nose & Mouth -->
                         <ellipse cx="100" cy="110" rx="6" ry="4" fill="#2d2d2d"/>
                         <path d="M 94 116 Q 100 122 106 116" fill="none" stroke="#2d2d2d" stroke-width="3" stroke-linecap="round"/>
-                        <!-- Hugging Arm -->
                         <path d="M 45 140 Q 15 150 10 130" fill="none" stroke="#2d2d2d" stroke-width="12" stroke-linecap="round"/>
                         <path d="M 50 145 Q 100 135 140 145 L 140 200 L 50 200 Z" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
                     </g>
                 </svg>
             </div>
 
-            <!-- Subtitle -->
             <h2 class="text-pink-600 font-bold text-xl mt-5 font-fredoka">
                 Menuju Hari Spesialmu
             </h2>
@@ -379,70 +408,52 @@
                 </p>
             </div>
 
-            <!-- Romantic Quote -->
             <p class="text-xs italic text-pink-600 font-medium max-w-xs mt-6 leading-relaxed px-2">
                 "today and everyday, i'll always be ur #1 supporter, clap the loudest for u, and praying wholeheartedly for ur happiness 💕"
             </p>
         </div>
 
-        <!-- VIEW 6: PESAN SPESIAL UNTUKMU SCREEN (Envelope Icon View - Image 1000233843.jpg) -->
+        <!-- VIEW 6: PESAN SPESIAL UNTUKMU SCREEN (💌 Icon View) -->
         <div id="view-letter" class="w-full hidden flex-col items-center text-center pt-2 pb-12">
-            <!-- Header Title -->
             <h1 class="text-3xl font-extrabold font-fredoka text-pink-600 tracking-tight mb-4">
                 Pesan Spesial<br>Untukmu
             </h1>
 
-            <!-- Cute Panda & Bear Illustration Card -->
             <div class="w-full max-w-xs bg-white rounded-3xl p-4 shadow-lg border border-pink-100 flex justify-center items-center my-2">
                 <svg viewBox="0 0 300 240" class="w-full h-48 object-contain">
-                    <!-- Panda (Left) holding Rose -->
+                    <!-- Panda Holding Rose -->
                     <g transform="translate(10, 20)">
-                        <!-- Ears -->
                         <circle cx="50" cy="55" r="18" fill="#2d2d2d"/>
                         <circle cx="120" cy="55" r="18" fill="#2d2d2d"/>
-                        <!-- Head -->
                         <ellipse cx="85" cy="100" rx="55" ry="45" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
-                        <!-- Eye Patches -->
                         <ellipse cx="65" cy="98" rx="12" ry="16" fill="#2d2d2d" transform="rotate(-10 65 98)"/>
                         <ellipse cx="105" cy="98" rx="12" ry="16" fill="#2d2d2d" transform="rotate(10 105 98)"/>
                         <circle cx="67" cy="96" r="4" fill="#ffffff"/>
                         <circle cx="103" cy="96" r="4" fill="#ffffff"/>
-                        <!-- Cheeks & Nose -->
                         <ellipse cx="52" cy="110" rx="10" ry="6" fill="#ff8fa3" opacity="0.8"/>
                         <ellipse cx="118" cy="110" rx="10" ry="6" fill="#ff8fa3" opacity="0.8"/>
                         <ellipse cx="85" cy="105" rx="5" ry="3" fill="#2d2d2d"/>
                         <path d="M 80 110 Q 85 115 90 110" fill="none" stroke="#2d2d2d" stroke-width="3" stroke-linecap="round"/>
-                        <!-- Body -->
                         <path d="M 50 140 Q 85 130 120 140 L 120 190 L 50 190 Z" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
-                        <!-- Hand Holding Rose -->
                         <path d="M 100 135 L 140 120" fill="none" stroke="#15803d" stroke-width="4" stroke-linecap="round"/>
-                        <!-- Rose Flower -->
                         <circle cx="145" cy="115" r="12" fill="#ef4444"/>
                         <path d="M 140 112 Q 145 106 150 112" fill="none" stroke="#b91c1c" stroke-width="2"/>
                     </g>
 
-                    <!-- Crowned Bear (Right) holding Box -->
+                    <!-- Crowned Bear -->
                     <g transform="translate(140, 15)">
-                        <!-- Crown -->
                         <path d="M 65 30 L 73 10 L 85 22 L 97 10 L 105 30 Z" fill="#facc15" stroke="#ca8a04" stroke-width="3"/>
-                        <!-- Ears -->
                         <circle cx="50" cy="60" r="18" fill="#8d5b4c"/>
                         <circle cx="120" cy="60" r="18" fill="#8d5b4c"/>
-                        <!-- Head -->
                         <ellipse cx="85" cy="105" rx="55" ry="45" fill="#a06a58"/>
-                        <!-- Snout -->
                         <ellipse cx="85" cy="115" rx="18" ry="12" fill="#fceade"/>
                         <ellipse cx="85" cy="110" rx="6" ry="4" fill="#3d2314"/>
                         <path d="M 80 115 Q 85 120 90 115" fill="none" stroke="#3d2314" stroke-width="2.5" stroke-linecap="round"/>
-                        <!-- Happy Eyes -->
                         <path d="M 62 98 Q 68 92 74 98" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
                         <path d="M 96 98 Q 102 92 108 98" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
-                        <!-- Cheeks -->
                         <ellipse cx="55" cy="115" rx="10" ry="6" fill="#fca5a5" opacity="0.8"/>
                         <ellipse cx="115" cy="115" rx="10" ry="6" fill="#fca5a5" opacity="0.8"/>
-                        <!-- Body -->
                         <path d="M 50 145 Q 85 135 120 145 L 120 195 L 50 195 Z" fill="#a06a58"/>
-                        <!-- Gift Box in Paws -->
                         <rect x="65" y="140" width="40" height="35" rx="4" fill="#38bdf8" stroke="#0284c7" stroke-width="3"/>
                         <rect x="80" y="140" width="10" height="35" fill="#facc15"/>
                         <polygon points="85,135 80,140 90,140" fill="#facc15"/>
@@ -450,7 +461,7 @@
                 </svg>
             </div>
 
-            <!-- Scrollable Love Letter Content Box -->
+            <!-- Love Letter Box -->
             <div class="w-full max-w-xs bg-white/95 rounded-3xl p-5 shadow-sm border border-pink-100 mt-4 text-left text-xs md:text-sm text-pink-700 leading-relaxed font-medium space-y-4">
                 <p>
                     Sayangku 💖, hari ini adalah momen yang paling indah karena hari ini kamu lahir ke dunia 🎉. Aku ingin berdoa agar kamu selalu dalam lindungan Tuhan 🙏, diberi kesehatan 🦾, kekuatan 🛡️, dan kebahagiaan yang tiada akhir 🌈✨.
@@ -472,7 +483,6 @@
                 </p>
             </div>
 
-            <!-- "Lihat Cintaku" Button -->
             <div class="w-full max-w-xs mt-6 flex justify-center">
                 <button onclick="goToLoveScreen()" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3.5 px-6 rounded-full shadow-lg transform active:scale-95 transition-all text-sm tracking-wide">
                     Lihat Cintaku
@@ -480,86 +490,66 @@
             </div>
         </div>
 
-        <!-- VIEW 7: LIHAT CINTAKU SCREEN (Dark Heart Laura Screen - Image 1000233845.jpg) -->
+        <!-- VIEW 7: LIHAT CINTAKU SCREEN -->
         <div id="view-love" class="w-full hidden flex-col items-center justify-center min-h-[75vh] text-center pt-8">
-            <!-- Big Glowing Red Heart with Laura text -->
             <div class="relative my-8 cursor-pointer flex items-center justify-center animate-heart-pulse" onclick="triggerConfetti()">
                 <svg width="240" height="220" viewBox="0 0 200 180" class="drop-shadow-[0_10px_25px_rgba(239,68,68,0.6)]">
                     <path d="M 100 170 C 20 100, 0 45, 50 15 C 80 -2, 100 25, 100 25 C 100 25, 120 -2, 150 15 C 200 45, 180 100, 100 170 Z" fill="#ef4444"/>
-                    <!-- Heart Shine Highlight -->
                     <path d="M 35 30 C 25 55, 30 75, 45 90" fill="none" stroke="#fca5a5" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
                 </svg>
-                <!-- Name Inside Heart -->
                 <div class="absolute inset-0 flex items-center justify-center gap-1.5 text-white font-black font-fredoka text-3xl pt-1">
                     <span>Laura</span>
                     <span class="text-2xl">💖✨</span>
                 </div>
             </div>
 
-            <!-- Subtitle Below Heart -->
             <p class="text-white font-medium text-lg md:text-xl tracking-wide mt-6 flex items-center justify-center gap-2">
                 <span>Hanya kamu di hatiku, sayang</span>
                 <span class="text-xl">🥺</span>
             </p>
         </div>
 
-        <!-- VIEW 8: KENANGAN INDAH KITA SCREEN (Image 1000233847.jpg) -->
+        <!-- VIEW 8: KENANGAN INDAH KITA SCREEN (📷 Icon View) -->
         <div id="view-memories" class="w-full hidden flex-col items-center text-center pt-2 pb-12">
-            <!-- Header Title -->
             <h1 class="text-3xl font-extrabold font-fredoka text-pink-600 tracking-tight mb-4">
                 Kenangan Indah Kita
             </h1>
 
-            <!-- Cute Bear & Panda with Hats Card -->
             <div class="w-full max-w-xs bg-[#cbe3eb] rounded-3xl p-3 shadow-md border border-pink-100 flex justify-center items-center my-2 overflow-hidden">
                 <svg viewBox="0 0 300 180" class="w-full h-40 object-contain">
-                    <!-- Bear (Left) with Yellow Cap -->
+                    <!-- Bear in Yellow Cap -->
                     <g transform="translate(10, 10)">
-                        <!-- Yellow Cap -->
                         <path d="M 55 45 C 55 25, 115 25, 115 45 Z" fill="#eab308"/>
                         <rect x="45" y="42" width="80" height="8" rx="4" fill="#ca8a04"/>
-                        <!-- Ears -->
                         <circle cx="45" cy="55" r="16" fill="#8d5b4c"/>
                         <circle cx="125" cy="55" r="16" fill="#8d5b4c"/>
-                        <!-- Head -->
                         <ellipse cx="85" cy="95" rx="50" ry="40" fill="#a06a58"/>
-                        <!-- Snout & Nose -->
                         <ellipse cx="85" cy="102" rx="16" ry="10" fill="#fceade"/>
                         <ellipse cx="85" cy="98" rx="5" ry="3" fill="#3d2314"/>
                         <path d="M 80 102 Q 85 106 90 102" fill="none" stroke="#3d2314" stroke-width="2.5" stroke-linecap="round"/>
-                        <!-- Cute Eyes -->
                         <path d="M 65 90 Q 70 85 75 90" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
                         <path d="M 95 90 Q 100 85 105 90" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
-                        <!-- Cheeks -->
                         <ellipse cx="55" cy="102" rx="10" ry="6" fill="#fca5a5" opacity="0.8"/>
                         <ellipse cx="115" cy="102" rx="10" ry="6" fill="#fca5a5" opacity="0.8"/>
-                        <!-- Body & Strap -->
                         <path d="M 50 135 Q 85 125 120 135 L 120 170 L 50 170 Z" fill="#a06a58"/>
                         <path d="M 55 135 L 115 165" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
                     </g>
 
-                    <!-- Panda (Right) with Blue Bucket Hat -->
+                    <!-- Panda in Blue Bucket Hat -->
                     <g transform="translate(140, 10)">
-                        <!-- Blue Bucket Hat -->
                         <path d="M 45 45 C 45 20, 125 20, 125 45 Z" fill="#38bdf8"/>
                         <path d="M 30 45 L 140 45 C 140 45, 130 55, 85 55 C 40 55, 30 45, 30 45 Z" fill="#0284c7"/>
-                        <!-- Ears -->
                         <circle cx="40" cy="55" r="16" fill="#2d2d2d"/>
                         <circle cx="130" cy="55" r="16" fill="#2d2d2d"/>
-                        <!-- Head -->
                         <ellipse cx="85" cy="95" rx="50" ry="40" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
-                        <!-- Eye Patches & Eyes -->
                         <ellipse cx="65" cy="92" rx="12" ry="14" fill="#2d2d2d"/>
                         <ellipse cx="105" cy="92" rx="12" ry="14" fill="#2d2d2d"/>
-                        <!-- Winking Eye Right, Open Left -->
                         <circle cx="67" cy="90" r="3" fill="#ffffff"/>
                         <path d="M 100 92 Q 105 88 110 92" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-                        <!-- Cheeks & Nose -->
                         <ellipse cx="52" cy="102" rx="10" ry="6" fill="#ff8fa3" opacity="0.85"/>
                         <ellipse cx="118" cy="102" rx="10" ry="6" fill="#ff8fa3" opacity="0.85"/>
                         <ellipse cx="85" cy="98" rx="5" ry="3" fill="#2d2d2d"/>
                         <path d="M 80 102 Q 85 107 90 102" fill="none" stroke="#2d2d2d" stroke-width="2.5" stroke-linecap="round"/>
-                        <!-- Body & Paws making finger heart -->
                         <path d="M 50 135 Q 85 125 120 135 L 120 170 L 50 170 Z" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
                     </g>
                 </svg>
@@ -590,7 +580,6 @@
                 </p>
             </div>
 
-            <!-- "Buka Bunga Cinta" Button -->
             <div class="w-full max-w-xs mt-6 flex justify-center">
                 <button onclick="goToFlowerScreen()" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3.5 px-6 rounded-full shadow-lg transform active:scale-95 transition-all text-sm tracking-wide">
                     Buka Bunga Cinta
@@ -598,72 +587,57 @@
             </div>
         </div>
 
-        <!-- VIEW 9: BUNGA CINTA SCREEN (Image 1000233849.jpg) -->
+        <!-- VIEW 9: BUNGA CINTA SCREEN -->
         <div id="view-flower" class="w-full hidden flex-col items-center text-center pt-4 pb-12">
-            <!-- Top Button: Tutup Bunga -->
             <button onclick="switchTab('memories')" class="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-2.5 px-8 rounded-full shadow-md transform active:scale-95 transition-all text-sm mb-6">
                 Tutup Bunga
             </button>
 
-            <!-- Panda Holding Rose Illustration Box -->
             <div class="w-full max-w-xs bg-white rounded-3xl p-4 shadow-lg border border-pink-200 flex justify-center items-center my-2">
                 <svg viewBox="0 0 200 200" class="w-48 h-48 object-contain">
-                    <!-- Head -->
                     <ellipse cx="100" cy="95" rx="70" ry="60" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
-                    <!-- Ears -->
                     <circle cx="45" cy="45" r="22" fill="#2d2d2d"/>
                     <circle cx="155" cy="45" r="22" fill="#2d2d2d"/>
-                    <!-- Eye Patches -->
                     <ellipse cx="70" cy="95" rx="16" ry="20" fill="#2d2d2d" transform="rotate(-10 70 95)"/>
                     <ellipse cx="130" cy="95" rx="16" ry="20" fill="#2d2d2d" transform="rotate(10 130 95)"/>
-                    <!-- Eyes -->
                     <circle cx="73" cy="93" r="4" fill="#ffffff"/>
                     <circle cx="127" cy="93" r="4" fill="#ffffff"/>
-                    <!-- Cheeks -->
                     <ellipse cx="50" cy="110" rx="14" ry="9" fill="#ff8fa3" opacity="0.85"/>
                     <ellipse cx="150" cy="110" rx="14" ry="9" fill="#ff8fa3" opacity="0.85"/>
-                    <!-- Nose & Mouth -->
                     <ellipse cx="100" cy="100" rx="6" ry="4" fill="#2d2d2d"/>
                     <path d="M 94 105 Q 100 110 106 105" fill="none" stroke="#2d2d2d" stroke-width="3" stroke-linecap="round"/>
-                    <!-- Paws holding Rose -->
                     <ellipse cx="50" cy="155" rx="18" ry="14" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
                     <ellipse cx="145" cy="140" rx="18" ry="14" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
-                    <!-- Rose in Paw -->
                     <path d="M 145 140 L 145 110" fill="none" stroke="#15803d" stroke-width="5" stroke-linecap="round"/>
                     <circle cx="145" cy="100" r="16" fill="#f43f5e"/>
                     <path d="M 137 98 Q 145 90 153 98" fill="none" stroke="#be123c" stroke-width="3"/>
                 </svg>
             </div>
 
-            <!-- Big Blooming Flower Graphic -->
+            <!-- Big Flower Graphic -->
             <div class="my-6 relative flex items-center justify-center animate-heart-pulse">
                 <svg viewBox="0 0 200 240" class="w-60 h-60 drop-shadow-xl">
-                    <!-- Stem -->
                     <rect x="95" y="150" width="10" height="80" rx="5" fill="#16a34a"/>
-                    <!-- Petals -->
                     <circle cx="100" cy="65" r="35" fill="#ec4899"/>
                     <circle cx="65" cy="100" r="35" fill="#ec4899"/>
                     <circle cx="135" cy="100" r="35" fill="#ec4899"/>
                     <circle cx="80" cy="130" r="35" fill="#ec4899"/>
                     <circle cx="120" cy="130" r="35" fill="#ec4899"/>
-                    <!-- Layer 2 Petals -->
                     <circle cx="100" cy="75" r="28" fill="#f43f5e"/>
                     <circle cx="75" cy="100" r="28" fill="#f43f5e"/>
                     <circle cx="125" cy="100" r="28" fill="#f43f5e"/>
                     <circle cx="88" cy="120" r="28" fill="#f43f5e"/>
                     <circle cx="112" cy="120" r="28" fill="#f43f5e"/>
-                    <!-- Center Core -->
                     <circle cx="100" cy="100" r="20" fill="#facc15" stroke="#ffffff" stroke-width="4"/>
                 </svg>
             </div>
 
-            <!-- Bottom Flower Message -->
             <p class="text-pink-700 italic font-medium text-xs md:text-sm max-w-xs leading-relaxed px-4">
                 🌸 Bunga ini sebagai hadiah dari permintaan maafku, sayang... Tolong diterima ya ❤️
             </p>
         </div>
 
-        <!-- Floating Music Button (Persistent) -->
+        <!-- Floating Music Control Button -->
         <div class="fixed top-6 right-4 z-40">
             <button id="music-btn" onclick="toggleAudio()" class="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold py-2 px-4 rounded-full shadow-lg hover:scale-105 transition-transform duration-200 border border-white/40">
                 <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
@@ -673,7 +647,7 @@
             </button>
         </div>
 
-        <!-- Floating Bottom Navigation Bar (Persistent) -->
+        <!-- Floating Bottom Navigation Dock -->
         <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-xl border border-pink-100 flex items-center gap-6">
             <button onclick="switchTab('home')" title="Beranda" class="text-2xl hover:scale-125 transition-transform duration-150 focus:outline-none">
                 🏠
@@ -691,94 +665,7 @@
 
     </main>
 
-    <!-- Surat Cinta Modal -->
-    <div id="letter-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl relative border-2 border-pink-200 transform scale-95 transition-transform duration-300">
-            <button onclick="closeModal('letter-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-pink-500 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full bg-gray-100">
-                ✕
-            </button>
-            <div class="text-center mb-4">
-                <span class="text-4xl">💌</span>
-                <h3 class="text-xl font-bold text-pink-600 font-fredoka mt-2">Surat Spesial</h3>
-            </div>
-            <div class="text-slate-600 text-sm leading-relaxed space-y-3 max-h-72 overflow-y-auto pr-1">
-                <p>Halo Laura Sayang ❤️,</p>
-                <p>Selamat ulang tahun yang luar biasa! Di hari yang istimewa ini, aku cuma mau mengingatkan betapa berharganya kamu dalam hidupku.</p>
-                <p>Semoga di usiamu yang baru ini, kamu selalu diberikan kebahagiaan, kesehatan, keberkahan, dan tercapai semua cita-citamu.</p>
-                <p>Terima kasih sudah selalu ada dan menjadi alasan tersenyum setiap hari. Tetap jadi Laura yang ceria dan penuh kehangatan ya!</p>
-                <p class="font-bold text-pink-500 text-right pt-2">Dengan penuh kasih,<br>Andi 💕</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Galeri Foto Modal -->
-    <div id="gallery-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl relative border-2 border-pink-200">
-            <button onclick="closeModal('gallery-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-pink-500 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full bg-gray-100">
-                ✕
-            </button>
-            <div class="text-center mb-4">
-                <span class="text-4xl">📷</span>
-                <h3 class="text-xl font-bold text-pink-600 font-fredoka mt-1">Galeri Kenangan</h3>
-                <p class="text-xs text-gray-500">Momen indah bersama Laura</p>
-            </div>
-            <div class="grid grid-cols-2 gap-3 max-h-72 overflow-y-auto p-1">
-                <div class="rounded-2xl overflow-hidden bg-pink-100 h-28 flex flex-col items-center justify-center border border-pink-200 shadow-sm relative group">
-                    <span class="text-3xl">🌸</span>
-                    <span class="text-[10px] font-bold text-pink-600 mt-1">Momen Manis</span>
-                </div>
-                <div class="rounded-2xl overflow-hidden bg-pink-100 h-28 flex flex-col items-center justify-center border border-pink-200 shadow-sm relative group">
-                    <span class="text-3xl">🎂</span>
-                    <span class="text-[10px] font-bold text-pink-600 mt-1">Kue Ulang Tahun</span>
-                </div>
-                <div class="rounded-2xl overflow-hidden bg-pink-100 h-28 flex flex-col items-center justify-center border border-pink-200 shadow-sm relative group">
-                    <span class="text-3xl">🧸</span>
-                    <span class="text-[10px] font-bold text-pink-600 mt-1">Boneka Kesayangan</span>
-                </div>
-                <div class="rounded-2xl overflow-hidden bg-pink-100 h-28 flex flex-col items-center justify-center border border-pink-200 shadow-sm relative group">
-                    <span class="text-3xl">✨</span>
-                    <span class="text-[10px] font-bold text-pink-600 mt-1">Harapan Indah</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Kilas Balik / Timeline Modal -->
-    <div id="timeline-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl relative border-2 border-pink-200">
-            <button onclick="closeModal('timeline-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-pink-500 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full bg-gray-100">
-                ✕
-            </button>
-            <div class="text-center mb-4">
-                <span class="text-4xl">⏳</span>
-                <h3 class="text-xl font-bold text-pink-600 font-fredoka mt-1">Perjalanan Kita</h3>
-            </div>
-            <div class="space-y-4 max-h-72 overflow-y-auto pr-2 pl-1">
-                <div class="flex gap-3 items-start">
-                    <div class="w-8 h-8 rounded-full bg-pink-100 text-pink-500 flex items-center justify-center font-bold text-xs shrink-0 mt-1">1</div>
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-800">Pertama Kali Kenal</h4>
-                        <p class="text-xs text-gray-500">Momen awal yang penuh tawa dan cerita lucu.</p>
-                    </div>
-                </div>
-                <div class="flex gap-3 items-start">
-                    <div class="w-8 h-8 rounded-full bg-pink-100 text-pink-500 flex items-center justify-center font-bold text-xs shrink-0 mt-1">2</div>
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-800">Petualangan Bersama</h4>
-                        <p class="text-xs text-gray-500">Banyak tempat seru dan kenangan manis yang dilewati.</p>
-                    </div>
-                </div>
-                <div class="flex gap-3 items-start">
-                    <div class="w-8 h-8 rounded-full bg-pink-100 text-pink-500 flex items-center justify-center font-bold text-xs shrink-0 mt-1">3</div>
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-800">Hari Ini & Selamanya</h4>
-                        <p class="text-xs text-gray-500">Merayakan ulang tahun Laura tercinta!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- JavaScript Logic -->
     <script>
         let isAudioPlaying = false;
         let audioCtx = null;
@@ -788,7 +675,37 @@
         let isCandleBlown = false;
         let countdownTimer = null;
 
-        // Happy Birthday melody notes and sequence for Web Audio API synthesizer
+        // Finish Loading Screen Transition
+        function finishLoading() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            if (loadingScreen && mainContent) {
+                loadingScreen.classList.add('opacity-0');
+                setTimeout(() => {
+                    loadingScreen.classList.add('hidden');
+                    mainContent.classList.remove('opacity-0');
+                }, 700);
+            }
+        }
+
+        // Floating Hearts Background Generator
+        function createFloatingHearts() {
+            const container = document.getElementById('heart-container');
+            if (!container) return;
+            const heartSymbols = ['❤️', '💖', '💕', '💗', '✨'];
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'absolute text-xl opacity-30 select-none pointer-events-none';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.animation = `float ${3 + Math.random() * 3}s ease-in-out infinite`;
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                container.appendChild(heart);
+            }
+        }
+
+        // Web Audio Synthesizer for Happy Birthday Melody
         const hbMelody = [
             { note: 261.63, dur: 0.3, delay: 0 },    // C4
             { note: 261.63, dur: 0.3, delay: 400 },  // C4
@@ -829,7 +746,7 @@
                 osc.start();
                 osc.stop(audioCtx.currentTime + duration);
             } catch(e) {
-                console.log('Audio playback error:', e);
+                console.log('Audio error:', e);
             }
         }
 
@@ -848,9 +765,7 @@
                 if (!isAudioPlaying) return;
                 hbMelody.forEach(item => {
                     const tid = setTimeout(() => {
-                        if (isAudioPlaying) {
-                            playNote(item.note, item.dur, 'triangle');
-                        }
+                        if (isAudioPlaying) playNote(item.note, item.dur, 'triangle');
                     }, item.delay);
                     melodyTimeoutIds.push(tid);
                 });
@@ -858,9 +773,7 @@
 
             runSequence();
             melodyInterval = setInterval(() => {
-                if (isAudioPlaying) {
-                    runSequence();
-                }
+                if (isAudioPlaying) runSequence();
             }, 7000);
         }
 
@@ -881,34 +794,74 @@
             }
         }
 
-        // NAVIGATION FLOW logic for new screens
+        // Navigation Flow Helper
         function hideAllViews() {
-            document.getElementById('view-home').classList.add('hidden');
-            document.getElementById('view-gift-intro').classList.add('hidden');
-            document.getElementById('view-gift-loading').classList.add('hidden');
-            document.getElementById('view-candle').classList.add('hidden');
-            document.getElementById('view-countdown').classList.add('hidden');
-            document.getElementById('view-letter').classList.add('hidden');
-            document.getElementById('view-love').classList.add('hidden');
-            document.getElementById('view-memories').classList.add('hidden');
-            document.getElementById('view-flower').classList.add('hidden');
+            const views = [
+                'view-home', 'view-gift-intro', 'view-gift-loading', 
+                'view-candle', 'view-countdown', 'view-letter', 
+                'view-love', 'view-memories', 'view-flower'
+            ];
+            views.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.add('hidden');
+                    el.classList.remove('flex');
+                }
+            });
+        }
 
-            document.getElementById('view-gift-intro').classList.remove('flex');
-            document.getElementById('view-gift-loading').classList.remove('flex');
-            document.getElementById('view-candle').classList.remove('flex');
-            document.getElementById('view-countdown').classList.remove('flex');
-            document.getElementById('view-letter').classList.remove('flex');
-            document.getElementById('view-love').classList.remove('flex');
-            document.getElementById('view-memories').classList.remove('flex');
-            document.getElementById('view-flower').classList.remove('flex');
+        function switchTab(tabName) {
+            hideAllViews();
+            document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
+            
+            if (tabName === 'home') {
+                document.getElementById('view-home').classList.remove('hidden');
+            } else if (tabName === 'countdown') {
+                const v = document.getElementById('view-countdown');
+                v.classList.remove('hidden');
+                v.classList.add('flex');
+            } else if (tabName === 'letter') {
+                const v = document.getElementById('view-letter');
+                v.classList.remove('hidden');
+                v.classList.add('flex');
+            } else if (tabName === 'memories') {
+                const v = document.getElementById('view-memories');
+                v.classList.remove('hidden');
+                v.classList.add('flex');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            triggerConfetti();
         }
 
         function goToGiftIntro() {
             hideAllViews();
+            document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
             const view = document.getElementById('view-gift-intro');
             view.classList.remove('hidden');
             view.classList.add('flex');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openGiftBox() {
+            hideAllViews();
+            const loadingView = document.getElementById('view-gift-loading');
+            loadingView.classList.remove('hidden');
+            loadingView.classList.add('flex');
+
+            setTimeout(() => {
+                goToCandleScreen();
+            }, 2500);
+        }
+
+        function goToCandleScreen() {
+            hideAllViews();
+            const candleView = document.getElementById('view-candle');
+            candleView.classList.remove('hidden');
+            candleView.classList.add('flex');
+            document.getElementById('body-bg').style.backgroundColor = '#4c1d95';
+
+            triggerConfetti();
+            startMicDetection();
         }
 
         function goToLoveScreen() {
@@ -916,8 +869,6 @@
             const loveView = document.getElementById('view-love');
             loveView.classList.remove('hidden');
             loveView.classList.add('flex');
-
-            // Set background to pure dark theme (Image 1000233845.jpg style)
             document.getElementById('body-bg').style.backgroundColor = '#0a0a0a';
             window.scrollTo({ top: 0, behavior: 'smooth' });
             triggerConfetti();
@@ -929,54 +880,6 @@
             flowerView.classList.remove('hidden');
             flowerView.classList.add('flex');
             document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            triggerConfetti();
-        }
-
-        function openGiftBox() {
-            hideAllViews();
-            const loadingView = document.getElementById('view-gift-loading');
-            loadingView.classList.remove('hidden');
-            loadingView.classList.add('flex');
-
-            // After 2.5 seconds of rolling animation, switch to candle screen
-            setTimeout(() => {
-                goToCandleScreen();
-            }, 2500);
-        }
-
-        function goToCandleScreen() {
-            hideAllViews();
-            const candleView = document.getElementById('view-candle');
-            candleView.classList.remove('hidden');
-            candleView.classList.add('flex');
-
-            // Change body background to deep dark purple (Image 1000233740.jpg style)
-            document.getElementById('body-bg').style.backgroundColor = '#4c1d95';
-
-            triggerConfetti();
-            startMicDetection();
-        }
-
-        // Return home or switch tab logic
-        function switchTab(tabName) {
-            hideAllViews();
-            if (tabName === 'home') {
-                document.getElementById('view-home').classList.remove('hidden');
-                document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
-            } else if (tabName === 'countdown') {
-                document.getElementById('view-countdown').classList.remove('hidden');
-                document.getElementById('view-countdown').classList.add('flex');
-                document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
-            } else if (tabName === 'letter') {
-                document.getElementById('view-letter').classList.remove('hidden');
-                document.getElementById('view-letter').classList.add('flex');
-                document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
-            } else if (tabName === 'memories') {
-                document.getElementById('view-memories').classList.remove('hidden');
-                document.getElementById('view-memories').classList.add('flex');
-                document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
-            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
             triggerConfetti();
         }
@@ -1013,40 +916,7 @@
             countdownTimer = setInterval(updateTimer, 1000);
         }
 
-        function goToGiftIntro() {
-            hideAllViews();
-            const view = document.getElementById('view-gift-intro');
-            view.classList.remove('hidden');
-            view.classList.add('flex');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function openGiftBox() {
-            hideAllViews();
-            const loadingView = document.getElementById('view-gift-loading');
-            loadingView.classList.remove('hidden');
-            loadingView.classList.add('flex');
-
-            // After 2.5 seconds of rolling animation, switch to candle screen
-            setTimeout(() => {
-                goToCandleScreen();
-            }, 2500);
-        }
-
-        function goToCandleScreen() {
-            hideAllViews();
-            const candleView = document.getElementById('view-candle');
-            candleView.classList.remove('hidden');
-            candleView.classList.add('flex');
-
-            // Change body background to deep dark purple (Image 1000233740.jpg style)
-            document.getElementById('body-bg').style.backgroundColor = '#4c1d95';
-
-            triggerConfetti();
-            startMicDetection();
-        }
-
-        // Candle Blow Logic
+        // Candle Blow Out Logic
         function blowOutCandle() {
             if (isCandleBlown) return;
             isCandleBlown = true;
@@ -1070,7 +940,7 @@
             triggerConfetti();
         }
 
-        // Optional Web Audio Microphone blow detector
+        // Microphone Detection for Blowing Candle
         function startMicDetection() {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
@@ -1092,7 +962,7 @@
                         }
                         let average = sum / dataArray.length;
 
-                        if (average > 45) { // Sensitivity threshold for blowing
+                        if (average > 45) {
                             blowOutCandle();
                         } else {
                             requestAnimationFrame(checkVolume);
@@ -1100,23 +970,12 @@
                     }
                     checkVolume();
                 }).catch(err => {
-                    console.log("Microphone access denied or unavailable", err);
+                    console.log("Microphone access unavailable or denied:", err);
                 });
             }
         }
 
-        // Return home tab logic
-        function switchTab(tabName) {
-            if (tabName === 'home') {
-                hideAllViews();
-                document.getElementById('view-home').classList.remove('hidden');
-                document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                triggerConfetti();
-            }
-        }
-
-        // Confetti Generator
+        // Confetti Effect
         function triggerConfetti() {
             if (typeof confetti === 'function') {
                 confetti({
@@ -1128,36 +987,14 @@
             }
         }
 
-        // Modal Helpers
-        function openModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modal.children[0].classList.remove('scale-95');
-                modal.children[0].classList.add('scale-100');
-            }, 10);
-            triggerConfetti();
-        }
-
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            modal.children[0].classList.remove('scale-100');
-            modal.children[0].classList.add('scale-95');
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        }
-
-        // Initialize script on page load
+        // Initialize App on Load
         window.addEventListener('load', () => {
             createFloatingHearts();
             startCountdown();
             
             setTimeout(() => {
                 finishLoading();
-            }, 2300);
+            }, 2000);
         });
     </script>
 </body>
