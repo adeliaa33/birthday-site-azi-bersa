@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kartu Ucapan Ulang Tahun - Sayang </title>
+    <title>Kartu Ucapan Ulang Tahun - Azi Bersa</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Canvas Confetti CDN -->
@@ -18,6 +18,38 @@
     <style>
         body {
             font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Glassmorphism Design Tokens - Sapphire Blue Theme */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 8px 32px 0 rgba(30, 58, 138, 0.08);
+        }
+
+        .glass-card-dark {
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(147, 197, 253, 0.3);
+            box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.45);
+        }
+
+        .glass-dock {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 12px 36px 0 rgba(30, 58, 138, 0.12);
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         /* Pulsating Loading Heart */
@@ -59,11 +91,6 @@
             animation: flicker 0.6s infinite ease-in-out;
         }
 
-        /* Smoke Effect */
-        #candle-smoke {
-            display: none;
-        }
-
         /* Gentle Sway Animation */
         @keyframes gentleSway {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -73,16 +100,16 @@
             animation: gentleSway 3s ease-in-out infinite;
         }
 
-        /* Custom Scrollbar */
+        /* Custom Scrollbar - Sapphire Blue Theme */
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #fbcfe8;
+            background: #e0e7ff;
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb {
-            background: #f472b6;
+            background: #1e40af;
             border-radius: 10px;
         }
 
@@ -94,23 +121,27 @@
         .animate-heart-pulse {
             animation: heartbeatBig 1.8s ease-in-out infinite;
         }
+
+        .neon-glow-blue {
+            text-shadow: 0 0 12px rgba(96, 165, 250, 0.8), 0 0 25px rgba(30, 58, 138, 0.7);
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-between text-slate-800 relative bg-[#fdeef5] transition-colors duration-500" id="body-bg">
+<body class="min-h-screen flex flex-col items-center justify-between text-slate-800 relative bg-[#eef4ff] transition-colors duration-500" id="body-bg">
 
-    <!-- Floating Background Hearts Container -->
+    <!-- Floating Background Hearts & Stars Container -->
     <div id="heart-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
 
     <!-- Screen 1: Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 bg-[#fdeef5] z-50 flex flex-col items-center justify-center transition-opacity duration-700">
+    <div id="loading-screen" class="fixed inset-0 bg-[#eef4ff] z-50 flex flex-col items-center justify-center transition-opacity duration-700">
         <div class="flex flex-col items-center justify-center gap-4">
-            <!-- Pulsating Heart -->
-            <div class="text-red-500 text-6xl animate-heartbeat drop-shadow-md cursor-pointer" onclick="finishLoading()">
+            <!-- Pulsating Heart (Red) -->
+            <div class="text-rose-600 text-6xl animate-heartbeat drop-shadow-md cursor-pointer" onclick="finishLoading()">
                 ❤️
             </div>
             <!-- Loading Progress Bar -->
-            <div class="w-16 h-[3.5px] bg-pink-200 rounded-full overflow-hidden mt-1">
-                <div id="progress-bar" class="h-full bg-pink-500 animate-pulse rounded-full"></div>
+            <div class="w-20 h-[4px] bg-blue-200/80 rounded-full overflow-hidden mt-1 backdrop-blur-sm">
+                <div id="progress-bar" class="h-full bg-blue-800 animate-pulse rounded-full"></div>
             </div>
         </div>
     </div>
@@ -122,29 +153,29 @@
         <div id="view-home" class="w-full flex flex-col items-center">
             <!-- Top Section Header -->
             <div class="text-center w-full mt-2 relative">
-                <p class="text-pink-600 font-medium text-lg tracking-wide">Untuk yang tersayang</p>
+                <p class="text-blue-800 font-semibold text-lg tracking-wide">Untuk yang tersayang</p>
                 
                 <div class="relative inline-block mt-1">
                     <!-- Main Name Header -->
-                    <h1 class="text-5xl font-extrabold text-pink-500 tracking-tight font-fredoka drop-shadow-sm">
+                    <h1 class="text-5xl font-extrabold text-blue-950 tracking-tight font-fredoka drop-shadow-sm">
                         Azi Bersa
                     </h1>
                     
-                    <!-- Floating Decorative Hearts around Name -->
-                    <span class="absolute -top-1 -right-6 text-red-500 text-sm animate-bounce" style="animation-delay: 0.2s;">❤️</span>
-                    <span class="absolute -bottom-2 -left-6 text-pink-400 text-base animate-pulse">💖</span>
-                    <span class="absolute top-1/2 -right-10 text-pink-300 text-xs transform translate-y-full">✨</span>
+                    <!-- Floating Decorative Red Hearts & Gold Stars -->
+                    <span class="absolute -top-1 -right-6 text-rose-600 text-sm animate-bounce" style="animation-delay: 0.2s;">❤️</span>
+                    <span class="absolute -bottom-2 -left-6 text-amber-500 text-base animate-pulse">✨</span>
+                    <span class="absolute top-1/2 -right-10 text-sky-500 text-xs transform translate-y-full">🤍</span>
                 </div>
             </div>
 
             <!-- Center Image Circle with Crowned Panda holding Cake -->
             <div class="relative my-6 flex items-center justify-center animate-float">
                 <!-- Outer Glow -->
-                <div class="absolute inset-0 rounded-full bg-pink-300 filter blur-md opacity-40 scale-105"></div>
+                <div class="absolute inset-0 rounded-full bg-blue-300 filter blur-xl opacity-50 scale-110"></div>
                 
-                <!-- Pink Circular Frame -->
-                <div class="w-64 h-64 rounded-full border-[5px] border-pink-300 bg-white shadow-lg overflow-hidden flex items-center justify-center relative z-10 p-2">
-                    <svg viewBox="0 0 300 300" class="w-full h-full object-contain">
+                <!-- Circular Frame with Glassmorphism -->
+                <div class="w-64 h-64 rounded-full border-[5px] border-white/90 bg-white/60 backdrop-blur-md shadow-xl overflow-hidden flex items-center justify-center relative z-10 p-2">
+                    <svg viewBox="0 0 300 300" class="w-full h-full object-contain drop-shadow">
                         <!-- Panda Body -->
                         <circle cx="150" cy="180" r="85" fill="#ffffff" stroke="#2d2d2d" stroke-width="6"/>
                         
@@ -167,72 +198,72 @@
                         <circle cx="119" cy="147" r="3" fill="#000000"/>
                         <circle cx="181" cy="147" r="3" fill="#000000"/>
 
-                        <!-- Rosy Cheeks -->
-                        <ellipse cx="100" cy="170" rx="14" ry="9" fill="#ff8fa3" opacity="0.8"/>
-                        <ellipse cx="200" cy="170" rx="14" ry="9" fill="#ff8fa3" opacity="0.8"/>
+                        <!-- Cute Rosy Cheeks -->
+                        <ellipse cx="100" cy="170" rx="14" ry="9" fill="#93c5fd" opacity="0.85"/>
+                        <ellipse cx="200" cy="170" rx="14" ry="9" fill="#93c5fd" opacity="0.85"/>
 
                         <!-- Nose & Mouth -->
                         <ellipse cx="150" cy="160" rx="7" ry="5" fill="#2d2d2d"/>
                         <path d="M 143 167 Q 150 173 157 167" fill="none" stroke="#2d2d2d" stroke-width="4" stroke-linecap="round"/>
-                        <path d="M 146 170 Q 150 178 154 170" fill="#ff6b81" stroke="#2d2d2d" stroke-width="2"/>
+                        <path d="M 146 170 Q 150 178 154 170" fill="#2563eb" stroke="#2d2d2d" stroke-width="2"/>
 
-                        <!-- Crown -->
+                        <!-- Gold Crown -->
                         <path d="M 115 92 L 125 60 L 150 82 L 175 60 L 185 92 Z" fill="#facc15" stroke="#ca8a04" stroke-width="4" stroke-linejoin="round"/>
-                        <circle cx="125" cy="60" r="4" fill="#ef4444"/>
-                        <circle cx="150" cy="82" r="4" fill="#3b82f6"/>
-                        <circle cx="175" cy="60" r="4" fill="#ef4444"/>
+                        <circle cx="125" cy="60" r="4" fill="#be123c"/>
+                        <circle cx="150" cy="82" r="4" fill="#1d4ed8"/>
+                        <circle cx="175" cy="60" r="4" fill="#be123c"/>
 
                         <!-- Paws holding Cake -->
                         <ellipse cx="95" cy="210" rx="16" ry="14" fill="#2d2d2d"/>
                         <ellipse cx="205" cy="210" rx="16" ry="14" fill="#2d2d2d"/>
 
-                        <!-- Cake -->
+                        <!-- Cake with Blue Sapphire & Cream Frosting -->
                         <g transform="translate(100, 185)">
                             <ellipse cx="50" cy="45" rx="52" ry="10" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3"/>
-                            <path d="M 10 25 L 10 40 Q 50 52 90 40 L 90 25 Z" fill="#fbcfe8" stroke="#2d2d2d" stroke-width="4"/>
+                            <path d="M 10 25 L 10 40 Q 50 52 90 40 L 90 25 Z" fill="#bfdbfe" stroke="#2d2d2d" stroke-width="4"/>
                             <ellipse cx="50" cy="25" rx="40" ry="10" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
                             <path d="M 10 25 Q 20 35 30 25 Q 40 37 50 25 Q 60 36 70 25 Q 80 35 90 25" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
-                            <circle cx="25" cy="22" r="5" fill="#ef4444"/>
-                            <circle cx="75" cy="22" r="5" fill="#ef4444"/>
-                            <rect x="46" y="2" width="8" height="20" rx="2" fill="#f43f5e" stroke="#2d2d2d" stroke-width="2"/>
+                            <circle cx="25" cy="22" r="5" fill="#e11d48"/>
+                            <circle cx="75" cy="22" r="5" fill="#e11d48"/>
+                            <rect x="46" y="2" width="8" height="20" rx="2" fill="#2563eb" stroke="#2d2d2d" stroke-width="2"/>
                             <path d="M 50 -8 Q 55 -2 50 3 Q 45 -2 50 -8 Z" fill="#fbbf24" class="animate-pulse"/>
-                            <path d="M 50 -5 Q 52 -2 50 1 Q 48 -2 50 -5 Z" fill="#ef4444"/>
+                            <path d="M 50 -5 Q 52 -2 50 1 Q 48 -2 50 -5 Z" fill="#f59e0b"/>
                         </g>
                     </svg>
                 </div>
                 
-                <span class="absolute -top-2 -left-2 text-red-500 text-xl transform -rotate-12 animate-bounce">❤️</span>
-                <span class="absolute bottom-6 -right-4 text-pink-500 text-2xl transform rotate-12 animate-pulse">💕</span>
-                <span class="absolute top-1/2 -left-6 text-pink-400 text-lg">💖</span>
+                <span class="absolute -top-2 -left-2 text-rose-600 text-xl transform -rotate-12 animate-bounce">❤️</span>
+                <span class="absolute bottom-6 -right-4 text-amber-500 text-2xl transform rotate-12 animate-pulse">✨</span>
+                <span class="absolute top-1/2 -left-6 text-sky-500 text-lg">🤍</span>
             </div>
 
             <!-- Middle Greeting -->
             <div class="text-center w-full my-2">
-                <h2 class="text-3xl font-extrabold text-pink-600 font-fredoka leading-tight tracking-snug">
+                <h2 class="text-3xl font-extrabold text-blue-950 font-fredoka leading-tight tracking-snug">
                     Selamat Ulang Tahun<br>Sayang!
                 </h2>
                 
-                <div class="flex items-center justify-center gap-2 mt-3 text-pink-600 font-bold text-lg">
+                <div class="flex items-center justify-center gap-2 mt-3 text-blue-900 font-bold text-lg">
                     <span class="text-xl">🎉</span>
-                    <span class="text-pink-400 text-sm">💕</span>
+                    <span class="text-amber-500 text-sm">✨</span>
                     <span class="tracking-wide">07 November 2026</span>
                     <span class="text-xl">🎉</span>
                 </div>
             </div>
 
-            <!-- Quote Box -->
-            <div class="w-full bg-white/80 backdrop-blur-sm rounded-2xl p-5 mt-4 border border-pink-100 shadow-sm relative">
-                <p class="italic text-slate-700 text-sm md:text-base leading-relaxed text-center font-medium">
-                    "happy birthday my sweet boy! 💖 today and everyday, only wishing the best for you 🫶"
+            <!-- Quote Box with Glassmorphism -->
+            <div class="w-full glass-card rounded-2xl p-5 mt-4 relative">
+                <p class="italic text-slate-800 text-sm md:text-base leading-relaxed text-center font-medium">
+                    "happy birthday my sweet boy! ❤️ today and everyday, only wishing the best for you 🫶"
                 </p>
-                <p class="text-right text-pink-600 font-bold text-sm mt-3 pr-2">
+                <p class="text-right text-blue-900 font-bold text-sm mt-3 pr-2">
                     - Adelia
                 </p>
             </div>
 
             <!-- Buka Hadiah Spesial Button -->
             <div class="w-full mt-8 flex justify-center">
-                <button onclick="goToGiftIntro()" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform active:scale-95 transition-all duration-200 flex items-center justify-center gap-3 text-lg">
+                <button onclick="goToGiftIntro()" class="w-full bg-gradient-to-r from-blue-900 via-indigo-800 to-sky-600 hover:from-blue-950 hover:to-sky-700 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform active:scale-95 transition-all duration-200 flex items-center justify-center gap-3 text-lg">
                     <span class="text-2xl">🎁</span>
                     <span>Buka Hadiah Spesial</span>
                 </button>
@@ -242,18 +273,18 @@
         <!-- VIEW 2: GIFT INTRO SCREEN -->
         <div id="view-gift-intro" class="w-full hidden flex-col items-center justify-center min-h-[70vh] text-center">
             <div onclick="openGiftBox()" class="cursor-pointer transform hover:scale-105 transition-transform duration-300 my-8">
-                <!-- Red Gift Box SVG -->
+                <!-- Sapphire Blue & Gold Gift Box SVG -->
                 <svg width="220" height="220" viewBox="0 0 200 200" class="drop-shadow-2xl">
-                    <rect x="25" y="60" width="150" height="120" rx="12" fill="#ef4444"/>
+                    <rect x="25" y="60" width="150" height="120" rx="12" fill="#1e3a8a"/>
                     <rect x="85" y="60" width="30" height="120" fill="#facc15"/>
                     <rect x="25" y="110" width="150" height="25" fill="#facc15"/>
-                    <rect x="15" y="45" width="170" height="25" rx="6" fill="#dc2626"/>
+                    <rect x="15" y="45" width="170" height="25" rx="6" fill="#172554"/>
                     <rect x="85" y="45" width="30" height="25" fill="#eab308"/>
                     <circle cx="100" cy="35" r="22" fill="#facc15"/>
                     <circle cx="100" cy="35" r="12" fill="#eab308"/>
                 </svg>
             </div>
-            <p class="text-pink-600 font-bold text-xl md:text-2xl mt-4 tracking-wide font-fredoka">
+            <p class="text-blue-950 font-bold text-xl md:text-2xl mt-4 tracking-wide font-fredoka">
                 Klik untuk membuka hadiah spesial!
             </p>
         </div>
@@ -263,7 +294,7 @@
             <div class="animate-gift-roll my-8">
                 <div class="text-8xl">🎁</div>
             </div>
-            <p class="text-pink-600 font-bold text-2xl tracking-wide font-fredoka animate-pulse mt-4">
+            <p class="text-blue-900 font-bold text-2xl tracking-wide font-fredoka animate-pulse mt-4">
                 Membuka hadiah...
             </p>
         </div>
@@ -272,15 +303,15 @@
         <div id="view-candle" class="w-full hidden flex-col items-center justify-center min-h-[75vh] text-center text-white pt-4">
             <div class="flex items-center justify-center gap-2 mb-2">
                 <span class="text-3xl animate-bounce">🎉</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-pink-200 neon-glow font-fredoka">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-blue-200 neon-glow-blue font-fredoka">
                     Happy Birthday My Love!
                 </h2>
                 <span class="text-3xl animate-bounce">🎉</span>
             </div>
 
-            <p class="text-pink-100 text-sm md:text-base font-semibold mt-2 mb-10 opacity-90">
+            <p class="text-blue-100 text-sm md:text-base font-semibold mt-2 mb-10 opacity-90">
                 Make a wish and blow the candle 🎂<br>
-                <span class="text-xs text-pink-300">(use your voice or tap the flame!)</span>
+                <span class="text-xs text-amber-300">(use your voice or tap the flame!)</span>
             </p>
 
             <!-- Birthday Cake Illustration -->
@@ -289,32 +320,32 @@
                 <div id="candle-flame" class="relative z-20 animate-flicker transition-all duration-500">
                     <div class="w-8 h-12 bg-amber-400 rounded-full filter blur-sm absolute -top-1 -left-1 opacity-80"></div>
                     <div class="w-6 h-10 bg-amber-400 rounded-t-full rounded-b-xl relative flex items-center justify-center">
-                        <div class="w-3 h-6 bg-red-500 rounded-t-full rounded-b-lg"></div>
+                        <div class="w-3 h-6 bg-red-600 rounded-t-full rounded-b-lg"></div>
                     </div>
                 </div>
 
                 <!-- Smoke Effect -->
                 <div id="candle-smoke" class="hidden relative z-20 flex flex-col items-center -mt-4 opacity-0 transition-opacity duration-700">
-                    <span class="text-gray-400 text-xl animate-ping">💨</span>
-                    <span class="text-xs text-pink-300 font-bold mt-1">Wish granted! ✨</span>
+                    <span class="text-gray-300 text-xl animate-ping">💨</span>
+                    <span class="text-xs text-amber-300 font-bold mt-1">Wish granted! ✨</span>
                 </div>
 
                 <!-- Candle Body -->
-                <div class="w-5 h-16 bg-gradient-to-b from-pink-300 to-pink-500 rounded-t-sm shadow-md z-10 border-t border-pink-100"></div>
+                <div class="w-5 h-16 bg-gradient-to-b from-sky-400 to-indigo-700 rounded-t-sm shadow-md z-10 border-t border-sky-200"></div>
 
                 <!-- Tier 1 Top Cake -->
-                <div class="w-48 h-16 bg-pink-300 rounded-t-2xl border-b-4 border-pink-400 shadow-lg relative flex items-center justify-center overflow-hidden -mt-1 z-0">
+                <div class="w-48 h-16 bg-blue-300 rounded-t-2xl border-b-4 border-blue-400 shadow-lg relative flex items-center justify-center overflow-hidden -mt-1 z-0">
                     <div class="absolute top-0 w-full h-4 bg-white/90 rounded-t-2xl"></div>
                 </div>
 
                 <!-- Tier 2 Base Cake -->
-                <div class="w-64 h-20 bg-pink-100 rounded-t-2xl border-b-8 border-pink-200 shadow-2xl relative flex items-center justify-center overflow-hidden -mt-1">
+                <div class="w-64 h-20 bg-blue-100 rounded-t-2xl border-b-8 border-blue-200 shadow-2xl relative flex items-center justify-center overflow-hidden -mt-1">
                     <div class="absolute top-0 w-full h-5 bg-white rounded-t-2xl"></div>
                 </div>
             </div>
 
-            <!-- Candle status notice -->
-            <div id="blow-status" class="mt-8 bg-purple-900/60 backdrop-blur-md px-6 py-2 rounded-full border border-pink-400/30 text-pink-200 text-xs font-semibold">
+            <!-- Candle status notice with glassmorphism -->
+            <div id="blow-status" class="mt-8 glass-card-dark px-6 py-2.5 rounded-full text-blue-200 text-xs font-semibold">
                 🎙️ Listening for a blow... (or tap the flame!)
             </div>
         </div>
@@ -322,20 +353,20 @@
         <!-- VIEW 5: COUNTDOWN TIMER VIEW (⏳ Icon View) -->
         <div id="view-countdown" class="w-full hidden flex-col items-center text-center pt-2 pb-10">
             <h1 class="text-3xl font-black font-fredoka tracking-tight mb-4">
-                <span class="text-pink-600">The Birthday of </span>
-                <span class="text-purple-600">Azi Bersa</span>
+                <span class="text-blue-900">The Birthday of </span>
+                <span class="text-indigo-800">Azi Bersa</span>
             </h1>
 
-            <div class="w-full max-w-xs bg-white rounded-3xl p-4 shadow-lg border border-pink-100 relative flex flex-col items-center animate-sway">
+            <div class="w-full max-w-xs glass-card rounded-3xl p-4 relative flex flex-col items-center animate-sway">
                 <div class="absolute -top-3 flex justify-center gap-3 w-full">
-                    <span class="text-red-500 text-xl animate-bounce" style="animation-delay: 0.1s;">❤️</span>
-                    <span class="text-pink-400 text-base animate-pulse" style="animation-delay: 0.3s;">💕</span>
+                    <span class="text-rose-600 text-xl animate-bounce" style="animation-delay: 0.1s;">❤️</span>
+                    <span class="text-amber-500 text-base animate-pulse" style="animation-delay: 0.3s;">✨</span>
                 </div>
 
                 <!-- SVG Bear Hugging Panda -->
                 <svg viewBox="0 0 300 260" class="w-full h-52 object-contain drop-shadow-sm">
-                    <path d="M 170 50 C 170 40, 185 40, 190 50 C 195 40, 210 40, 210 50 C 210 65, 190 75, 190 82 C 190 75, 170 65, 170 50 Z" fill="#ff7675" class="animate-pulse"/>
-                    <path d="M 205 75 C 205 68, 216 68, 220 75 C 224 68, 235 68, 235 75 C 235 85, 220 92, 220 97 C 220 92, 205 85, 205 75 Z" fill="#ffabe7" class="animate-bounce"/>
+                    <path d="M 170 50 C 170 40, 185 40, 190 50 C 195 40, 210 40, 210 50 C 210 65, 190 75, 190 82 C 190 75, 170 65, 170 50 Z" fill="#e11d48" class="animate-pulse"/>
+                    <path d="M 205 75 C 205 68, 216 68, 220 75 C 224 68, 235 68, 235 75 C 235 85, 220 92, 220 97 C 220 92, 205 85, 205 75 Z" fill="#93c5fd" class="animate-bounce"/>
 
                     <!-- Bear (Brown) -->
                     <g transform="translate(10, 20)">
@@ -349,7 +380,7 @@
                         <path d="M 94 125 Q 100 130 106 125" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
                         <circle cx="75" cy="110" r="5" fill="#3d2314"/>
                         <circle cx="125" cy="110" r="5" fill="#3d2314"/>
-                        <ellipse cx="65" cy="122" rx="10" ry="6" fill="#fca5a5" opacity="0.8"/>
+                        <ellipse cx="65" cy="122" rx="10" ry="6" fill="#93c5fd" opacity="0.8"/>
                         <path d="M 50 160 Q 100 150 150 160 L 150 220 L 50 220 Z" fill="#a06a58"/>
                         <path d="M 80 165 Q 110 180 140 165" fill="none" stroke="#3d2314" stroke-width="4" stroke-linecap="round"/>
                     </g>
@@ -363,8 +394,8 @@
                         <ellipse cx="125" cy="102" rx="14" ry="18" fill="#2d2d2d" transform="rotate(10 125 102)"/>
                         <path d="M 70 102 Q 75 97 80 102" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
                         <path d="M 120 102 Q 125 97 130 102" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-                        <ellipse cx="60" cy="115" rx="12" ry="7" fill="#ff8fa3" opacity="0.85"/>
-                        <ellipse cx="140" cy="115" rx="12" ry="7" fill="#ff8fa3" opacity="0.85"/>
+                        <ellipse cx="60" cy="115" rx="12" ry="7" fill="#93c5fd" opacity="0.85"/>
+                        <ellipse cx="140" cy="115" rx="12" ry="7" fill="#93c5fd" opacity="0.85"/>
                         <ellipse cx="100" cy="110" rx="6" ry="4" fill="#2d2d2d"/>
                         <path d="M 94 116 Q 100 122 106 116" fill="none" stroke="#2d2d2d" stroke-width="3" stroke-linecap="round"/>
                         <path d="M 45 140 Q 15 150 10 130" fill="none" stroke="#2d2d2d" stroke-width="12" stroke-linecap="round"/>
@@ -373,53 +404,53 @@
                 </svg>
             </div>
 
-            <h2 class="text-pink-600 font-bold text-xl mt-5 font-fredoka">
+            <h2 class="text-blue-950 font-bold text-xl mt-5 font-fredoka">
                 Menuju Hari Spesialmu
             </h2>
 
-            <!-- Countdown Timer Grid -->
+            <!-- Countdown Timer Grid with Glassmorphism -->
             <div class="grid grid-cols-4 gap-2.5 w-full max-w-xs mt-3">
-                <div class="bg-white rounded-2xl p-3 shadow-md border border-pink-100 flex flex-col items-center">
-                    <span id="cd-days" class="text-2xl font-extrabold text-pink-600 font-fredoka">00</span>
-                    <span class="text-[10px] font-bold text-pink-400 tracking-wider mt-0.5">HARI</span>
+                <div class="glass-card rounded-2xl p-3 flex flex-col items-center">
+                    <span id="cd-days" class="text-2xl font-extrabold text-blue-900 font-fredoka">00</span>
+                    <span class="text-[10px] font-bold text-blue-700 tracking-wider mt-0.5">HARI</span>
                 </div>
-                <div class="bg-white rounded-2xl p-3 shadow-md border border-pink-100 flex flex-col items-center">
-                    <span id="cd-hours" class="text-2xl font-extrabold text-pink-600 font-fredoka">00</span>
-                    <span class="text-[10px] font-bold text-pink-400 tracking-wider mt-0.5">JAM</span>
+                <div class="glass-card rounded-2xl p-3 flex flex-col items-center">
+                    <span id="cd-hours" class="text-2xl font-extrabold text-blue-900 font-fredoka">00</span>
+                    <span class="text-[10px] font-bold text-blue-700 tracking-wider mt-0.5">JAM</span>
                 </div>
-                <div class="bg-white rounded-2xl p-3 shadow-md border border-pink-100 flex flex-col items-center">
-                    <span id="cd-mins" class="text-2xl font-extrabold text-pink-600 font-fredoka">00</span>
-                    <span class="text-[10px] font-bold text-pink-400 tracking-wider mt-0.5">MENIT</span>
+                <div class="glass-card rounded-2xl p-3 flex flex-col items-center">
+                    <span id="cd-mins" class="text-2xl font-extrabold text-blue-900 font-fredoka">00</span>
+                    <span class="text-[10px] font-bold text-blue-700 tracking-wider mt-0.5">MENIT</span>
                 </div>
-                <div class="bg-white rounded-2xl p-3 shadow-md border border-pink-100 flex flex-col items-center">
-                    <span id="cd-secs" class="text-2xl font-extrabold text-pink-600 font-fredoka">00</span>
-                    <span class="text-[10px] font-bold text-pink-400 tracking-wider mt-0.5">DETIK</span>
+                <div class="glass-card rounded-2xl p-3 flex flex-col items-center">
+                    <span id="cd-secs" class="text-2xl font-extrabold text-blue-900 font-fredoka">00</span>
+                    <span class="text-[10px] font-bold text-blue-700 tracking-wider mt-0.5">DETIK</span>
                 </div>
             </div>
 
             <!-- Target Date Card -->
-            <div class="w-full max-w-xs bg-white rounded-2xl p-4 mt-5 shadow-sm border border-pink-100 flex flex-col items-center">
-                <div class="flex items-center gap-2 text-purple-700 font-bold text-base font-fredoka">
+            <div class="w-full max-w-xs glass-card rounded-2xl p-4 mt-5 flex flex-col items-center">
+                <div class="flex items-center gap-2 text-blue-900 font-bold text-base font-fredoka">
                     <span class="text-lg">📅</span>
                     <span>07 November 2026</span>
                 </div>
-                <p class="text-xs text-pink-600 font-medium mt-2 leading-relaxed">
+                <p class="text-xs text-blue-800 font-medium mt-2 leading-relaxed">
                     Tanggal dimana senyumanmu akan menerangi hariku🥹
                 </p>
             </div>
 
-            <p class="text-xs italic text-pink-600 font-medium max-w-xs mt-6 leading-relaxed px-2">
-                "today and everyday, i'll always be ur #1 supporter, clap the loudest for u, and praying wholeheartedly for ur happiness 💕"
+            <p class="text-xs italic text-blue-900 font-medium max-w-xs mt-6 leading-relaxed px-2">
+                "today and everyday, i'll always be ur #1 supporter, clap the loudest for u, and praying wholeheartedly for ur happiness ❤️"
             </p>
         </div>
 
         <!-- VIEW 6: PESAN SPESIAL UNTUKMU SCREEN (💌 Icon View) -->
         <div id="view-letter" class="w-full hidden flex-col items-center text-center pt-2 pb-12">
-            <h1 class="text-3xl font-extrabold font-fredoka text-pink-600 tracking-tight mb-4">
+            <h1 class="text-3xl font-extrabold font-fredoka text-blue-950 tracking-tight mb-4">
                 Pesan Spesial<br>Untukmu
             </h1>
 
-            <div class="w-full max-w-xs bg-white rounded-3xl p-4 shadow-lg border border-pink-100 flex justify-center items-center my-2">
+            <div class="w-full max-w-xs glass-card rounded-3xl p-4 flex justify-center items-center my-2">
                 <svg viewBox="0 0 300 240" class="w-full h-48 object-contain">
                     <!-- Panda Holding Rose -->
                     <g transform="translate(10, 20)">
@@ -430,14 +461,14 @@
                         <ellipse cx="105" cy="98" rx="12" ry="16" fill="#2d2d2d" transform="rotate(10 105 98)"/>
                         <circle cx="67" cy="96" r="4" fill="#ffffff"/>
                         <circle cx="103" cy="96" r="4" fill="#ffffff"/>
-                        <ellipse cx="52" cy="110" rx="10" ry="6" fill="#ff8fa3" opacity="0.8"/>
-                        <ellipse cx="118" cy="110" rx="10" ry="6" fill="#ff8fa3" opacity="0.8"/>
+                        <ellipse cx="52" cy="110" rx="10" ry="6" fill="#93c5fd" opacity="0.8"/>
+                        <ellipse cx="118" cy="110" rx="10" ry="6" fill="#93c5fd" opacity="0.8"/>
                         <ellipse cx="85" cy="105" rx="5" ry="3" fill="#2d2d2d"/>
                         <path d="M 80 110 Q 85 115 90 110" fill="none" stroke="#2d2d2d" stroke-width="3" stroke-linecap="round"/>
                         <path d="M 50 140 Q 85 130 120 140 L 120 190 L 50 190 Z" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
                         <path d="M 100 135 L 140 120" fill="none" stroke="#15803d" stroke-width="4" stroke-linecap="round"/>
-                        <circle cx="145" cy="115" r="12" fill="#ef4444"/>
-                        <path d="M 140 112 Q 145 106 150 112" fill="none" stroke="#b91c1c" stroke-width="2"/>
+                        <circle cx="145" cy="115" r="12" fill="#e11d48"/>
+                        <path d="M 140 112 Q 145 106 150 112" fill="none" stroke="#be123c" stroke-width="2"/>
                     </g>
 
                     <!-- Crowned Bear -->
@@ -454,37 +485,37 @@
                         <ellipse cx="55" cy="115" rx="10" ry="6" fill="#fca5a5" opacity="0.8"/>
                         <ellipse cx="115" cy="115" rx="10" ry="6" fill="#fca5a5" opacity="0.8"/>
                         <path d="M 50 145 Q 85 135 120 145 L 120 195 L 50 195 Z" fill="#a06a58"/>
-                        <rect x="65" y="140" width="40" height="35" rx="4" fill="#38bdf8" stroke="#0284c7" stroke-width="3"/>
+                        <rect x="65" y="140" width="40" height="35" rx="4" fill="#1e40af" stroke="#172554" stroke-width="3"/>
                         <rect x="80" y="140" width="10" height="35" fill="#facc15"/>
                         <polygon points="85,135 80,140 90,140" fill="#facc15"/>
                     </g>
                 </svg>
             </div>
 
-            <!-- Love Letter Box -->
-            <div class="w-full max-w-xs bg-white/95 rounded-3xl p-5 shadow-sm border border-pink-100 mt-4 text-left text-xs md:text-sm text-pink-700 leading-relaxed font-medium space-y-4">
+            <!-- Love Letter Box with Glassmorphism -->
+            <div class="w-full max-w-xs glass-card rounded-3xl p-5 mt-4 text-left text-xs md:text-sm text-slate-800 leading-relaxed font-medium space-y-4">
                 <p>
-                    Sayangku 💖, hari ini adalah momen yang paling indah karena hari ini kamu lahir ke dunia 🎉. Aku ingin berdoa agar kamu selalu dalam lindungan Tuhan 🙏, diberi kesehatan 🦾, kekuatan 🛡️, dan kebahagiaan yang tiada akhir 🌈✨.
+                    Sayangku ❤️, hari ini adalah momen yang paling indah karena hari ini kamu lahir ke dunia 🎉. Aku ingin berdoa agar kamu selalu dalam lindungan Tuhan 🙏, diberi kesehatan 🦾, kekuatan 🛡️, dan kebahagiaan yang tiada akhir 🌈✨.
                 </p>
                 <p>
-                    Aku tahu hidup tidak selalu mudah 🌧️, tapi aku ingin kamu tahu bahwa kamu tidak sendiri 🤝. Aku akan selalu mendukungmu 💕, menyemangati kamu 💫, dan menjadi pundakmu saat kamu lelah 🥺➔🗿.
+                    Aku tahu hidup tidak selalu mudah 🌧️, tapi aku ingin kamu tahu bahwa kamu tidak sendiri 🤝. Aku akan selalu mendukungmu ❤️, menyemangati kamu 💫, dan menjadi pundakmu saat kamu lelah 🥺➔🗿.
                 </p>
                 <p>
-                    Semoga setiap langkahmu penuh keberkahan 🏰, dan setiap impianmu satu per satu menjadi kenyataan 🌠. Kamu punya hati yang tulus 💓, senyum yang menenangkan 😌, dan jiwa yang cantik luar dalam 🌹. Dunia butuh lebih banyak orang sepertimu 🌍❤️.
+                    Semoga setiap langkahmu penuh keberkahan 🏰, dan setiap impianmu satu per satu menjadi kenyataan 🌠. Kamu punya hati yang tulus 💓, senyum yang menenangkan 😌, dan jiwa yang tampan luar dalam 🌹. Dunia butuh lebih banyak orang sepertimu 🌍❤️.
                 </p>
                 <p>
-                    Aku ingin kamu tahu bahwa aku percaya padamu sepenuhnya 🤲. Kamu kuat 💥, kamu hebat 🦋, dan kamu pantas mendapatkan yang terbaik 🏆. Jangan pernah ragukan dirimu sendiri 🙋‍♀️, karena kamu adalah cahaya dalam hidup banyak orang 🌟, termasuk hidupku 💘.
+                    Aku ingin kamu tahu bahwa aku percaya padamu sepenuhnya 🤲. Kamu kuat 💥, kamu hebat 🦋, dan kamu pantas mendapatkan yang terbaik 🏆. Jangan pernah ragukan dirimu sendiri 🙋‍♂️, karena kamu adalah cahaya dalam hidup banyak orang 🌟, termasuk hidupku 💘.
                 </p>
                 <p>
                     Jika suatu hari kamu merasa ragu atau takut 🥺, ingatlah doaku ini: Semoga kamu selalu dikelilingi orang-orang baik 👥, rezeki yang cukup 💰, dan cinta yang tulus dari semua arah 💗. Termasuk dariku 🫶.
                 </p>
-                <p class="font-bold text-pink-800">
+                <p class="font-bold text-blue-950">
                     Aku cinta kamu ❤, dan akan selalu mencintaimu 💍.
                 </p>
             </div>
 
             <div class="w-full max-w-xs mt-6 flex justify-center">
-                <button onclick="goToLoveScreen()" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3.5 px-6 rounded-full shadow-lg transform active:scale-95 transition-all text-sm tracking-wide">
+                <button onclick="goToLoveScreen()" class="w-full bg-gradient-to-r from-blue-900 via-indigo-800 to-sky-600 hover:from-blue-950 hover:to-sky-700 text-white font-bold py-3.5 px-6 rounded-full shadow-lg transform active:scale-95 transition-all text-sm tracking-wide">
                     Lihat Cintaku
                 </button>
             </div>
@@ -493,13 +524,13 @@
         <!-- VIEW 7: LIHAT CINTAKU SCREEN -->
         <div id="view-love" class="w-full hidden flex-col items-center justify-center min-h-[75vh] text-center pt-8">
             <div class="relative my-8 cursor-pointer flex items-center justify-center animate-heart-pulse" onclick="triggerConfetti()">
-                <svg width="240" height="220" viewBox="0 0 200 180" class="drop-shadow-[0_10px_25px_rgba(239,68,68,0.6)]">
-                    <path d="M 100 170 C 20 100, 0 45, 50 15 C 80 -2, 100 25, 100 25 C 100 25, 120 -2, 150 15 C 200 45, 180 100, 100 170 Z" fill="#ef4444"/>
-                    <path d="M 35 30 C 25 55, 30 75, 45 90" fill="none" stroke="#fca5a5" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+                <svg width="240" height="220" viewBox="0 0 200 180" class="drop-shadow-[0_10px_25px_rgba(225,29,72,0.7)]">
+                    <path d="M 100 170 C 20 100, 0 45, 50 15 C 80 -2, 100 25, 100 25 C 100 25, 120 -2, 150 15 C 200 45, 180 100, 100 170 Z" fill="#e11d48"/>
+                    <path d="M 35 30 C 25 55, 30 75, 45 90" fill="none" stroke="#fda4af" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
                 </svg>
                 <div class="absolute inset-0 flex items-center justify-center gap-1.5 text-white font-black font-fredoka text-3xl pt-1">
                     <span>Azi Bersa</span>
-                    <span class="text-2xl">💖✨</span>
+                    <span class="text-2xl">❤️✨</span>
                 </div>
             </div>
 
@@ -511,11 +542,11 @@
 
         <!-- VIEW 8: KENANGAN INDAH KITA SCREEN (📷 Icon View) -->
         <div id="view-memories" class="w-full hidden flex-col items-center text-center pt-2 pb-12">
-            <h1 class="text-3xl font-extrabold font-fredoka text-pink-600 tracking-tight mb-4">
+            <h1 class="text-3xl font-extrabold font-fredoka text-blue-950 tracking-tight mb-4">
                 Kenangan Indah Kita
             </h1>
 
-            <div class="w-full max-w-xs bg-[#cbe3eb] rounded-3xl p-3 shadow-md border border-pink-100 flex justify-center items-center my-2 overflow-hidden">
+            <div class="w-full max-w-xs glass-card rounded-3xl p-3 flex justify-center items-center my-2 overflow-hidden">
                 <svg viewBox="0 0 300 180" class="w-full h-40 object-contain">
                     <!-- Bear in Yellow Cap -->
                     <g transform="translate(10, 10)">
@@ -535,10 +566,10 @@
                         <path d="M 55 135 L 115 165" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
                     </g>
 
-                    <!-- Panda in Blue Bucket Hat -->
+                    <!-- Panda in Navy Cap -->
                     <g transform="translate(140, 10)">
-                        <path d="M 45 45 C 45 20, 125 20, 125 45 Z" fill="#38bdf8"/>
-                        <path d="M 30 45 L 140 45 C 140 45, 130 55, 85 55 C 40 55, 30 45, 30 45 Z" fill="#0284c7"/>
+                        <path d="M 45 45 C 45 20, 125 20, 125 45 Z" fill="#1e40af"/>
+                        <path d="M 30 45 L 140 45 C 140 45, 130 55, 85 55 C 40 55, 30 45, 30 45 Z" fill="#1e3a8a"/>
                         <circle cx="40" cy="55" r="16" fill="#2d2d2d"/>
                         <circle cx="130" cy="55" r="16" fill="#2d2d2d"/>
                         <ellipse cx="85" cy="95" rx="50" ry="40" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
@@ -546,8 +577,8 @@
                         <ellipse cx="105" cy="92" rx="12" ry="14" fill="#2d2d2d"/>
                         <circle cx="67" cy="90" r="3" fill="#ffffff"/>
                         <path d="M 100 92 Q 105 88 110 92" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-                        <ellipse cx="52" cy="102" rx="10" ry="6" fill="#ff8fa3" opacity="0.85"/>
-                        <ellipse cx="118" cy="102" rx="10" ry="6" fill="#ff8fa3" opacity="0.85"/>
+                        <ellipse cx="52" cy="102" rx="10" ry="6" fill="#93c5fd" opacity="0.85"/>
+                        <ellipse cx="118" cy="102" rx="10" ry="6" fill="#93c5fd" opacity="0.85"/>
                         <ellipse cx="85" cy="98" rx="5" ry="3" fill="#2d2d2d"/>
                         <path d="M 80 102 Q 85 107 90 102" fill="none" stroke="#2d2d2d" stroke-width="2.5" stroke-linecap="round"/>
                         <path d="M 50 135 Q 85 125 120 135 L 120 170 L 50 170 Z" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
@@ -555,33 +586,33 @@
                 </svg>
             </div>
 
-            <!-- Apology Card Content -->
-            <div class="w-full max-w-xs bg-white rounded-3xl p-5 shadow-sm border border-pink-100 mt-4 text-left text-xs md:text-sm leading-relaxed space-y-4">
-                <h2 class="text-center font-bold text-base text-pink-600 font-fredoka">
+            <!-- Apology Card Content with Glassmorphism -->
+            <div class="w-full max-w-xs glass-card rounded-3xl p-5 mt-4 text-left text-xs md:text-sm leading-relaxed space-y-4">
+                <h2 class="text-center font-bold text-base text-blue-950 font-fredoka">
                     Permintaan Maafku di Hari Ulang Tahunmu
                 </h2>
 
-                <p class="font-bold text-pink-700 flex items-center gap-1.5">
+                <p class="font-bold text-blue-900 flex items-center gap-1.5">
                     <span>💌</span>
                     <span>Maaf ya, Sayang...</span>
                 </p>
 
-                <p class="text-pink-800 font-medium">
+                <p class="text-slate-800 font-medium">
                     Maaf kalau selama ini aku pernah cuek 😔, terlalu sibuk 😔, atau kurang peka sama perasaanmu 😢. Maaf kalau kadang aku bikin kamu kecewa, salah paham, atau merasa sendiri 😓. Aku gak pernah berniat nyakitin kamu 🥺. Semua itu karena aku manusia biasa yang masih belajar mencintaimu dengan lebih baik 🤍.
                 </p>
 
-                <p class="text-pink-800 font-medium">
-                    Terima kasih sudah sabar, sudah tetap di sini 🫶. Aku akan terus belajar jadi lebih baik lagi... untuk kamu 💖
+                <p class="text-slate-800 font-medium">
+                    Terima kasih sudah sabar, sudah tetap di sini 🫶. Aku akan terus belajar jadi lebih baik lagi... untuk kamu ❤️
                 </p>
 
-                <p class="text-pink-800 font-medium flex items-start gap-1.5 pt-1">
+                <p class="text-slate-800 font-medium flex items-start gap-1.5 pt-1">
                     <span>🙏</span>
                     <span>Maaf ya, dan makasih karena kamu tetap percaya sama aku.</span>
                 </p>
             </div>
 
             <div class="w-full max-w-xs mt-6 flex justify-center">
-                <button onclick="goToFlowerScreen()" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3.5 px-6 rounded-full shadow-lg transform active:scale-95 transition-all text-sm tracking-wide">
+                <button onclick="goToFlowerScreen()" class="w-full bg-gradient-to-r from-blue-900 via-indigo-800 to-sky-600 hover:from-blue-950 hover:to-sky-700 text-white font-bold py-3.5 px-6 rounded-full shadow-lg transform active:scale-95 transition-all text-sm tracking-wide">
                     Buka Bunga Cinta
                 </button>
             </div>
@@ -589,11 +620,11 @@
 
         <!-- VIEW 9: BUNGA CINTA SCREEN -->
         <div id="view-flower" class="w-full hidden flex-col items-center text-center pt-4 pb-12">
-            <button onclick="switchTab('memories')" class="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-2.5 px-8 rounded-full shadow-md transform active:scale-95 transition-all text-sm mb-6">
+            <button onclick="switchTab('memories')" class="bg-gradient-to-r from-blue-900 to-indigo-800 hover:from-blue-950 hover:to-indigo-900 text-white font-bold py-2.5 px-8 rounded-full shadow-md transform active:scale-95 transition-all text-sm mb-6">
                 Tutup Bunga
             </button>
 
-            <div class="w-full max-w-xs bg-white rounded-3xl p-4 shadow-lg border border-pink-200 flex justify-center items-center my-2">
+            <div class="w-full max-w-xs glass-card rounded-3xl p-4 flex justify-center items-center my-2">
                 <svg viewBox="0 0 200 200" class="w-48 h-48 object-contain">
                     <ellipse cx="100" cy="95" rx="70" ry="60" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
                     <circle cx="45" cy="45" r="22" fill="#2d2d2d"/>
@@ -602,44 +633,44 @@
                     <ellipse cx="130" cy="95" rx="16" ry="20" fill="#2d2d2d" transform="rotate(10 130 95)"/>
                     <circle cx="73" cy="93" r="4" fill="#ffffff"/>
                     <circle cx="127" cy="93" r="4" fill="#ffffff"/>
-                    <ellipse cx="50" cy="110" rx="14" ry="9" fill="#ff8fa3" opacity="0.85"/>
-                    <ellipse cx="150" cy="110" rx="14" ry="9" fill="#ff8fa3" opacity="0.85"/>
+                    <ellipse cx="50" cy="110" rx="14" ry="9" fill="#93c5fd" opacity="0.85"/>
+                    <ellipse cx="150" cy="110" rx="14" ry="9" fill="#93c5fd" opacity="0.85"/>
                     <ellipse cx="100" cy="100" rx="6" ry="4" fill="#2d2d2d"/>
                     <path d="M 94 105 Q 100 110 106 105" fill="none" stroke="#2d2d2d" stroke-width="3" stroke-linecap="round"/>
                     <ellipse cx="50" cy="155" rx="18" ry="14" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
                     <ellipse cx="145" cy="140" rx="18" ry="14" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
                     <path d="M 145 140 L 145 110" fill="none" stroke="#15803d" stroke-width="5" stroke-linecap="round"/>
-                    <circle cx="145" cy="100" r="16" fill="#f43f5e"/>
-                    <path d="M 137 98 Q 145 90 153 98" fill="none" stroke="#be123c" stroke-width="3"/>
+                    <circle cx="145" cy="100" r="16" fill="#2563eb"/>
+                    <path d="M 137 98 Q 145 90 153 98" fill="none" stroke="#1d4ed8" stroke-width="3"/>
                 </svg>
             </div>
 
-            <!-- Big Flower Graphic -->
+            <!-- Big Sapphire Blue Rose Graphic -->
             <div class="my-6 relative flex items-center justify-center animate-heart-pulse">
                 <svg viewBox="0 0 200 240" class="w-60 h-60 drop-shadow-xl">
                     <rect x="95" y="150" width="10" height="80" rx="5" fill="#16a34a"/>
-                    <circle cx="100" cy="65" r="35" fill="#ec4899"/>
-                    <circle cx="65" cy="100" r="35" fill="#ec4899"/>
-                    <circle cx="135" cy="100" r="35" fill="#ec4899"/>
-                    <circle cx="80" cy="130" r="35" fill="#ec4899"/>
-                    <circle cx="120" cy="130" r="35" fill="#ec4899"/>
-                    <circle cx="100" cy="75" r="28" fill="#f43f5e"/>
-                    <circle cx="75" cy="100" r="28" fill="#f43f5e"/>
-                    <circle cx="125" cy="100" r="28" fill="#f43f5e"/>
-                    <circle cx="88" cy="120" r="28" fill="#f43f5e"/>
-                    <circle cx="112" cy="120" r="28" fill="#f43f5e"/>
+                    <circle cx="100" cy="65" r="35" fill="#3b82f6"/>
+                    <circle cx="65" cy="100" r="35" fill="#3b82f6"/>
+                    <circle cx="135" cy="100" r="35" fill="#3b82f6"/>
+                    <circle cx="80" cy="130" r="35" fill="#3b82f6"/>
+                    <circle cx="120" cy="130" r="35" fill="#3b82f6"/>
+                    <circle cx="100" cy="75" r="28" fill="#1d4ed8"/>
+                    <circle cx="75" cy="100" r="28" fill="#1d4ed8"/>
+                    <circle cx="125" cy="100" r="28" fill="#1d4ed8"/>
+                    <circle cx="88" cy="120" r="28" fill="#1d4ed8"/>
+                    <circle cx="112" cy="120" r="28" fill="#1d4ed8"/>
                     <circle cx="100" cy="100" r="20" fill="#facc15" stroke="#ffffff" stroke-width="4"/>
                 </svg>
             </div>
 
-            <p class="text-pink-700 italic font-medium text-xs md:text-sm max-w-xs leading-relaxed px-4">
-                🌸 Bunga ini sebagai hadiah dari permintaan maafku, sayang... Tolong diterima ya ❤️
+            <p class="text-blue-950 italic font-medium text-xs md:text-sm max-w-xs leading-relaxed px-4">
+                🌹 Bunga ini sebagai hadiah dari permintaan maafku, sayang... Tolong diterima ya ❤️
             </p>
         </div>
 
         <!-- Floating Music Control Button -->
         <div class="fixed top-6 right-4 z-40">
-            <button id="music-btn" onclick="toggleAudio()" class="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold py-2 px-4 rounded-full shadow-lg hover:scale-105 transition-transform duration-200 border border-white/40">
+            <button id="music-btn" onclick="toggleAudio()" class="flex items-center gap-2 bg-gradient-to-r from-blue-950 to-indigo-900 text-white text-xs font-bold py-2 px-4 rounded-full shadow-lg hover:scale-105 transition-transform duration-200 border border-white/40 glass-btn">
                 <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                     <i id="music-icon" class="fa-solid fa-volume-high text-xs"></i>
                 </div>
@@ -647,8 +678,8 @@
             </button>
         </div>
 
-        <!-- Floating Bottom Navigation Dock -->
-        <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-xl border border-pink-100 flex items-center gap-6">
+        <!-- Floating Bottom Navigation Dock with Glassmorphism -->
+        <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 glass-dock px-6 py-3 rounded-full flex items-center gap-6">
             <button onclick="switchTab('home')" title="Beranda" class="text-2xl hover:scale-125 transition-transform duration-150 focus:outline-none">
                 🏠
             </button>
@@ -675,6 +706,9 @@
         let isCandleBlown = false;
         let countdownTimer = null;
 
+        // Soft Ice Blue background color constant
+        const SOFT_BLUE_BG = '#eef4ff';
+
         // Finish Loading Screen Transition
         function finishLoading() {
             const loadingScreen = document.getElementById('loading-screen');
@@ -688,14 +722,14 @@
             }
         }
 
-        // Floating Hearts Background Generator
+        // Floating Hearts & Stars Generator
         function createFloatingHearts() {
             const container = document.getElementById('heart-container');
             if (!container) return;
-            const heartSymbols = ['❤️', '💖', '💕', '💗', '✨'];
+            const heartSymbols = ['❤', '💙', '✨', '⭐', '🤍', '💖'];
             for (let i = 0; i < 15; i++) {
                 const heart = document.createElement('div');
-                heart.className = 'absolute text-xl opacity-30 select-none pointer-events-none';
+                heart.className = 'absolute text-xl opacity-35 select-none pointer-events-none';
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.top = Math.random() * 100 + 'vh';
                 heart.style.animation = `float ${3 + Math.random() * 3}s ease-in-out infinite`;
@@ -812,7 +846,7 @@
 
         function switchTab(tabName) {
             hideAllViews();
-            document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
+            document.getElementById('body-bg').style.backgroundColor = SOFT_BLUE_BG;
             
             if (tabName === 'home') {
                 document.getElementById('view-home').classList.remove('hidden');
@@ -835,7 +869,7 @@
 
         function goToGiftIntro() {
             hideAllViews();
-            document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
+            document.getElementById('body-bg').style.backgroundColor = SOFT_BLUE_BG;
             const view = document.getElementById('view-gift-intro');
             view.classList.remove('hidden');
             view.classList.add('flex');
@@ -858,7 +892,7 @@
             const candleView = document.getElementById('view-candle');
             candleView.classList.remove('hidden');
             candleView.classList.add('flex');
-            document.getElementById('body-bg').style.backgroundColor = '#4c1d95';
+            document.getElementById('body-bg').style.backgroundColor = '#0f172a'; // Midnight Slate Blue
 
             triggerConfetti();
             startMicDetection();
@@ -869,7 +903,7 @@
             const loveView = document.getElementById('view-love');
             loveView.classList.remove('hidden');
             loveView.classList.add('flex');
-            document.getElementById('body-bg').style.backgroundColor = '#0a0a0a';
+            document.getElementById('body-bg').style.backgroundColor = '#050c1e'; // Obsidian Midnight Blue
             window.scrollTo({ top: 0, behavior: 'smooth' });
             triggerConfetti();
         }
@@ -879,7 +913,7 @@
             const flowerView = document.getElementById('view-flower');
             flowerView.classList.remove('hidden');
             flowerView.classList.add('flex');
-            document.getElementById('body-bg').style.backgroundColor = '#fdeef5';
+            document.getElementById('body-bg').style.backgroundColor = SOFT_BLUE_BG;
             window.scrollTo({ top: 0, behavior: 'smooth' });
             triggerConfetti();
         }
@@ -935,7 +969,7 @@
             }, 300);
 
             status.textContent = "🥳 Flame blown out! May all your wishes come true! ✨";
-            status.classList.add('bg-pink-600', 'text-white');
+            status.classList.add('bg-blue-800', 'text-white');
 
             triggerConfetti();
         }
@@ -975,14 +1009,14 @@
             }
         }
 
-        // Confetti Effect
+        // Confetti Effect - Blue, Gold & Crimson
         function triggerConfetti() {
             if (typeof confetti === 'function') {
                 confetti({
                     particleCount: 80,
                     spread: 70,
                     origin: { y: 0.6 },
-                    colors: ['#f472b6', '#ec4899', '#f43f5e', '#facc15', '#a855f7']
+                    colors: ['#2563eb', '#1d4ed8', '#e11d48', '#facc15', '#38bdf8']
                 });
             }
         }
