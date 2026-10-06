@@ -29,7 +29,7 @@
     <!-- Google Fonts (Fredoka) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -38,7 +38,7 @@
 
         /* Glassmorphism Design Tokens - Crimson & Gold Theme */
         .glass-card {
-            background: rgba(255, 255, 255, 0.82);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             border: 1px solid rgba(220, 20, 60, 0.22);
@@ -58,6 +58,38 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 215, 0, 0.6);
+        }
+
+        /* Speech/Wish Bubble tail style */
+        .speech-bubble {
+            position: relative;
+            background: #ffffff;
+            border-radius: 1.25rem;
+            border: 2px solid #FFD700;
+        }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 12px 10px 0;
+            border-style: solid;
+            border-color: #ffffff transparent;
+            display: block;
+            width: 0;
+        }
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 14px 12px 0;
+            border-style: solid;
+            border-color: #FFD700 transparent;
+            display: block;
+            width: 0;
         }
 
         /* Pulsating Loading Heart */
@@ -108,7 +140,30 @@
             animation: gentleSway 3s ease-in-out infinite;
         }
 
-        /* Custom Scrollbar - Crimson Red Theme */
+        /* Floating Aamiin Animation - Floats SEPARATELY ALL THE WAY past top of phone screen */
+        @keyframes floatUpToTop {
+            0% {
+                transform: translateY(0) scale(0.7) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+                transform: translateY(-20vh) scale(1.05) rotate(-2deg);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-95vh) scale(1) rotate(2deg);
+            }
+            100% {
+                transform: translateY(-120vh) scale(0.85) rotate(-3deg);
+                opacity: 0;
+            }
+        }
+        .animate-aamiin-float {
+            animation: floatUpToTop 7.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -121,7 +176,7 @@
             border-radius: 10px;
         }
 
-        /* Pulsing Big Heart Effect */
+        /* Pulsing Heart Effect */
         @keyframes heartbeatBig {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.08); }
@@ -130,7 +185,7 @@
             animation: heartbeatBig 1.8s ease-in-out infinite;
         }
 
-        /* Photo Transition */
+        /* Photo Slide Transition */
         .photo-slide {
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
@@ -140,6 +195,10 @@
 
     <div id="heart-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
 
+    <!-- Container untuk Efek Aamiin Melayang (z-index tinggi agar selalu di atas) -->
+    <div id="aamiin-container" class="fixed inset-0 overflow-hidden pointer-events-none z-[100]"></div>
+
+    <!-- Loading Screen -->
     <div id="loading-screen" class="fixed inset-0 bg-[#fff5f5] z-50 flex flex-col items-center justify-center transition-opacity duration-700">
         <div class="flex flex-col items-center justify-center gap-4">
             <div class="text-[#E61919] text-6xl animate-heartbeat drop-shadow-md cursor-pointer" onclick="finishLoading()">
@@ -152,10 +211,20 @@
         </div>
     </div>
 
-    <main id="main-content" class="w-full max-w-md min-h-screen flex flex-col items-center px-5 pt-14 pb-32 relative z-10 opacity-0 transition-opacity duration-700">
+    <!-- Top Music Control Button -->
+    <div class="fixed top-4 right-4 z-40">
+        <button id="music-btn" onclick="toggleAudio()" class="flex items-center gap-1.5 bg-gradient-to-r from-[#E61919] to-[#DC143C] text-white text-[11px] font-bold py-1.5 px-3 rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 border border-[#FFD700]/50 glass-btn">
+            <div class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+                <i id="music-icon" class="fa-solid fa-volume-xmark text-[10px]"></i>
+            </div>
+            <span id="music-text">Music OFF</span>
+        </button>
+    </div>
+
+    <main id="main-content" class="w-full max-w-md min-h-screen flex flex-col items-center px-5 pt-16 pb-32 relative z-10 opacity-0 transition-opacity duration-700">
         
+        <!-- VIEW 1: HOME -->
         <div id="view-home" class="w-full flex flex-col items-center">
-            <!-- Top Section Header -->
             <div class="text-center w-full mt-2 relative">
                 <p class="text-[#DC143C] font-semibold text-lg tracking-wide">Untuk yang tersayang</p>
                 
@@ -179,7 +248,6 @@
                 <span class="absolute top-1/2 -left-6 text-[#FF6B6B] text-lg">🤍</span>
             </div>
 
-            <!-- Middle Greeting -->
             <div class="text-center w-full my-2">
                 <h2 class="text-3xl font-extrabold text-[#DC143C] font-fredoka leading-tight tracking-snug">
                     Selamat Ulang Tahun<br>Sayang!
@@ -210,6 +278,7 @@
             </div>
         </div>
 
+        <!-- VIEW 2: GIFT INTRO -->
         <div id="view-gift-intro" class="w-full hidden flex-col items-center justify-center min-h-[70vh] text-center">
             <div onclick="openGiftBox()" class="cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 my-8">
                 <svg width="220" height="220" viewBox="0 0 200 200" class="drop-shadow-2xl">
@@ -227,6 +296,7 @@
             </p>
         </div>
 
+        <!-- VIEW 3: GIFT LOADING -->
         <div id="view-gift-loading" class="w-full hidden flex-col items-center justify-center min-h-[70vh] text-center">
             <div class="animate-gift-roll my-8">
                 <div class="text-8xl">🎁</div>
@@ -236,6 +306,7 @@
             </p>
         </div>
 
+        <!-- VIEW 4: CANDLE & ENRICHED TOPPINGS CAKE -->
         <div id="view-candle" class="w-full hidden flex-col items-center justify-center min-h-[75vh] text-center text-slate-800 pt-4 relative">
             <div class="flex items-center justify-center gap-2 mb-1">
                 <span class="text-3xl animate-bounce">🎉</span>
@@ -251,33 +322,77 @@
             </p>
 
             <div class="relative flex flex-col items-center justify-center my-2 cursor-pointer select-none" onclick="blowOutCandle()">
-                <svg viewBox="0 -40 320 270" class="w-72 md:w-80 h-auto drop-shadow-2xl z-10">
+                <svg viewBox="0 -50 320 280" class="w-72 md:w-80 h-auto drop-shadow-2xl z-10">
                     <ellipse cx="160" cy="220" rx="150" ry="10" fill="#cbd5e1"/>
                     <ellipse cx="160" cy="217" rx="142" ry="8" fill="#ffffff"/>
 
-                    <!-- TIER 1 -->
+                    <!-- TIER 1 (BOTTOM) -->
                     <path d="M 35 150 L 35 205 Q 160 228 285 205 L 285 150 Z" fill="#3d2314"/>
                     <path d="M 35 175 Q 160 198 285 175 L 285 181 Q 160 204 35 181 Z" fill="#fef3c7" opacity="0.9"/>
                     <ellipse cx="160" cy="150" rx="125" ry="18" fill="#4a2c1d"/>
                     <path d="M 35 150 Q 50 172 62 154 Q 78 180 92 152 Q 110 178 128 152 Q 148 185 160 154 Q 175 180 192 152 Q 210 175 225 152 Q 242 182 255 152 Q 268 170 285 150 Q 160 170 35 150 Z" fill="#23130a"/>
 
-                    <!-- TIER 2 -->
+                    <!-- Tier 1 Toppings -->
+                    <circle cx="48" cy="160" r="5" fill="#E61919"/>
+                    <circle cx="95" cy="165" r="5" fill="#E61919"/>
+                    <circle cx="160" cy="168" r="5" fill="#E61919"/>
+                    <circle cx="225" cy="165" r="5" fill="#E61919"/>
+                    <circle cx="272" cy="160" r="5" fill="#E61919"/>
+
+                    <!-- TIER 2 (MIDDLE) -->
                     <path d="M 65 95 L 65 145 Q 160 165 255 145 L 255 95 Z" fill="#4a2c1d"/>
                     <path d="M 65 116 Q 160 136 255 116 L 255 122 Q 160 142 65 122 Z" fill="#fef3c7" opacity="0.9"/>
                     <ellipse cx="160" cy="95" rx="95" ry="15" fill="#5c3826"/>
                     <path d="M 65 95 Q 80 115 92 97 Q 108 122 122 97 Q 140 125 160 98 Q 178 122 195 97 Q 212 118 228 97 Q 242 115 255 95 Q 160 112 65 95 Z" fill="#23130a"/>
 
-                    <!-- TIER 3 -->
+                    <!-- Tier 2 Toppings -->
+                    <path d="M 78 102 Q 83 94 88 102 Z" fill="#FF4500"/>
+                    <path d="M 125 106 Q 130 98 135 106 Z" fill="#FF4500"/>
+                    <path d="M 185 106 Q 190 98 195 106 Z" fill="#FF4500"/>
+                    <path d="M 232 102 Q 237 94 242 102 Z" fill="#FF4500"/>
+
+                    <!-- TIER 3 (TOP) -->
                     <path d="M 98 42 L 98 90 Q 160 108 222 90 L 222 42 Z" fill="#5c3826"/>
                     <path d="M 98 62 Q 160 78 222 62 L 222 67 Q 160 83 98 67 Z" fill="#fef3c7" opacity="0.9"/>
                     <ellipse cx="160" cy="42" rx="62" ry="12" fill="#6d422d"/>
                     <path d="M 98 42 Q 112 60 124 44 Q 138 65 152 44 Q 168 68 180 44 Q 195 62 210 44 Q 218 58 222 42 Q 160 56 98 42 Z" fill="#23130a"/>
 
-                    <!-- TOPPINGS -->
-                    <circle cx="112" cy="40" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
-                    <circle cx="134" cy="44" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
-                    <circle cx="186" cy="44" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
-                    <circle cx="208" cy="40" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+                    <!-- EXTRA RICH TOPPINGS -->
+                    <circle cx="104" cy="41" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+                    <circle cx="122" cy="45" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+                    <circle cx="140" cy="47" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+                    <circle cx="180" cy="47" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+                    <circle cx="198" cy="45" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+                    <circle cx="216" cy="41" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
+
+                    <!-- Shiny Red Cherries on Top -->
+                    <g id="cherries">
+                        <circle cx="112" cy="35" r="6.5" fill="#E61919"/>
+                        <circle cx="110" cy="33" r="1.8" fill="#ffffff" opacity="0.8"/>
+                        <path d="M 112 28 Q 116 20 120 24" fill="none" stroke="#15803d" stroke-width="1.5" stroke-linecap="round"/>
+
+                        <circle cx="132" cy="39" r="6.5" fill="#DC143C"/>
+                        <circle cx="130" cy="37" r="1.8" fill="#ffffff" opacity="0.8"/>
+                        <path d="M 132 32.5 Q 136 24 140 28" fill="none" stroke="#15803d" stroke-width="1.5" stroke-linecap="round"/>
+
+                        <circle cx="188" cy="39" r="6.5" fill="#DC143C"/>
+                        <circle cx="186" cy="37" r="1.8" fill="#ffffff" opacity="0.8"/>
+                        <path d="M 188 32.5 Q 184 24 180 28" fill="none" stroke="#15803d" stroke-width="1.5" stroke-linecap="round"/>
+
+                        <circle cx="208" cy="35" r="6.5" fill="#E61919"/>
+                        <circle cx="206" cy="33" r="1.8" fill="#ffffff" opacity="0.8"/>
+                        <path d="M 208 28 Q 204 20 200 24" fill="none" stroke="#15803d" stroke-width="1.5" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Colorful Sprinkles -->
+                    <g id="sprinkles">
+                        <rect x="118" y="42" width="4" height="2" rx="1" fill="#FFD700" transform="rotate(25 118 42)"/>
+                        <rect x="128" y="47" width="4" height="2" rx="1" fill="#38bdf8" transform="rotate(-15 128 47)"/>
+                        <rect x="148" y="44" width="4" height="2" rx="1" fill="#FF6B6B" transform="rotate(40 148 44)"/>
+                        <rect x="172" y="44" width="4" height="2" rx="1" fill="#a855f7" transform="rotate(-30 172 44)"/>
+                        <rect x="192" y="47" width="4" height="2" rx="1" fill="#FFD700" transform="rotate(10 192 47)"/>
+                        <rect x="202" y="42" width="4" height="2" rx="1" fill="#4ade80" transform="rotate(-40 202 42)"/>
+                    </g>
 
                     <!-- CANDLE EMBEDDED IN CAKE -->
                     <g id="candle-stick">
@@ -321,6 +436,88 @@
             </div>
         </div>
 
+        <!-- POP-UP MODAL: GELEMBUNG HARAPAN & INPUT DOA -->
+        <div id="wish-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+            <div class="relative w-full max-w-sm glass-card bg-white/95 rounded-3xl p-5 shadow-2xl border-2 border-[#FFD700] text-center transform scale-90 transition-all duration-300 flex flex-col items-center" id="wish-modal-card">
+                
+                <!-- Close Button -->
+                <button onclick="closeWishModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 text-[#E61919] font-bold flex items-center justify-center text-sm transition-transform active:scale-90">
+                    ✕
+                </button>
+
+                <!-- Header Title -->
+                <div class="flex items-center gap-1.5 text-[#E61919] font-black font-fredoka text-lg mb-3">
+                    <span>✨</span>
+                    <span id="wish-header-title">Gelembung Harapan Spesial</span>
+                    <span>✨</span>
+                </div>
+
+                <!-- WISH BUBBLE / INPUT CONTAINER -->
+                <div class="w-full speech-bubble p-4 mb-3 shadow-sm text-left">
+                    
+                    <!-- Mode Baca Harapan (Steps 0, 1, 2) -->
+                    <div id="wish-read-container">
+                        <p id="wish-text" class="text-slate-800 font-medium text-xs md:text-sm leading-relaxed">
+                            "Semoga Azi selalu sehat, panjang umur, dan selalu dalam lindungan Tuhan. Semoga setiap impianmu dipermudah! 🤲✨"
+                        </p>
+                        <div class="mt-2 text-right">
+                            <span id="wish-badge" class="inline-block bg-red-50 text-[#DC143C] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-red-200">
+                                Harapan 1 dari 3 ❤️
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Mode Tulis Harapan Sendiri (Step 3 / Akhir - Tanpa Foto Box) -->
+                    <div id="wish-input-container" class="hidden flex-col gap-2">
+                        <label class="block text-xs font-bold text-[#E61919] tracking-wide">
+                            ✍️ Tulis Doa & Harapanmu Sendiri:
+                        </label>
+                        <textarea id="user-custom-wish" rows="4" placeholder="Tuliskan harapan terindahmu di sini, Sayang... 🤲✨" class="w-full text-xs p-3 rounded-xl border border-red-200 focus:outline-none focus:ring-2 focus:ring-[#E61919] text-slate-800 resize-none bg-red-50/50 font-medium leading-relaxed"></textarea>
+                    </div>
+
+                </div>
+
+                <!-- POP-UP PHOTO FRAME (HANYA MUNCUL DI HARAPAN 1, 2, 3; DISEMBUNYIKAN PADA BACAAN INPUT) -->
+                <div id="wish-photo-frame" onclick="nextWish()" class="w-full cursor-pointer transform hover:scale-[1.02] active:scale-95 transition-all duration-300 group mb-3">
+                    <div class="w-full bg-white p-2.5 rounded-2xl shadow-md border-2 border-red-100 flex flex-col items-center relative overflow-hidden">
+                        
+                        <!-- Floating Heart Badge -->
+                        <span id="photo-tap-badge" class="absolute top-2 right-2 text-xs bg-red-500 text-white px-2 py-0.5 rounded-full font-bold shadow animate-pulse z-10">
+                            Ketuk Foto 👆
+                        </span>
+
+                        <div class="w-full h-44 rounded-xl overflow-hidden bg-slate-100 relative">
+                            <img id="wish-modal-img" src="bubududumerayakan.gif" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Wish Photo" class="w-full h-full object-cover transition-all duration-300">
+                        </div>
+
+                        <p class="text-xs font-bold text-[#DC143C] mt-2 tracking-wide font-fredoka flex items-center gap-1">
+                            <span>📸</span>
+                            <span id="wish-img-caption">Klik foto untuk lihat harapan berikutnya ✨</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Instant Confirmation Toast inside Modal (Default Hidden) -->
+                <div id="modal-aamiin-toast" class="hidden w-full bg-gradient-to-r from-[#E61919] via-[#DC143C] to-[#FF4500] text-white font-extrabold py-3 px-4 rounded-2xl shadow-lg border-2 border-[#FFD700] text-sm animate-bounce mb-3">
+                    🤲 Aamiin Yaa Rabbal 'Alamin! ✨<br>
+                    <span class="text-xs font-normal opacity-90">Harapanmu telah terpanjat & didoakan! ❤️</span>
+                </div>
+
+                <!-- Action Button 1: Next Wish Button -->
+                <button id="btn-next-wish" onclick="nextWish()" class="w-full bg-gradient-to-r from-[#E61919] to-[#DC143C] text-white font-bold py-2.5 px-5 rounded-full shadow hover:shadow-lg active:scale-95 transition-all text-xs tracking-wide flex items-center justify-center gap-2">
+                    <span id="btn-next-text">Lihat Harapan Selanjutnya</span>
+                    <i id="btn-next-icon" class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+
+                <!-- Action Button 2: Send Custom Wish Button (Hidden Default) -->
+                <button id="btn-send-wish" onclick="sendCustomWish()" class="w-full bg-gradient-to-r from-[#16a34a] via-[#22c55e] to-[#15803d] text-white font-bold py-3 px-5 rounded-full shadow-lg hover:shadow-xl active:scale-95 transition-all text-xs tracking-wide hidden items-center justify-center gap-2 animate-pulse">
+                    <span>Kirim Harapan</span>
+                    <span class="text-sm">💌🤲</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- VIEW 5: COUNTDOWN TIMER & 2-PHOTO CAROUSEL -->
         <div id="view-countdown" class="w-full hidden flex-col items-center text-center pt-2 pb-10">
             <h1 class="text-3xl font-black font-fredoka tracking-tight mb-3">
                 <span class="text-[#DC143C]">The Birthday of </span>
@@ -354,7 +551,7 @@
 
                     <!-- Overlay Gradient & Caption -->
                     <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-2.5 text-white text-left z-10 flex justify-between items-end">
-                        <span id="slide-caption" class="text-xs font-semibold drop-shadow">Momen Manis Kita ❤️ (1/2)</span>
+                        <span id="slide-caption" class="text-xs font-semibold drop-shadow">Momen Manis Kita ❤ (1/2)</span>
                         <span class="text-[10px] bg-white/30 backdrop-blur-md px-2 py-0.5 rounded-full font-bold">Azi & Adelia</span>
                     </div>
 
@@ -374,7 +571,7 @@
                 </div>
             </div>
 
-            <!-- CONTAINER 2 FOTO - TATA LETAK 2: GRID KOLASE (2 KOLOM SAMA) -->
+            <!-- CONTAINER 2 FOTO - TATA LETAK 2: GRID KOLASE -->
             <div id="photo-container-grid" class="w-full max-w-xs glass-card rounded-3xl p-3 relative flex-col items-center hidden">
                 <div class="grid grid-cols-2 gap-2.5 w-full">
                     <div class="h-36 rounded-2xl overflow-hidden shadow-sm border border-red-100 relative">
@@ -428,6 +625,7 @@
             </p>
         </div>
 
+        <!-- VIEW 6: LOVE LETTER -->
         <div id="view-letter" class="w-full hidden flex-col items-center text-center pt-2 pb-12">
             <h1 class="text-3xl font-extrabold font-fredoka text-[#E61919] tracking-tight mb-4">
                 Pesan Spesial<br>Untukmu
@@ -475,13 +673,13 @@
             <!-- Love Letter Box -->
             <div class="w-full max-w-xs glass-card rounded-3xl p-5 mt-4 text-left text-xs md:text-sm text-slate-800 leading-relaxed font-medium space-y-4">
                 <p>
-                    Sayangku ❤️, hari ini adalah momen yang paling indah karena hari ini kamu lahir ke dunia 🎉. Aku ingin berdoa agar kamu selalu dalam lindungan Tuhan 🙏, diberi kesehatan 🦾, kekuatan 🛡️️, dan kebahagiaan yang tiada akhir 🌈✨.
+                    Sayangku ❤️, hari ini adalah momen yang paling indah karena hari ini kamu lahir ke dunia 🎉. Aku ingin berdoa agar kamu selalu dalam lindungan Tuhan 🙏, diberi kesehatan 🦾, kekuatan 🛡, dan kebahagiaan yang tiada akhir 🌈✨.
                 </p>
                 <p>
                     Aku tahu hidup tidak selalu mudah 🌧, tapi aku ingin kamu tahu bahwa kamu tidak sendiri 🤝. Aku akan selalu mendukungmu ❤️, menyemangati kamu 💫, dan menjadi pundakmu saat kamu lelah 🥺➔🗿.
                 </p>
                 <p>
-                    Semoga setiap langkahmu penuh keberkahan 🏰, dan setiap impianmu satu per satu menjadi kenyataan 🌠. Kamu punya hati yang tulus 💓, senyum yang menenangkan 😌, dan jiwa yang tampan luar dalam 🌹. Dunia butuh lebih banyak orang sepertimu 🌍❤️.
+                    Semoga setiap langkahmu penuh keberkahan 🏰, dan setiap impianmu satu per satu menjadi kenyataan 🌠. Kamu punya hati yang tulus 💓, senyum yang menenangan 😌, dan jiwa yang tampan luar dalam 🌹. Dunia butuh lebih banyak orang sepertimu 🌍❤️.
                 </p>
                 <p>
                     Aku ingin kamu tahu bahwa aku percaya padamu sepenuhnya 🤲. Kamu kuat 💥, kamu hebat 🦋, dan kamu pantas mendapatkan yang terbaik 🏆. Jangan pernah ragukan dirimu sendiri 🙋‍♂️, karena kamu adalah cahaya dalam hidup banyak orang 🌟, termasuk hidupku 💘.
@@ -501,6 +699,7 @@
             </div>
         </div>
 
+        <!-- VIEW 7: LOVE SCREEN -->
         <div id="view-love" class="w-full hidden flex-col items-center justify-center min-h-[75vh] text-center pt-8">
             <div class="relative my-8 cursor-pointer flex items-center justify-center animate-heart-pulse" onclick="triggerConfetti()">
                 <svg width="240" height="220" viewBox="0 0 200 180" class="drop-shadow-[0_10px_25px_rgba(230,25,25,0.7)]">
@@ -519,6 +718,7 @@
             </p>
         </div>
 
+        <!-- VIEW 8: MEMORIES / APOLOGY -->
         <div id="view-memories" class="w-full hidden flex-col items-center text-center pt-2 pb-12">
             <h1 class="text-3xl font-extrabold font-fredoka text-[#E61919] tracking-tight mb-4">
                 Kenangan Indah Kita
@@ -561,7 +761,6 @@
                 </svg>
             </div>
 
-            <!-- Apology Card Content -->
             <div class="w-full max-w-xs glass-card rounded-3xl p-5 mt-4 text-left text-xs md:text-sm leading-relaxed space-y-4">
                 <h2 class="text-center font-bold text-base text-[#E61919] font-fredoka">
                     Permintaan Maafku di Hari Ulang Tahunmu
@@ -593,6 +792,7 @@
             </div>
         </div>
 
+        <!-- VIEW 9: FLOWER -->
         <div id="view-flower" class="w-full hidden flex-col items-center text-center pt-4 pb-12">
             <button onclick="switchTab('memories')" class="bg-gradient-to-r from-[#E61919] to-[#DC143C] hover:from-[#DC143C] hover:to-[#E61919] text-white font-bold py-2.5 px-8 rounded-full shadow-md transform active:scale-95 transition-all text-sm mb-6">
                 Tutup Bunga
@@ -641,16 +841,6 @@
             </p>
         </div>
 
-        <!-- Floating Music Control Button -->
-        <div class="fixed top-3 right-3 z-40">
-            <button id="music-btn" onclick="toggleAudio()" class="flex items-center gap-1.5 bg-gradient-to-r from-[#E61919] to-[#DC143C] text-white text-[11px] font-bold py-1.5 px-3 rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 border border-[#FFD700]/50 glass-btn">
-                <div class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
-                    <i id="music-icon" class="fa-solid fa-volume-xmark text-[10px]"></i>
-                </div>
-                <span id="music-text">Music OFF</span>
-            </button>
-        </div>
-
         <!-- Floating Bottom Navigation Dock -->
         <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 glass-dock px-6 py-3 rounded-full flex items-center gap-6">
             <button onclick="switchTab('home')" title="Beranda" class="text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
@@ -685,10 +875,35 @@
             "Senyuman Favoritku ✨ (2/2)"
         ];
 
+        // Interactive Wish Sequence (Steps 0, 1, 2 for preset wishes; Step 3 for custom input)
+        const wishList = [
+            {
+                img: 'bubududumerayakan.gif',
+                fallbackBg: 'E61919',
+                caption: 'Momen Spesial 1',
+                badge: 'Harapan 1 dari 3 ❤️',
+                wish: '✨ Semoga Azi selalu diberikan kesehatan yang berlimpah, umur yang panjang, dan selalu dalam perlindungan Tuhan. Semoga setiap langkahmu dimudahkan! 🤲'
+            },
+            {
+                img: 'bubuhappy.gif',
+                fallbackBg: 'DC143C',
+                caption: 'Momen Spesial 2',
+                badge: 'Harapan 2 dari 3 🌟',
+                wish: '💖 Semoga rezekimu selalu mengalir lancar, karier & studimu makin sukses, serta semua impian indahmu satu per satu menjadi kenyataan! 🚀'
+            },
+            {
+                img: 'pandakueulangtahun.gif',
+                fallbackBg: 'FF4500',
+                caption: 'Momen Spesial 3',
+                badge: 'Harapan 3 dari 3 🎁',
+                wish: '🥰 Semoga hari-harimu selalu dipenuhi dengan tawa, kedamaian, dan cinta yang tulus. Aku akan selalu ada mendukungmu di setiap saat! 🫶'
+            }
+        ];
+        let currentWishIndex = 0;
+
         const SOFT_BG = '#fff5f5';
 
         function handlePandaError(imgEl) {
-            // Replace broken gif with a cute inline SVG data URI
             const svgData = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
                 <rect width="200" height="200" fill="#FFEAEA"/>
                 <circle cx="50" cy="50" r="28" fill="#2D2D2D"/>
@@ -813,6 +1028,167 @@
                 btnGrid.className = "px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow";
                 btnSlider.className = "px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all";
             }
+        }
+
+        /* Pop-Up Modal Wish Sequence & Custom Input Functions */
+        function updateWishContent() {
+            const readContainer = document.getElementById('wish-read-container');
+            const inputContainer = document.getElementById('wish-input-container');
+            const btnNext = document.getElementById('btn-next-wish');
+            const btnSend = document.getElementById('btn-send-wish');
+            const photoFrame = document.getElementById('wish-photo-frame');
+            const photoTapBadge = document.getElementById('photo-tap-badge');
+            const imgCaption = document.getElementById('wish-img-caption');
+            const headerTitle = document.getElementById('wish-header-title');
+            const toastEl = document.getElementById('modal-aamiin-toast');
+
+            if (toastEl) toastEl.classList.add('hidden');
+
+            if (currentWishIndex < wishList.length) {
+                // Steps 0, 1, 2: Standard Wishes with Photo Frame
+                readContainer.classList.remove('hidden');
+                inputContainer.classList.add('hidden');
+                btnNext.classList.remove('hidden');
+                btnNext.classList.add('flex');
+                btnSend.classList.add('hidden');
+                btnSend.classList.remove('flex');
+
+                if (photoFrame) photoFrame.classList.remove('hidden');
+                if (photoTapBadge) photoTapBadge.classList.remove('hidden');
+
+                const item = wishList[currentWishIndex];
+                const imgEl = document.getElementById('wish-modal-img');
+                const wishTextEl = document.getElementById('wish-text');
+                const badgeEl = document.getElementById('wish-badge');
+
+                if (headerTitle) headerTitle.textContent = "Gelembung Harapan Spesial";
+
+                if (imgEl) {
+                    imgEl.src = item.img;
+                    imgEl.onerror = function() {
+                        handleGifError(this, item.fallbackBg, item.caption);
+                    };
+                }
+                if (wishTextEl) wishTextEl.textContent = item.wish;
+                if (badgeEl) badgeEl.textContent = item.badge;
+                if (imgCaption) imgCaption.textContent = "Klik foto untuk lihat harapan berikutnya ✨";
+
+            } else {
+                // Step 3: Custom Wish Writing Step (WITHOUT PHOTO FRAME)
+                readContainer.classList.add('hidden');
+                inputContainer.classList.remove('hidden');
+                inputContainer.classList.add('flex');
+
+                // Hide Photo Frame Completely on Step 3
+                if (photoFrame) photoFrame.classList.add('hidden');
+
+                btnNext.classList.add('hidden');
+                btnNext.classList.remove('flex');
+                btnSend.classList.remove('hidden');
+                btnSend.classList.add('flex');
+
+                if (headerTitle) headerTitle.textContent = "Panjatkan Harapanmu";
+            }
+        }
+
+        function openWishModal() {
+            currentWishIndex = 0;
+            updateWishContent();
+            const modal = document.getElementById('wish-modal');
+            const modalCard = document.getElementById('wish-modal-card');
+            if (modal) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    if (modalCard) {
+                        modalCard.classList.remove('scale-90');
+                        modalCard.classList.add('scale-100');
+                    }
+                }, 50);
+            }
+        }
+
+        function nextWish() {
+            if (currentWishIndex < wishList.length) {
+                currentWishIndex++;
+                const modalCard = document.getElementById('wish-modal-card');
+                if (modalCard) {
+                    modalCard.classList.add('scale-95', 'opacity-80');
+                    setTimeout(() => {
+                        updateWishContent();
+                        modalCard.classList.remove('scale-95', 'opacity-80');
+                        triggerConfetti();
+                    }, 150);
+                }
+            }
+        }
+
+        function closeWishModal() {
+            const modal = document.getElementById('wish-modal');
+            const modalCard = document.getElementById('wish-modal-card');
+            if (modal) {
+                modal.classList.add('opacity-0');
+                if (modalCard) {
+                    modalCard.classList.remove('scale-100');
+                    modalCard.classList.add('scale-90');
+                }
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Send Custom Wish & IMMEDIATELY trigger Aamiin Badges
+        function sendCustomWish() {
+            // 1. Show immediate Aamiin Toast in modal
+            const toastEl = document.getElementById('modal-aamiin-toast');
+            if (toastEl) toastEl.classList.remove('hidden');
+
+            // 2. Fire Confetti
+            triggerConfetti();
+
+            // 3. Immediately launch floating Aamiin bubbles from bottom (staggered & separate)
+            triggerAamiinAnimation();
+
+            // 4. Gently close modal after giving ample time to enjoy the animation
+            setTimeout(() => {
+                closeWishModal();
+            }, 5000);
+        }
+
+        // Animation: "Aamiin" floating separately, staggered, all the way past the top of the phone screen
+        function triggerAamiinAnimation() {
+            const container = document.getElementById('aamiin-container');
+            if (!container) return;
+
+            // Varied horizontal positions and texts so bubbles rise individually and spread out
+            const aamiinItems = [
+                { text: "✨ Aamiin Yaa Rabbal 'Alamin 🤲", left: "4%" },
+                { text: "❤️ Aamiin ✨", left: "58%" },
+                { text: "🤲 Semoga Terwujud! ✨", left: "20%" },
+                { text: "💖 Aamiin Yaa Allah ✨", left: "62%" },
+                { text: "🌟 Aamiin 🤲", left: "8%" },
+                { text: "🥰 Aamiin Yaa Rabbal 'Alamin ❤️", left: "36%" }
+            ];
+
+            aamiinItems.forEach((item, index) => {
+                // Staggered launch times so they ascend one after another, avoiding any horizontal alignment
+                setTimeout(() => {
+                    const badge = document.createElement('div');
+                    badge.className = 'fixed bg-gradient-to-r from-[#E61919] via-[#DC143C] to-[#FF4500] text-white font-extrabold px-4 py-2.5 rounded-full shadow-2xl border-2 border-[#FFD700] text-xs md:text-sm pointer-events-none animate-aamiin-float flex items-center gap-2 whitespace-nowrap z-[100]';
+                    
+                    badge.style.left = item.left;
+                    badge.style.bottom = '-60px'; // Starts comfortably below the screen boundary
+
+                    badge.innerHTML = item.text;
+                    container.appendChild(badge);
+
+                    // Clean up element after animation completes past top of screen
+                    setTimeout(() => {
+                        badge.remove();
+                    }, 8000);
+                }, index * 500); // 500ms delay between each bubble
+            });
         }
 
         const hbMelody = [
@@ -1049,6 +1425,11 @@
             }
 
             triggerConfetti();
+
+            // Automatically open Wish Pop-up Modal after 1.2 seconds
+            setTimeout(() => {
+                openWishModal();
+            }, 1200);
         }
 
         function startMicDetection() {
@@ -1096,7 +1477,7 @@
             }
         }
 
-        // Swipe gesture support for photo slider on mobile devices
+        // Touch gestures for slider
         function setupTouchGestures() {
             const touchArea = document.getElementById('slide-touch-area');
             if (!touchArea) return;
