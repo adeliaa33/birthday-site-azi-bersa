@@ -7,50 +7,33 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        let isAudioPlaying = false;
-        let audioCtx = null;
-        let melodyInterval = null;
-        let melodyTimeoutIds = [];
-        let micStream = null;
-        let isCandleBlown = false;
-        let countdownTimer = null;
-        let isLoadingFinished = false;
-
-        // Finish Loading Screen Transition with Fallback Protection
-        function finishLoading() {
-            if (isLoadingFinished) return;
-            isLoadingFinished = true;
-
-            const loadingScreen = document.getElementById('loading-screen');
-            const mainContent = document.getElementById('main-content');
-            
-            if (mainContent) {
-                mainContent.classList.remove('opacity-0');
-            }
-            
-            if (loadingScreen) {
-                loadingScreen.classList.add('opacity-0', 'pointer-events-none');
-                setTimeout(() => {
-                    loadingScreen.classList.add('hidden');
-                }, 500);
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pureRed: '#E61919',
+                        crimsonRed: '#DC143C',
+                        redOrange: '#FF4500',
+                        coralGlow: '#FF6B6B',
+                        goldenAccent: '#DAA520',
+                        brightGold: '#FFD700',
+                    }
+                }
             }
         }
+    </script>
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Fredoka) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-        // Floating Hearts Background Generator
-        function createFloatingHearts() {
-            const container = document.getElementById('heart-container');
-            if (!container) return;
-            const heartSymbols = ['❤️', '💖', '💕', '💗', '✨', '⭐'];
-            for (let i = 0; i < 15; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'absolute text-xl opacity-30 select-none pointer-events-none';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.top = Math.random() * 100 + 'vh';
-                heart.style.animation = `float ${3 + Math.random() * 3}s ease-in-out infinite`;
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                container.appendChild(heart);
-            }
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
         }
 
         /* Glassmorphism Design Tokens - Crimson & Gold Theme */
@@ -216,7 +199,7 @@
                     "happy birthday my sweet boy! ❤ today and everyday, only wishing the best for you 🫶"
                 </p>
                 <p class="text-right text-[#DC143C] font-bold text-sm mt-3 pr-2">
-- Adelia
+                    - Adelia
                 </p>
             </div>
 
@@ -403,17 +386,4 @@
                     </div>
                     <!-- Foto 2 -->
                     <div class="h-36 rounded-2xl overflow-hidden shadow-sm border border-red-100 relative">
-        // Initialize App on DOM Ready (Fast & Reliable)
-        document.addEventListener('DOMContentLoaded', () => {
-            createFloatingHearts();
-            startCountdown();
-            
-            // Automatically finish loading within 1.2 seconds max without waiting for heavy GIFs
-            setTimeout(finishLoading, 1200);
-        });
-
-        // Safety fallback: Force unlock after 2 seconds no matter what
-        setTimeout(finishLoading, 2000);
-    </script>
-</body>
-</html> 
+                        <img src="bubuhappy.gif" onerror="this.src='https://placehold.co/200x200/DC143C/ffffff?text=bubuhappy.gif
