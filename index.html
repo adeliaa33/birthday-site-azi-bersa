@@ -339,7 +339,7 @@
                 </button>
             </div>
 
-            <!-- CONTAINER FOTO - TATA LETAK 1: SLIDER / CAROUSEL (2 FOTO) -->
+            <!-- CONTAINER 3 FOTO - TATA LETAK 1: SLIDER / CAROUSEL -->
             <div id="photo-container-slider" class="w-full max-w-xs glass-card rounded-3xl p-3.5 relative flex flex-col items-center animate-sway">
                 <div class="absolute -top-3 flex justify-center gap-3 w-full z-20">
                     <span class="text-[#E61919] text-xl animate-bounce" style="animation-delay: 0.1s;">❤</span>
@@ -353,10 +353,13 @@
                     
                     <!-- Foto 2 -->
                     <img id="slide-img-1" src="bubuhappy.gif" onerror="this.src='https://placehold.co/400x400/DC143C/ffffff?text=bubuhappy.gif'" alt="Foto 2" class="photo-slide absolute inset-0 w-full h-full object-cover opacity-0 scale-95 pointer-events-none">
+                    
+                    <!-- Foto 3 -->
+                    <img id="slide-img-2" src="duduuang.gif" onerror="this.src='https://placehold.co/400x400/FF4500/ffffff?text=duduuang.gif'" alt="Foto 3" class="photo-slide absolute inset-0 w-full h-full object-cover opacity-0 scale-95 pointer-events-none">
 
                     <!-- Overlay Gradient & Caption -->
                     <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-2.5 text-white text-left z-10 flex justify-between items-end">
-                        <span id="slide-caption" class="text-xs font-semibold drop-shadow">Momen Manis Kita ❤️ (1/2)</span>
+                        <span id="slide-caption" class="text-xs font-semibold drop-shadow">Momen Manis Kita ❤️ (1/3)</span>
                         <span class="text-[10px] bg-white/30 backdrop-blur-md px-2 py-0.5 rounded-full font-bold">Azi & Adelia</span>
                     </div>
 
@@ -371,19 +374,722 @@
 
                 <!-- Indikator Titik (Dots) -->
                 <div class="flex items-center gap-2 mt-3">
-                    <button onclick="goToPhoto(0)" id="dot-0" class="w-3.5 h-3.5 rounded-full bg-[#E61919] shadow transition-all"></button>
-                    <button onclick="goToPhoto(1)" id="dot-1" class="w-2.5 h-2.5 rounded-full bg-red-200 transition-all cursor-pointer"></button>
+                    <button onclick="goToPhoto(0)" id="dot-0" class="w-3 h-3 rounded-full bg-[#E61919] transition-all"></button>
+                    <button onclick="goToPhoto(1)" id="dot-1" class="w-2.5 h-2.5 rounded-full bg-red-200 transition-all"></button>
+                    <button onclick="goToPhoto(2)" id="dot-2" class="w-2.5 h-2.5 rounded-full bg-red-200 transition-all"></button>
                 </div>
             </div>
 
-            <!-- CONTAINER FOTO - TATA LETAK 2: ESTETIK GRID KOLASE (2 FOTO EQUAL) -->
+            <!-- CONTAINER 3 FOTO - TATA LETAK 2: ESTETIK GRID KOLASE (HIDDEN DEFAULT) -->
             <div id="photo-container-grid" class="w-full max-w-xs glass-card rounded-3xl p-3 relative flex-col items-center hidden">
                 <div class="grid grid-cols-2 gap-2 w-full">
-                    <!-- Foto 1 -->
-                    <div class="h-36 rounded-2xl overflow-hidden shadow-sm border border-red-100 relative">
-                        <img src="bubududumerayakan.gif" onerror="this.src='https://placehold.co/200x200/E61919/ffffff?text=bubududumerayakan.gif'" alt="Foto 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                    <!-- Foto Utama Atas (Lebar Penuh) -->
+                    <div class="col-span-2 h-36 rounded-2xl overflow-hidden shadow-sm border border-red-100 relative">
+                        <img src="bubududumerayakan.gif" onerror="this.src='https://placehold.co/400x250/E61919/ffffff?text=bubududumerayakan.gif'" alt="Foto 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                         <span class="absolute bottom-1.5 left-2 bg-black/40 text-white text-[10px] px-2 py-0.5 rounded-full font-medium backdrop-blur-sm">Kenangan 1</span>
                     </div>
-                    <!-- Foto 2 -->
-                    <div class="h-36 rounded-2xl overflow-hidden shadow-sm border border-red-100 relative">
-                        <img src="bubuhappy.gif" onerror="this.src='https://placehold.co/200x200/DC143C/ffffff?text=bubuhappy.gif
+                    <!-- Foto Kiri Bawah -->
+                    <div class="h-28 rounded-2xl overflow-hidden shadow-sm border border-red-100 relative">
+                        <img src="bubuhappy.gif" onerror="this.src='https://placehold.co/200x200/DC143C/ffffff?text=bubuhappy.gif'" alt="Foto 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        <span class="absolute bottom-1.5 left-2 bg-black/40 text-white text-[10px] px-2 py-0.5 rounded-full font-medium backdrop-blur-sm">Momen 2</span>
+                    </div>
+                    <!-- Foto Kanan Bawah -->
+                    <div class="h-28 rounded-2xl overflow-hidden shadow-sm border border-red-100 relative">
+                        <img src="duduuang.gif" onerror="this.src='https://placehold.co/200x200/FF4500/ffffff?text=duduuang.gif'" alt="Foto 3" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        <span class="absolute bottom-1.5 left-2 bg-black/40 text-white text-[10px] px-2 py-0.5 rounded-full font-medium backdrop-blur-sm">Momen 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="text-[#DC143C] font-bold text-xl mt-4 font-fredoka">
+                Menuju Hari Spesialmu
+            </h2>
+
+            <!-- Countdown Timer Grid -->
+            <div class="grid grid-cols-4 gap-2.5 w-full max-w-xs mt-3">
+                <div class="glass-card rounded-2xl p-3 flex flex-col items-center">
+                    <span id="cd-days" class="text-2xl font-extrabold text-[#E61919] font-fredoka">00</span>
+                    <span class="text-[10px] font-bold text-[#DC143C] tracking-wider mt-0.5">HARI</span>
+                </div>
+                <div class="glass-card rounded-2xl p-3 flex flex-col items-center">
+                    <span id="cd-hours" class="text-2xl font-extrabold text-[#E61919] font-fredoka">00</span>
+                    <span class="text-[10px] font-bold text-[#DC143C] tracking-wider mt-0.5">JAM</span>
+                </div>
+                <div class="glass-card rounded-2xl p-3 flex flex-col items-center">
+                    <span id="cd-mins" class="text-2xl font-extrabold text-[#E61919] font-fredoka">00</span>
+                    <span class="text-[10px] font-bold text-[#DC143C] tracking-wider mt-0.5">MENIT</span>
+                </div>
+                <div class="glass-card rounded-2xl p-3 flex flex-col items-center">
+                    <span id="cd-secs" class="text-2xl font-extrabold text-[#E61919] font-fredoka">00</span>
+                    <span class="text-[10px] font-bold text-[#DC143C] tracking-wider mt-0.5">DETIK</span>
+                </div>
+            </div>
+
+            <!-- Target Date Card -->
+            <div class="w-full max-w-xs glass-card rounded-2xl p-4 mt-5 flex flex-col items-center">
+                <div class="flex items-center gap-2 text-[#E61919] font-bold text-base font-fredoka">
+                    <span class="text-lg">📅</span>
+                    <span>07 November 2026</span>
+                </div>
+                <p class="text-xs text-[#DC143C] font-medium mt-2 leading-relaxed">
+                    Tanggal dimana senyumanmu akan menerangi hariku🥹
+                </p>
+            </div>
+
+            <p class="text-xs italic text-[#DC143C] font-medium max-w-xs mt-6 leading-relaxed px-2">
+                "today and everyday, i'll always be ur #1 supporter, clap the loudest for u, and praying wholeheartedly for ur happiness ❤️"
+            </p>
+        </div>
+
+        <div id="view-letter" class="w-full hidden flex-col items-center text-center pt-2 pb-12">
+            <h1 class="text-3xl font-extrabold font-fredoka text-[#E61919] tracking-tight mb-4">
+                Pesan Spesial<br>Untukmu
+            </h1>
+
+            <div class="w-full max-w-xs glass-card rounded-3xl p-4 flex justify-center items-center my-2">
+                <svg viewBox="0 0 300 240" class="w-full h-48 object-contain">
+                    <g transform="translate(10, 20)">
+                        <circle cx="50" cy="55" r="18" fill="#2d2d2d"/>
+                        <circle cx="120" cy="55" r="18" fill="#2d2d2d"/>
+                        <ellipse cx="85" cy="100" rx="55" ry="45" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
+                        <ellipse cx="65" cy="98" rx="12" ry="16" fill="#2d2d2d" transform="rotate(-10 65 98)"/>
+                        <ellipse cx="105" cy="98" rx="12" ry="16" fill="#2d2d2d" transform="rotate(10 105 98)"/>
+                        <circle cx="67" cy="96" r="4" fill="#ffffff"/>
+                        <circle cx="103" cy="96" r="4" fill="#ffffff"/>
+                        <ellipse cx="52" cy="110" rx="10" ry="6" fill="#FF6B6B" opacity="0.8"/>
+                        <ellipse cx="118" cy="110" rx="10" ry="6" fill="#FF6B6B" opacity="0.8"/>
+                        <ellipse cx="85" cy="105" rx="5" ry="3" fill="#2d2d2d"/>
+                        <path d="M 80 110 Q 85 115 90 110" fill="none" stroke="#2d2d2d" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M 50 140 Q 85 130 120 140 L 120 190 L 50 190 Z" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
+                        <path d="M 100 135 L 140 120" fill="none" stroke="#15803d" stroke-width="4" stroke-linecap="round"/>
+                        <circle cx="145" cy="115" r="12" fill="#E61919"/>
+                        <path d="M 140 112 Q 145 106 150 112" fill="none" stroke="#DC143C" stroke-width="2"/>
+                    </g>
+                    <g transform="translate(140, 15)">
+                        <path d="M 65 30 L 73 10 L 85 22 L 97 10 L 105 30 Z" fill="#FFD700" stroke="#DAA520" stroke-width="3"/>
+                        <circle cx="50" cy="60" r="18" fill="#8d5b4c"/>
+                        <circle cx="120" cy="60" r="18" fill="#8d5b4c"/>
+                        <ellipse cx="85" cy="105" rx="55" ry="45" fill="#a06a58"/>
+                        <ellipse cx="85" cy="115" rx="18" ry="12" fill="#fceade"/>
+                        <ellipse cx="85" cy="110" rx="6" ry="4" fill="#3d2314"/>
+                        <path d="M 80 115 Q 85 120 90 115" fill="none" stroke="#3d2314" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M 62 98 Q 68 92 74 98" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M 96 98 Q 102 92 108 98" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
+                        <ellipse cx="55" cy="115" rx="10" ry="6" fill="#FF6B6B" opacity="0.8"/>
+                        <ellipse cx="115" cy="115" rx="10" ry="6" fill="#FF6B6B" opacity="0.8"/>
+                        <path d="M 50 145 Q 85 135 120 145 L 120 195 L 50 195 Z" fill="#a06a58"/>
+                        <rect x="65" y="140" width="40" height="35" rx="4" fill="#DC143C" stroke="#E61919" stroke-width="3"/>
+                        <rect x="80" y="140" width="10" height="35" fill="#FFD700"/>
+                        <polygon points="85,135 80,140 90,140" fill="#FFD700"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Love Letter Box -->
+            <div class="w-full max-w-xs glass-card rounded-3xl p-5 mt-4 text-left text-xs md:text-sm text-slate-800 leading-relaxed font-medium space-y-4">
+                <p>
+                    Sayangku ❤️, hari ini adalah momen yang paling indah karena hari ini kamu lahir ke dunia 🎉. Aku ingin berdoa agar kamu selalu dalam lindungan Tuhan 🙏, diberi kesehatan 🦾, kekuatan 🛡️, dan kebahagiaan yang tiada akhir 🌈✨.
+                </p>
+                <p>
+                    Aku tahu hidup tidak selalu mudah 🌧️️, tapi aku ingin kamu tahu bahwa kamu tidak sendiri 🤝. Aku akan selalu mendukungmu ❤️, menyemangati kamu 💫, dan menjadi pundakmu saat kamu lelah 🥺➔🗿.
+                </p>
+                <p>
+                    Semoga setiap langkahmu penuh keberkahan 🏰, dan setiap impianmu satu per satu menjadi kenyataan 🌠. Kamu punya hati yang tulus 💓, senyum yang menenangkan 😌, dan jiwa yang tampan luar dalam 🌹. Dunia butuh lebih banyak orang sepertimu 🌍❤️.
+                </p>
+                <p>
+                    Aku ingin kamu tahu bahwa aku percaya padamu sepenuhnya 🤲. Kamu kuat 💥, kamu hebat 🦋, dan kamu pantas mendapatkan yang terbaik 🏆. Jangan pernah ragukan dirimu sendiri 🙋‍♂️, karena kamu adalah cahaya dalam hidup banyak orang 🌟, termasuk hidupku 💘.
+                </p>
+                <p>
+                    Jika suatu hari kamu merasa ragu atau takut 🥺, ingatlah doaku ini: Semoga kamu selalu dikelilingi orang-orang baik 👥, rezeki yang cukup 💰, dan cinta yang tulus dari semua arah 💗. Termasuk dariku 🫶.
+                </p>
+                <p class="font-bold text-[#E61919]">
+                    Aku cinta kamu ❤, dan akan selalu mencintaimu 💍.
+                </p>
+            </div>
+
+            <div class="w-full max-w-xs mt-6 flex justify-center">
+                <button onclick="goToLoveScreen()" class="w-full bg-gradient-to-r from-[#E61919] via-[#DC143C] to-[#FF4500] hover:from-[#DC143C] hover:to-[#E61919] text-white font-bold py-3.5 px-6 rounded-full shadow-lg transform active:scale-95 transition-all text-sm tracking-wide">
+                    Lihat Cintaku
+                </button>
+            </div>
+        </div>
+
+        <div id="view-love" class="w-full hidden flex-col items-center justify-center min-h-[75vh] text-center pt-8">
+            <div class="relative my-8 cursor-pointer flex items-center justify-center animate-heart-pulse" onclick="triggerConfetti()">
+                <svg width="240" height="220" viewBox="0 0 200 180" class="drop-shadow-[0_10px_25px_rgba(230,25,25,0.7)]">
+                    <path d="M 100 170 C 20 100, 0 45, 50 15 C 80 -2, 100 25, 100 25 C 100 25, 120 -2, 150 15 C 200 45, 180 100, 100 170 Z" fill="#E61919"/>
+                    <path d="M 35 30 C 25 55, 30 75, 45 90" fill="none" stroke="#FF6B6B" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center gap-1.5 text-white font-black font-fredoka text-3xl pt-1">
+                    <span>Azi Bersa</span>
+                    <span class="text-2xl">❤️✨</span>
+                </div>
+            </div>
+
+            <p class="text-white font-medium text-lg md:text-xl tracking-wide mt-6 flex items-center justify-center gap-2">
+                <span>Hanya kamu di hatiku, sayang</span>
+                <span class="text-xl">🥺</span>
+            </p>
+        </div>
+
+        <div id="view-memories" class="w-full hidden flex-col items-center text-center pt-2 pb-12">
+            <h1 class="text-3xl font-extrabold font-fredoka text-[#E61919] tracking-tight mb-4">
+                Kenangan Indah Kita
+            </h1>
+
+            <div class="w-full max-w-xs glass-card rounded-3xl p-3 flex justify-center items-center my-2 overflow-hidden">
+                <svg viewBox="0 0 300 180" class="w-full h-40 object-contain">
+                    <g transform="translate(10, 10)">
+                        <path d="M 55 45 C 55 25, 115 25, 115 45 Z" fill="#FFD700"/>
+                        <rect x="45" y="42" width="80" height="8" rx="4" fill="#DAA520"/>
+                        <circle cx="45" cy="55" r="16" fill="#8d5b4c"/>
+                        <circle cx="125" cy="55" r="16" fill="#8d5b4c"/>
+                        <ellipse cx="85" cy="95" rx="50" ry="40" fill="#a06a58"/>
+                        <ellipse cx="85" cy="102" rx="16" ry="10" fill="#fceade"/>
+                        <ellipse cx="85" cy="98" rx="5" ry="3" fill="#3d2314"/>
+                        <path d="M 80 102 Q 85 106 90 102" fill="none" stroke="#3d2314" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M 65 90 Q 70 85 75 90" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M 95 90 Q 100 85 105 90" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
+                        <ellipse cx="55" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.8"/>
+                        <ellipse cx="115" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.8"/>
+                        <path d="M 50 135 Q 85 125 120 135 L 120 170 L 50 170 Z" fill="#a06a58"/>
+                        <path d="M 55 135 L 115 165" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+                    </g>
+                    <g transform="translate(140, 10)">
+                        <path d="M 45 45 C 45 20, 125 20, 125 45 Z" fill="#DC143C"/>
+                        <path d="M 30 45 L 140 45 C 140 45, 130 55, 85 55 C 40 55, 30 45, 30 45 Z" fill="#E61919"/>
+                        <circle cx="40" cy="55" r="16" fill="#2d2d2d"/>
+                        <circle cx="130" cy="55" r="16" fill="#2d2d2d"/>
+                        <ellipse cx="85" cy="95" rx="50" ry="40" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
+                        <ellipse cx="65" cy="92" rx="12" ry="14" fill="#2d2d2d"/>
+                        <ellipse cx="105" cy="92" rx="12" ry="14" fill="#2d2d2d"/>
+                        <circle cx="67" cy="90" r="3" fill="#ffffff"/>
+                        <path d="M 100 92 Q 105 88 110 92" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        <ellipse cx="52" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.85"/>
+                        <ellipse cx="118" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.85"/>
+                        <ellipse cx="85" cy="98" rx="5" ry="3" fill="#2d2d2d"/>
+                        <path d="M 80 102 Q 85 107 90 102" fill="none" stroke="#2d2d2d" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M 50 135 Q 85 125 120 135 L 120 170 L 50 170 Z" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Apology Card Content -->
+            <div class="w-full max-w-xs glass-card rounded-3xl p-5 mt-4 text-left text-xs md:text-sm leading-relaxed space-y-4">
+                <h2 class="text-center font-bold text-base text-[#E61919] font-fredoka">
+                    Permintaan Maafku di Hari Ulang Tahunmu
+                </h2>
+
+                <p class="font-bold text-[#DC143C] flex items-center gap-1.5">
+                    <span>💌</span>
+                    <span>Maaf ya, Sayang...</span>
+                </p>
+
+                <p class="text-slate-800 font-medium">
+                    Maaf kalau selama ini aku pernah cuek 😔, terlalu sibuk 😔, atau kurang peka sama perasaanmu 😢. Maaf kalau kadang aku bikin kamu kecewa, salah paham, atau merasa sendiri 😓. Aku gak pernah berniat nyakitin kamu 🥺. Semua itu karena aku manusia biasa yang masih belajar mencintaimu dengan lebih baik 🤍.
+                </p>
+
+                <p class="text-slate-800 font-medium">
+                    Terima kasih sudah sabar, sudah tetap di sini 🫶. Aku akan terus belajar jadi lebih baik lagi... untuk kamu ❤️
+                </p>
+
+                <p class="text-slate-800 font-medium flex items-start gap-1.5 pt-1">
+                    <span>🙏</span>
+                    <span>Maaf ya, dan makasih karena kamu tetap percaya sama aku.</span>
+                </p>
+            </div>
+
+            <div class="w-full max-w-xs mt-6 flex justify-center">
+                <button onclick="goToFlowerScreen()" class="w-full bg-gradient-to-r from-[#E61919] via-[#DC143C] to-[#FF4500] hover:from-[#DC143C] hover:to-[#E61919] text-white font-bold py-3.5 px-6 rounded-full shadow-lg transform active:scale-95 transition-all text-sm tracking-wide">
+                    Buka Bunga Cinta
+                </button>
+            </div>
+        </div>
+
+        <div id="view-flower" class="w-full hidden flex-col items-center text-center pt-4 pb-12">
+            <button onclick="switchTab('memories')" class="bg-gradient-to-r from-[#E61919] to-[#DC143C] hover:from-[#DC143C] hover:to-[#E61919] text-white font-bold py-2.5 px-8 rounded-full shadow-md transform active:scale-95 transition-all text-sm mb-6">
+                Tutup Bunga
+            </button>
+
+            <div class="w-full max-w-xs glass-card rounded-3xl p-4 flex justify-center items-center my-2">
+                <svg viewBox="0 0 200 200" class="w-48 h-48 object-contain">
+                    <ellipse cx="100" cy="95" rx="70" ry="60" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
+                    <circle cx="45" cy="45" r="22" fill="#2d2d2d"/>
+                    <circle cx="155" cy="45" r="22" fill="#2d2d2d"/>
+                    <ellipse cx="70" cy="95" rx="16" ry="20" fill="#2d2d2d" transform="rotate(-10 70 95)"/>
+                    <ellipse cx="130" cy="95" rx="16" ry="20" fill="#2d2d2d" transform="rotate(10 130 95)"/>
+                    <circle cx="73" cy="93" r="4" fill="#ffffff"/>
+                    <circle cx="127" cy="93" r="4" fill="#ffffff"/>
+                    <ellipse cx="50" cy="110" rx="14" ry="9" fill="#FF6B6B" opacity="0.85"/>
+                    <ellipse cx="150" cy="110" rx="14" ry="9" fill="#FF6B6B" opacity="0.85"/>
+                    <ellipse cx="100" cy="100" rx="6" ry="4" fill="#2d2d2d"/>
+                    <path d="M 94 105 Q 100 110 106 105" fill="none" stroke="#2d2d2d" stroke-width="3" stroke-linecap="round"/>
+                    <ellipse cx="50" cy="155" rx="18" ry="14" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
+                    <ellipse cx="145" cy="140" rx="18" ry="14" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
+                    <path d="M 145 140 L 145 110" fill="none" stroke="#15803d" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="145" cy="100" r="16" fill="#DC143C"/>
+                    <path d="M 137 98 Q 145 90 153 98" fill="none" stroke="#E61919" stroke-width="3"/>
+                </svg>
+            </div>
+
+            <div class="my-6 relative flex items-center justify-center animate-heart-pulse">
+                <svg viewBox="0 0 200 240" class="w-60 h-60 drop-shadow-xl">
+                    <rect x="95" y="150" width="10" height="80" rx="5" fill="#16a34a"/>
+                    <circle cx="100" cy="65" r="35" fill="#FF6B6B"/>
+                    <circle cx="65" cy="100" r="35" fill="#FF6B6B"/>
+                    <circle cx="135" cy="100" r="35" fill="#FF6B6B"/>
+                    <circle cx="80" cy="130" r="35" fill="#FF6B6B"/>
+                    <circle cx="120" cy="130" r="35" fill="#FF6B6B"/>
+                    <circle cx="100" cy="75" r="28" fill="#DC143C"/>
+                    <circle cx="75" cy="100" r="28" fill="#DC143C"/>
+                    <circle cx="125" cy="100" r="28" fill="#DC143C"/>
+                    <circle cx="88" cy="120" r="28" fill="#DC143C"/>
+                    <circle cx="112" cy="120" r="28" fill="#DC143C"/>
+                    <circle cx="100" cy="100" r="20" fill="#FFD700" stroke="#ffffff" stroke-width="4"/>
+                </svg>
+            </div>
+
+            <p class="text-[#E61919] italic font-medium text-xs md:text-sm max-w-xs leading-relaxed px-4">
+                🌹 Bunga ini sebagai hadiah dari permintaan maafku, sayang... Tolong diterima ya ❤️
+            </p>
+        </div>
+
+        <!-- Floating Music Control Button -->
+        <div class="fixed top-6 right-4 z-40">
+            <button id="music-btn" onclick="toggleAudio()" class="flex items-center gap-2 bg-gradient-to-r from-[#E61919] to-[#DC143C] text-white text-xs font-bold py-2 px-4 rounded-full shadow-lg hover:scale-105 transition-transform duration-200 border border-[#FFD700]/50 glass-btn">
+                <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                    <i id="music-icon" class="fa-solid fa-volume-high text-xs"></i>
+                </div>
+                <span id="music-text">Music ON</span>
+            </button>
+        </div>
+
+        <!-- Floating Bottom Navigation Dock -->
+        <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 glass-dock px-6 py-3 rounded-full flex items-center gap-6">
+            <button onclick="switchTab('home')" title="Beranda" class="text-2xl hover:scale-125 transition-transform duration-150 focus:outline-none">
+                🏠
+            </button>
+            <button onclick="switchTab('countdown')" title="Hitung Mundur" class="text-2xl hover:scale-125 transition-transform duration-150 focus:outline-none">
+                ⏳
+            </button>
+            <button onclick="switchTab('letter')" title="Pesan Spesial" class="text-2xl hover:scale-125 transition-transform duration-150 focus:outline-none">
+                💌
+            </button>
+            <button onclick="switchTab('memories')" title="Kenangan Indah Kita" class="text-2xl hover:scale-125 transition-transform duration-150 focus:outline-none">
+                📷
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        let isAudioPlaying = false;
+        let audioCtx = null;
+        let melodyInterval = null;
+        let melodyTimeoutIds = [];
+        let micStream = null;
+        let isCandleBlown = false;
+        let countdownTimer = null;
+
+        // 3-Photo Carousel State & Captions
+        let currentPhotoIndex = 0;
+        const photoCaptions = [
+            "Momen Manis Kita ❤️ (1/3)",
+            "Senyuman Favoritku ✨ (2/3)",
+            "Selalu Bersamamu 💖 (3/3)"
+        ];
+
+        const SOFT_BG = '#fff5f5';
+
+        function finishLoading() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            if (loadingScreen && mainContent) {
+                loadingScreen.classList.add('opacity-0');
+                setTimeout(() => {
+                    loadingScreen.classList.add('hidden');
+                    mainContent.classList.remove('opacity-0');
+                }, 700);
+            }
+        }
+
+        function createFloatingHearts() {
+            const container = document.getElementById('heart-container');
+            if (!container) return;
+            const heartSymbols = ['❤', '✨', '⭐', '🤍', '💖'];
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'absolute text-xl opacity-35 select-none pointer-events-none';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.animation = `float ${3 + Math.random() * 3}s ease-in-out infinite`;
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                container.appendChild(heart);
+            }
+        }
+
+        /* ---------------- SLIDER 3 FOTO LOGIC ---------------- */
+        function updatePhotoDisplay() {
+            for (let i = 0; i < 3; i++) {
+                const img = document.getElementById(`slide-img-${i}`);
+                const dot = document.getElementById(`dot-${i}`);
+                
+                if (img) {
+                    if (i === currentPhotoIndex) {
+                        img.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                        img.classList.add('opacity-100', 'scale-100');
+                    } else {
+                        img.classList.remove('opacity-100', 'scale-100');
+                        img.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                    }
+                }
+
+                if (dot) {
+                    if (i === currentPhotoIndex) {
+                        dot.className = "w-3.5 h-3.5 rounded-full bg-[#E61919] shadow transition-all";
+                    } else {
+                        dot.className = "w-2.5 h-2.5 rounded-full bg-red-200 transition-all cursor-pointer";
+                    }
+                }
+            }
+
+            const captionEl = document.getElementById('slide-caption');
+            if (captionEl) {
+                captionEl.textContent = photoCaptions[currentPhotoIndex];
+            }
+        }
+
+        function nextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % 3;
+            updatePhotoDisplay();
+        }
+
+        function prevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + 3) % 3;
+            updatePhotoDisplay();
+        }
+
+        function goToPhoto(index) {
+            currentPhotoIndex = index;
+            updatePhotoDisplay();
+        }
+
+        function setPhotoLayout(layoutType) {
+            const sliderView = document.getElementById('photo-container-slider');
+            const gridView = document.getElementById('photo-container-grid');
+            const btnSlider = document.getElementById('btn-mode-slider');
+            const btnGrid = document.getElementById('btn-mode-grid');
+
+            if (layoutType === 'slider') {
+                sliderView.classList.remove('hidden');
+                sliderView.classList.add('flex');
+                gridView.classList.add('hidden');
+                gridView.classList.remove('flex');
+
+                btnSlider.className = "px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow";
+                btnGrid.className = "px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all";
+            } else {
+                gridView.classList.remove('hidden');
+                gridView.classList.add('flex');
+                sliderView.classList.add('hidden');
+                sliderView.classList.remove('flex');
+
+                btnGrid.className = "px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow";
+                btnSlider.className = "px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all";
+            }
+        }
+
+        /* ---------------- AUDIO LOGIC ---------------- */
+        const hbMelody = [
+            { note: 261.63, dur: 0.3, delay: 0 },    // C4
+            { note: 261.63, dur: 0.3, delay: 400 },  // C4
+            { note: 293.66, dur: 0.6, delay: 800 },  // D4
+            { note: 261.63, dur: 0.6, delay: 1400 }, // C4
+            { note: 349.23, dur: 0.6, delay: 2000 }, // F4
+            { note: 329.63, dur: 1.0, delay: 2600 }, // E4
+
+            { note: 261.63, dur: 0.3, delay: 3400 }, // C4
+            { note: 261.63, dur: 0.3, delay: 3800 }, // C4
+            { note: 293.66, dur: 0.6, delay: 4200 }, // D4
+            { note: 261.63, dur: 0.6, delay: 4800 }, // C4
+            { note: 392.00, dur: 0.6, delay: 5400 }, // G4
+            { note: 349.23, dur: 1.0, delay: 6000 }, // F4
+        ];
+
+        function initAudioContext() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playNote(freq, duration = 0.3, type = 'triangle') {
+            if (!audioCtx || !isAudioPlaying) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {
+                console.log('Audio error:', e);
+            }
+        }
+
+        function stopCuteMelody() {
+            if (melodyInterval) clearInterval(melodyInterval);
+            melodyTimeoutIds.forEach(id => clearTimeout(id));
+            melodyTimeoutIds = [];
+        }
+
+        function playCuteMelody() {
+            initAudioContext();
+            stopCuteMelody();
+            if (!isAudioPlaying) return;
+
+            function runSequence() {
+                if (!isAudioPlaying) return;
+                hbMelody.forEach(item => {
+                    const tid = setTimeout(() => {
+                        if (isAudioPlaying) playNote(item.note, item.dur, 'triangle');
+                    }, item.delay);
+                    melodyTimeoutIds.push(tid);
+                });
+            }
+
+            runSequence();
+            melodyInterval = setInterval(() => {
+                if (isAudioPlaying) runSequence();
+            }, 7000);
+        }
+
+        function toggleAudio() {
+            initAudioContext();
+            isAudioPlaying = !isAudioPlaying;
+            const btnText = document.getElementById('music-text');
+            const btnIcon = document.getElementById('music-icon');
+
+            if (isAudioPlaying) {
+                if (btnText) btnText.textContent = 'Music ON';
+                if (btnIcon) btnIcon.className = 'fa-solid fa-volume-high text-xs';
+                playCuteMelody();
+            } else {
+                if (btnText) btnText.textContent = 'Music OFF';
+                if (btnIcon) btnIcon.className = 'fa-solid fa-volume-xmark text-xs';
+                stopCuteMelody();
+            }
+        }
+
+        /* ---------------- NAVIGATION LOGIC ---------------- */
+        function hideAllViews() {
+            const views = [
+                'view-home', 'view-gift-intro', 'view-gift-loading', 
+                'view-candle', 'view-countdown', 'view-letter', 
+                'view-love', 'view-memories', 'view-flower'
+            ];
+            views.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.add('hidden');
+                    el.classList.remove('flex');
+                }
+            });
+        }
+
+        function switchTab(tabName) {
+            hideAllViews();
+            document.getElementById('body-bg').style.backgroundColor = SOFT_BG;
+            
+            if (tabName === 'home') {
+                document.getElementById('view-home').classList.remove('hidden');
+            } else if (tabName === 'countdown') {
+                const v = document.getElementById('view-countdown');
+                v.classList.remove('hidden');
+                v.classList.add('flex');
+            } else if (tabName === 'letter') {
+                const v = document.getElementById('view-letter');
+                v.classList.remove('hidden');
+                v.classList.add('flex');
+            } else if (tabName === 'memories') {
+                const v = document.getElementById('view-memories');
+                v.classList.remove('hidden');
+                v.classList.add('flex');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            triggerConfetti();
+        }
+
+        function goToGiftIntro() {
+            hideAllViews();
+            document.getElementById('body-bg').style.backgroundColor = SOFT_BG;
+            const view = document.getElementById('view-gift-intro');
+            view.classList.remove('hidden');
+            view.classList.add('flex');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openGiftBox() {
+            hideAllViews();
+            const loadingView = document.getElementById('view-gift-loading');
+            loadingView.classList.remove('hidden');
+            loadingView.classList.add('flex');
+
+            setTimeout(() => {
+                goToCandleScreen();
+            }, 2500);
+        }
+
+        function goToCandleScreen() {
+            hideAllViews();
+            const candleView = document.getElementById('view-candle');
+            candleView.classList.remove('hidden');
+            candleView.classList.add('flex');
+            document.getElementById('body-bg').style.backgroundColor = SOFT_BG;
+
+            triggerConfetti();
+            startMicDetection();
+        }
+
+        function goToLoveScreen() {
+            hideAllViews();
+            const loveView = document.getElementById('view-love');
+            loveView.classList.remove('hidden');
+            loveView.classList.add('flex');
+            document.getElementById('body-bg').style.backgroundColor = '#0f0307';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            triggerConfetti();
+        }
+
+        function goToFlowerScreen() {
+            hideAllViews();
+            const flowerView = document.getElementById('view-flower');
+            flowerView.classList.remove('hidden');
+            flowerView.classList.add('flex');
+            document.getElementById('body-bg').style.backgroundColor = SOFT_BG;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            triggerConfetti();
+        }
+
+        function startCountdown() {
+            const targetDate = new Date('2026-11-07T00:00:00').getTime();
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    document.getElementById('cd-days').textContent = '00';
+                    document.getElementById('cd-hours').textContent = '00';
+                    document.getElementById('cd-mins').textContent = '00';
+                    document.getElementById('cd-secs').textContent = '00';
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+                document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('cd-mins').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('cd-secs').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer();
+            if (countdownTimer) clearInterval(countdownTimer);
+            countdownTimer = setInterval(updateTimer, 1000);
+        }
+
+        function blowOutCandle() {
+            if (isCandleBlown) return;
+            isCandleBlown = true;
+
+            const flame = document.getElementById('candle-flame');
+            const smoke = document.getElementById('candle-smoke');
+            const smokeBadge = document.getElementById('candle-smoke-badge');
+            const status = document.getElementById('blow-status');
+
+            if (flame) flame.classList.add('opacity-0', 'scale-0');
+            setTimeout(() => {
+                if (flame) flame.classList.add('hidden');
+                if (smoke) smoke.classList.remove('hidden');
+                if (smokeBadge) smokeBadge.classList.remove('hidden');
+                setTimeout(() => {
+                    if (smoke) smoke.classList.remove('opacity-0');
+                    if (smokeBadge) smokeBadge.classList.opacity = "1";
+                }, 50);
+            }, 300);
+
+            status.textContent = "🥳 Lilin berhasil ditiup! Semoga semua impianmu terwujud! ✨";
+            status.classList.add('bg-[#DC143C]', 'text-[#ffffff]');
+
+            triggerConfetti();
+        }
+
+        function startMicDetection() {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+                    micStream = stream;
+                    const context = new (window.AudioContext || window.webkitAudioContext)();
+                    const mic = context.createMediaStreamSource(stream);
+                    const analyser = context.createAnalyser();
+                    analyser.fftSize = 256;
+                    mic.connect(analyser);
+
+                    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+                    function checkVolume() {
+                        if (isCandleBlown) return;
+                        analyser.getByteFrequencyData(dataArray);
+                        let sum = 0;
+                        for (let i = 0; i < dataArray.length; i++) {
+                            sum += dataArray[i];
+                        }
+                        let average = sum / dataArray.length;
+
+                        if (average > 45) {
+                            blowOutCandle();
+                        } else {
+                            requestAnimationFrame(checkVolume);
+                        }
+                    }
+                    checkVolume();
+                }).catch(err => {
+                    console.log("Microphone access unavailable or denied:", err);
+                });
+            }
+        }
+
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 85,
+                    spread: 75,
+                    origin: { y: 0.6 },
+                    colors: ['#E61919', '#DC143C', '#FF4500', '#FF6B6B', '#DAA520', '#FFD700']
+                });
+            }
+        }
+
+        window.addEventListener('load', () => {
+            createFloatingHearts();
+            startCountdown();
+            updatePhotoDisplay();
+            
+            setTimeout(() => {
+                finishLoading();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
