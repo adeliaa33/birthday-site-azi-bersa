@@ -485,7 +485,7 @@
 
         <!-- POP-UP MODAL: GELEMBUNG HARAPAN & INPUT DOA -->
         <div id="wish-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
-            <div class="relative w-full max-w-md glass-card bg-white/95 rounded-3xl p-5 shadow-2xl border-2 border-[#FFD700] text-center transform scale-90 transition-all duration-300 flex flex-col items-center" id="wish-modal-card">
+            <div class="relative w-full max-w-md glass-card bg-white/95 rounded-3xl p-5 shadow-2xl border-2 border-[#FFD700] text-center transform scale-90 transition-all duration-300 flex flex-col items-center max-h-[92vh] overflow-y-auto" id="wish-modal-card">
                 
                 <!-- Close Button -->
                 <button onclick="closeWishModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 text-[#E61919] font-bold flex items-center justify-center text-sm transition-transform active:scale-90 z-20">
@@ -524,7 +524,7 @@
 
                 </div>
 
-                <!-- POP-UP PHOTO FRAME (DIPERPANJANG UNTUK MENAMPILKAN GAMBAR UTUH TANKPA TERPOTONG) -->
+                <!-- POP-UP PHOTO FRAME (MENAMPILKAN GAMBAR UTUH DARI KEPALA HINGGA KAKI TANPA TERPOTONG) -->
                 <div id="wish-photo-frame" onclick="nextWish()" class="w-full cursor-pointer transform hover:scale-[1.02] active:scale-95 transition-all duration-300 group mb-3">
                     <div class="w-full bg-white p-3 rounded-2xl shadow-md border-2 border-red-100 flex flex-col items-center relative overflow-hidden">
                         
@@ -533,8 +533,8 @@
                             Ketuk Foto 👆
                         </span>
 
-                        <div class="w-full h-72 md:h-80 rounded-xl overflow-hidden bg-slate-100 relative flex items-center justify-center">
-                            <img id="wish-modal-img" src="bubududumerayakan.gif" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Wish Photo" class="w-full h-full object-cover object-center transition-all duration-300">
+                        <div class="w-full h-80 sm:h-96 md:h-[440px] rounded-xl overflow-hidden bg-slate-100 relative flex items-center justify-center">
+                            <img id="wish-modal-img" src="bubududumerayakan.gif" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Wish Photo" class="w-full h-full object-contain object-center transition-all duration-300">
                         </div>
 
                         <p class="text-xs font-bold text-[#DC143C] mt-2 tracking-wide font-fredoka flex items-center gap-1">
@@ -890,14 +890,14 @@
                 wish: '✨ Semoga Azi selalu diberikan kesehatan yang berlimpah, umur yang panjang, dan selalu dalam perlindungan Tuhan. Semoga setiap langkahmu dimudahkan! 🤲'
             },
             {
-                img: 'fotokado3.jpg',
+                img: 'fotokado2.jpg',
                 fallbackBg: 'DC143C',
                 caption: 'Momen Spesial 2',
                 badge: 'Harapan 2 dari 3 🌟',
                 wish: '💖 Semoga rezekimu selalu mengalir lancar, karier & studimu makin sukses, serta semua impian indahmu satu per satu menjadi kenyataan! 🚀'
             },
             {
-                img: 'fotokado2.jpg',
+                img: 'fotokado3.jpg',
                 fallbackBg: 'FF4500',
                 caption: 'Momen Spesial 3',
                 badge: 'Harapan 3 dari 3 🎁',
