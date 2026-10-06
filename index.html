@@ -524,17 +524,17 @@
 
                 </div>
 
-                <!-- POP-UP PHOTO FRAME (MENAMPILKAN GAMBAR UTUH DARI KEPALA HINGGA KAKI TANPA TERPOTONG) -->
+                <!-- POP-UP PHOTO FRAME (MENAMPILKAN GAMBAR NGEPAS RAPI DENGAN BINGKAI) -->
                 <div id="wish-photo-frame" onclick="nextWish()" class="w-full cursor-pointer transform hover:scale-[1.02] active:scale-95 transition-all duration-300 group mb-3">
-                    <div class="w-full bg-white p-3 rounded-2xl shadow-md border-2 border-red-100 flex flex-col items-center relative overflow-hidden">
+                    <div class="w-full bg-white p-2.5 rounded-2xl shadow-md border-2 border-red-100 flex flex-col items-center relative overflow-hidden">
                         
                         <!-- Floating Heart Badge -->
                         <span id="photo-tap-badge" class="absolute top-2 right-2 text-xs bg-red-500 text-white px-2 py-0.5 rounded-full font-bold shadow animate-pulse z-10">
                             Ketuk Foto 👆
                         </span>
 
-                        <div class="w-full h-80 sm:h-96 md:h-[440px] rounded-xl overflow-hidden bg-slate-100 relative flex items-center justify-center">
-                            <img id="wish-modal-img" src="bubududumerayakan.gif" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Wish Photo" class="w-full h-full object-contain object-center transition-all duration-300">
+                        <div class="w-full h-72 sm:h-80 md:h-96 rounded-xl overflow-hidden relative">
+                            <img id="wish-modal-img" src="bubududumerayakan.gif" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Wish Photo" class="w-full h-full object-cover object-top transition-all duration-300">
                         </div>
 
                         <p class="text-xs font-bold text-[#DC143C] mt-2 tracking-wide font-fredoka flex items-center gap-1">
@@ -765,6 +765,80 @@
             </p>
         </div>
 
+        <!-- VIEW 8: MEMORIES / APOLOGY -->
+        <div id="view-memories" class="w-full hidden flex-col items-center text-center pt-2 pb-12">
+            <h1 class="text-3xl font-extrabold font-fredoka text-[#E61919] tracking-tight mb-4">
+                Kenangan Indah Kita
+            </h1>
+
+            <div class="w-full max-w-xs glass-card rounded-3xl p-3 flex justify-center items-center my-2 overflow-hidden">
+                <svg viewBox="0 0 300 180" class="w-full h-40 object-contain">
+                    <g transform="translate(10, 10)">
+                        <path d="M 55 45 C 55 25, 115 25, 115 45 Z" fill="#FFD700"/>
+                        <rect x="45" y="42" width="80" height="8" rx="4" fill="#DAA520"/>
+                        <circle cx="45" cy="55" r="16" fill="#8d5b4c"/>
+                        <circle cx="125" cy="55" r="16" fill="#8d5b4c"/>
+                        <ellipse cx="85" cy="95" rx="50" ry="40" fill="#a06a58"/>
+                        <ellipse cx="85" cy="102" rx="16" ry="10" fill="#fceade"/>
+                        <ellipse cx="85" cy="98" rx="5" ry="3" fill="#3d2314"/>
+                        <path d="M 80 102 Q 85 106 90 102" fill="none" stroke="#3d2314" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M 65 90 Q 70 85 75 90" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M 95 90 Q 100 85 105 90" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
+                        <ellipse cx="55" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.8"/>
+                        <ellipse cx="115" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.8"/>
+                        <path d="M 50 135 Q 85 125 120 135 L 120 170 L 50 170 Z" fill="#a06a58"/>
+                        <path d="M 55 135 L 115 165" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+                    </g>
+                    <g transform="translate(140, 10)">
+                        <path d="M 45 45 C 45 20, 125 20, 125 45 Z" fill="#DC143C"/>
+                        <path d="M 30 45 L 140 45 C 140 45, 130 55, 85 55 C 40 55, 30 45, 30 45 Z" fill="#E61919"/>
+                        <circle cx="40" cy="55" r="16" fill="#2d2d2d"/>
+                        <circle cx="130" cy="55" r="16" fill="#2d2d2d"/>
+                        <ellipse cx="85" cy="95" rx="50" ry="40" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
+                        <ellipse cx="65" cy="92" rx="12" ry="14" fill="#2d2d2d"/>
+                        <ellipse cx="105" cy="92" rx="12" ry="14" fill="#2d2d2d"/>
+                        <circle cx="67" cy="90" r="3" fill="#ffffff"/>
+                        <path d="M 100 92 Q 105 88 110 92" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                        <ellipse cx="52" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.85"/>
+                        <ellipse cx="118" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.85"/>
+                        <ellipse cx="85" cy="98" rx="5" ry="3" fill="#2d2d2d"/>
+                        <path d="M 80 102 Q 85 107 90 102" fill="none" stroke="#2d2d2d" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M 50 135 Q 85 125 120 135 L 120 170 L 50 170 Z" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="w-full max-w-xs glass-card rounded-3xl p-5 mt-4 text-left text-xs md:text-sm leading-relaxed space-y-4">
+                <h2 class="text-center font-bold text-base text-[#E61919] font-fredoka">
+                    Permintaan Maafku di Hari Ulang Tahunmu
+                </h2>
+
+                <p class="font-bold text-[#DC143C] flex items-center gap-1.5">
+                    <span>💌</span>
+                    <span>Maaf ya, Sayang...</span>
+                </p>
+
+                <p class="text-slate-800 font-medium">
+                    Maaf kalau selama ini aku pernah cuek 😔, terlalu sibuk 😔, atau kurang peka sama perasaanmu 😢. Maaf kalau kadang aku bikin kamu kecewa, salah paham, atau merasa sendiri 😓. Aku gak pernah berniat nyakitin kamu 🥺. Semua itu karena aku manusia biasa yang masih belajar mencintaimu dengan lebih baik 🤍.
+                </p>
+
+                <p class="text-slate-800 font-medium">
+                    Terima kasih sudah sabar, sudah tetap di sini 🫶. Aku akan terus belajar jadi lebih baik lagi... untuk kamu ❤️
+                </p>
+
+                <p class="text-slate-800 font-medium flex items-start gap-1.5 pt-1">
+                    <span>🙏</span>
+                    <span>Maaf ya, dan makasih karena kamu tetap percaya sama aku.</span>
+                </p>
+            </div>
+
+            <div class="w-full max-w-xs mt-6 flex justify-center">
+                <button onclick="goToFlowerScreen()" class="w-full bg-gradient-to-r from-[#E61919] via-[#DC143C] to-[#FF4500] hover:from-[#DC143C] hover:to-[#E61919] text-white font-bold py-3.5 px-6 rounded-full shadow-lg transform active:scale-95 transition-all text-sm tracking-wide">
+                    Buka Bunga Cinta
+                </button>
+            </div>
+        </div>
+
         <!-- POP-UP MODAL: DUDU UANG -->
         <div id="dudu-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
             <div class="relative w-full max-w-sm glass-card bg-white/95 rounded-3xl p-5 shadow-2xl border-2 border-[#FFD700] text-center transform scale-90 transition-all duration-300 flex flex-col items-center" id="dudu-modal-card">
@@ -781,9 +855,9 @@
                     <span>💸</span>
                 </div>
 
-                <!-- GIF Frame (DIPERPANJANG & MENGGUNAKAN OBJECT-CONTAIN AGAR TEKS DI ATAS TAMPIL LENGKAP) -->
-                <div class="w-full h-64 md:h-72 rounded-2xl overflow-hidden bg-red-50 border-2 border-red-100 mb-3 shadow-inner relative flex items-center justify-center">
-                    <img id="dudu-gif" src="duduuang.gif" onerror="handleGifError(this, 'E61919', 'Dudu Uang 💸')" alt="Dudu Uang" class="w-full h-full object-contain">
+                <!-- GIF Frame (NGEPAS & RAPI SEAMLESS DENGAN BACKGROUND GIF) -->
+                <div class="w-full bg-white p-2 rounded-2xl shadow-sm border-2 border-red-100 mb-3 flex items-center justify-center overflow-hidden">
+                    <img id="dudu-gif" src="duduuang.gif" onerror="handleGifError(this, 'E61919', 'Dudu Uang 💸')" alt="Dudu Uang" class="w-full h-auto max-h-64 object-contain rounded-xl">
                 </div>
 
                 <p class="text-xs text-slate-700 font-medium leading-relaxed mb-4">
@@ -1292,22 +1366,15 @@
 
         function switchTab(tabName) {
             hideAllViews();
-            document.getElementById('body-bg').style.backgroundColor = SOFT_BG;
+            const bodyBg = document.getElementById('body-bg');
+            if (bodyBg) bodyBg.style.backgroundColor = SOFT_BG;
             
-            if (tabName === 'home') {
-                document.getElementById('view-home').classList.remove('hidden');
-            } else if (tabName === 'countdown') {
-                const v = document.getElementById('view-countdown');
-                v.classList.remove('hidden');
-                v.classList.add('flex');
-            } else if (tabName === 'letter') {
-                const v = document.getElementById('view-letter');
-                v.classList.remove('hidden');
-                v.classList.add('flex');
-            } else if (tabName === 'memories') {
-                const v = document.getElementById('view-memories');
-                v.classList.remove('hidden');
-                v.classList.add('flex');
+            const targetView = document.getElementById(`view-${tabName}`);
+            if (targetView) {
+                targetView.classList.remove('hidden');
+                if (tabName !== 'home') {
+                    targetView.classList.add('flex');
+                }
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
             triggerConfetti();
@@ -1315,10 +1382,13 @@
 
         function goToGiftIntro() {
             hideAllViews();
-            document.getElementById('body-bg').style.backgroundColor = SOFT_BG;
+            const bodyBg = document.getElementById('body-bg');
+            if (bodyBg) bodyBg.style.backgroundColor = SOFT_BG;
             const view = document.getElementById('view-gift-intro');
-            view.classList.remove('hidden');
-            view.classList.add('flex');
+            if (view) {
+                view.classList.remove('hidden');
+                view.classList.add('flex');
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
