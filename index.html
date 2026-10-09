@@ -67,10 +67,10 @@
 
         function handleGifError(imgEl, bgColor, labelText) {
             const svgData = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 220" width="300" height="220">
-                <rect width="300" height="220" fill="#${bgColor}"/>
+                <rect width="300" height="220" fill="#${bgColor || 'E61919'}"/>
                 <circle cx="150" cy="100" r="45" fill="#FFFFFF" opacity="0.3"/>
-                <text x="150" y="105" fill="#FFFFFF" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle">${labelText}</text>
-                <text x="150" y="130" fill="#FFFFFF" font-family="sans-serif" font-size="14" text-anchor="middle">❤️ Azi &amp; Adelia ❤️</text>
+                <text x="150" y="105" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">${labelText || 'Momen Spesial'}</text>
+                <text x="150" y="130" fill="#FFFFFF" font-family="sans-serif" font-size="13" text-anchor="middle">❤️ Azi &amp; Adelia ❤️</text>
             </svg>`;
             imgEl.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svgData);
         }
@@ -239,12 +239,13 @@
         }
 
         .photo-slide {
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-between text-slate-800 relative bg-[#fff5f5] transition-colors duration-500 overflow-x-hidden" id="body-bg">
 
+    <!-- Floating Background Containers -->
     <div id="heart-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
     <div id="aamiin-container" class="fixed inset-0 overflow-hidden pointer-events-none z-[100]"></div>
 
@@ -261,7 +262,7 @@
         </div>
     </div>
 
-    <!-- Music Control Button -->
+    <!-- Top Music Control Button -->
     <div class="fixed top-4 right-4 z-40">
         <button id="music-btn" onclick="toggleAudio()" class="flex items-center gap-1.5 bg-gradient-to-r from-[#E61919] to-[#DC143C] text-white text-[11px] font-bold py-1.5 px-3 rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 border border-[#FFD700]/50 glass-btn">
             <div class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
@@ -376,81 +377,27 @@
                     <ellipse cx="160" cy="220" rx="150" ry="10" fill="#cbd5e1"/>
                     <ellipse cx="160" cy="217" rx="142" ry="8" fill="#ffffff"/>
 
-                    <!-- TIER 1 (BOTTOM) -->
+                    <!-- TIER 1 -->
                     <path d="M 35 150 L 35 205 Q 160 228 285 205 L 285 150 Z" fill="#3d2314"/>
                     <path d="M 35 175 Q 160 198 285 175 L 285 181 Q 160 204 35 181 Z" fill="#fef3c7" opacity="0.9"/>
                     <ellipse cx="160" cy="150" rx="125" ry="18" fill="#4a2c1d"/>
                     <path d="M 35 150 Q 50 172 62 154 Q 78 180 92 152 Q 110 178 128 152 Q 148 185 160 154 Q 175 180 192 152 Q 210 175 225 152 Q 242 182 255 152 Q 268 170 285 150 Q 160 170 35 150 Z" fill="#23130a"/>
 
-                    <!-- Tier 1 Toppings -->
-                    <circle cx="48" cy="160" r="5" fill="#E61919"/>
-                    <circle cx="95" cy="165" r="5" fill="#E61919"/>
-                    <circle cx="160" cy="168" r="5" fill="#E61919"/>
-                    <circle cx="225" cy="165" r="5" fill="#E61919"/>
-                    <circle cx="272" cy="160" r="5" fill="#E61919"/>
-
-                    <!-- TIER 2 (MIDDLE) -->
+                    <!-- TIER 2 -->
                     <path d="M 65 95 L 65 145 Q 160 165 255 145 L 255 95 Z" fill="#4a2c1d"/>
                     <path d="M 65 116 Q 160 136 255 116 L 255 122 Q 160 142 65 122 Z" fill="#fef3c7" opacity="0.9"/>
                     <ellipse cx="160" cy="95" rx="95" ry="15" fill="#5c3826"/>
                     <path d="M 65 95 Q 80 115 92 97 Q 108 122 122 97 Q 140 125 160 98 Q 178 122 195 97 Q 212 118 228 97 Q 242 115 255 95 Q 160 112 65 95 Z" fill="#23130a"/>
 
-                    <!-- Tier 2 Toppings -->
-                    <path d="M 78 102 Q 83 94 88 102 Z" fill="#FF4500"/>
-                    <path d="M 125 106 Q 130 98 135 106 Z" fill="#FF4500"/>
-                    <path d="M 185 106 Q 190 98 195 106 Z" fill="#FF4500"/>
-                    <path d="M 232 102 Q 237 94 242 102 Z" fill="#FF4500"/>
-
-                    <!-- TIER 3 (TOP) -->
+                    <!-- TIER 3 -->
                     <path d="M 98 42 L 98 90 Q 160 108 222 90 L 222 42 Z" fill="#5c3826"/>
                     <path d="M 98 62 Q 160 78 222 62 L 222 67 Q 160 83 98 67 Z" fill="#fef3c7" opacity="0.9"/>
                     <ellipse cx="160" cy="42" rx="62" ry="12" fill="#6d422d"/>
                     <path d="M 98 42 Q 112 60 124 44 Q 138 65 152 44 Q 168 68 180 44 Q 195 62 210 44 Q 218 58 222 42 Q 160 56 98 42 Z" fill="#23130a"/>
 
-                    <!-- Extra Rich Toppings -->
-                    <circle cx="104" cy="41" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
-                    <circle cx="122" cy="45" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
-                    <circle cx="140" cy="47" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
-                    <circle cx="180" cy="47" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
-                    <circle cx="198" cy="45" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
-                    <circle cx="216" cy="41" r="7" fill="#ffffff" stroke="#f1f5f9" stroke-width="1"/>
-
-                    <!-- Shiny Red Cherries on Top -->
-                    <g id="cherries">
-                        <circle cx="112" cy="35" r="6.5" fill="#E61919"/>
-                        <circle cx="110" cy="33" r="1.8" fill="#ffffff" opacity="0.8"/>
-                        <path d="M 112 28 Q 116 20 120 24" fill="none" stroke="#15803d" stroke-width="1.5" stroke-linecap="round"/>
-
-                        <circle cx="132" cy="39" r="6.5" fill="#DC143C"/>
-                        <circle cx="130" cy="37" r="1.8" fill="#ffffff" opacity="0.8"/>
-                        <path d="M 132 32.5 Q 136 24 140 28" fill="none" stroke="#15803d" stroke-width="1.5" stroke-linecap="round"/>
-
-                        <circle cx="188" cy="39" r="6.5" fill="#DC143C"/>
-                        <circle cx="186" cy="37" r="1.8" fill="#ffffff" opacity="0.8"/>
-                        <path d="M 188 32.5 Q 184 24 180 28" fill="none" stroke="#15803d" stroke-width="1.5" stroke-linecap="round"/>
-
-                        <circle cx="208" cy="35" r="6.5" fill="#E61919"/>
-                        <circle cx="206" cy="33" r="1.8" fill="#ffffff" opacity="0.8"/>
-                        <path d="M 208 28 Q 204 20 200 24" fill="none" stroke="#15803d" stroke-width="1.5" stroke-linecap="round"/>
-                    </g>
-
-                    <!-- Sprinkles -->
-                    <g id="sprinkles">
-                        <rect x="118" y="42" width="4" height="2" rx="1" fill="#FFD700" transform="rotate(25 118 42)"/>
-                        <rect x="128" y="47" width="4" height="2" rx="1" fill="#38bdf8" transform="rotate(-15 128 47)"/>
-                        <rect x="148" y="44" width="4" height="2" rx="1" fill="#FF6B6B" transform="rotate(40 148 44)"/>
-                        <rect x="172" y="44" width="4" height="2" rx="1" fill="#a855f7" transform="rotate(-30 172 44)"/>
-                        <rect x="192" y="47" width="4" height="2" rx="1" fill="#FFD700" transform="rotate(10 192 47)"/>
-                        <rect x="202" y="42" width="4" height="2" rx="1" fill="#4ade80" transform="rotate(-40 202 42)"/>
-                    </g>
-
                     <!-- CANDLE -->
                     <g id="candle-stick">
                         <rect x="152" y="-2" width="16" height="46" rx="3" fill="url(#candleGradient)" stroke="#DC143C" stroke-width="1.5"/>
-                        <line x1="152" y1="8" x2="168" y2="8" stroke="#DC143C" stroke-width="2.5" opacity="0.6"/>
-                        <line x1="152" y1="18" x2="168" y2="18" stroke="#DC143C" stroke-width="2.5" opacity="0.6"/>
-                        <line x1="152" y1="28" x2="168" y2="28" stroke="#DC143C" stroke-width="2.5" opacity="0.6"/>
-                        <line x1="152" y1="38" x2="168" y2="38" stroke="#DC143C" stroke-width="2.5" opacity="0.6"/>
                         <line x1="160" y1="-2" x2="160" y2="-10" stroke="#2d2d2d" stroke-width="2.5" stroke-linecap="round"/>
                     </g>
 
@@ -486,7 +433,7 @@
             </div>
         </div>
 
-        <!-- POP-UP MODAL: GELEMBUNG HARAPAN & INPUT DOA -->
+        <!-- POP-UP MODAL: GELEMBUNG HARAPAN -->
         <div id="wish-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
             <div class="relative w-full max-w-md glass-card bg-white/95 rounded-3xl p-4 sm:p-5 shadow-2xl border-2 border-[#FFD700] text-center transform scale-90 transition-all duration-300 flex flex-col items-center max-h-[92vh] overflow-y-auto" id="wish-modal-card">
                 
@@ -554,7 +501,7 @@
             </div>
         </div>
 
-        <!-- VIEW 5: COUNTDOWN TIMER & 2-PHOTO CAROUSEL -->
+        <!-- VIEW 5: COUNTDOWN TIMER -->
         <div id="view-countdown" class="w-full hidden flex-col items-center text-center pt-2 pb-10">
             <h1 class="text-3xl font-black font-fredoka tracking-tight mb-3">
                 <span class="text-[#DC143C]">The Birthday of </span>
@@ -738,28 +685,18 @@
                         <ellipse cx="85" cy="102" rx="16" ry="10" fill="#fceade"/>
                         <ellipse cx="85" cy="98" rx="5" ry="3" fill="#3d2314"/>
                         <path d="M 80 102 Q 85 106 90 102" fill="none" stroke="#3d2314" stroke-width="2.5" stroke-linecap="round"/>
-                        <path d="M 65 90 Q 70 85 75 90" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
-                        <path d="M 95 90 Q 100 85 105 90" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round"/>
                         <ellipse cx="55" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.8"/>
                         <ellipse cx="115" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.8"/>
-                        <path d="M 50 135 Q 85 125 120 135 L 120 170 L 50 170 Z" fill="#a06a58"/>
-                        <path d="M 55 135 L 115 165" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
                     </g>
                     <g transform="translate(140, 10)">
                         <path d="M 45 45 C 45 20, 125 20, 125 45 Z" fill="#DC143C"/>
-                        <path d="M 30 45 L 140 45 C 140 45, 130 55, 85 55 C 40 55, 30 45, 30 45 Z" fill="#E61919"/>
                         <circle cx="40" cy="55" r="16" fill="#2d2d2d"/>
                         <circle cx="130" cy="55" r="16" fill="#2d2d2d"/>
                         <ellipse cx="85" cy="95" rx="50" ry="40" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
                         <ellipse cx="65" cy="92" rx="12" ry="14" fill="#2d2d2d"/>
                         <ellipse cx="105" cy="92" rx="12" ry="14" fill="#2d2d2d"/>
-                        <circle cx="67" cy="90" r="3" fill="#ffffff"/>
-                        <path d="M 100 92 Q 105 88 110 92" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
                         <ellipse cx="52" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.85"/>
                         <ellipse cx="118" cy="102" rx="10" ry="6" fill="#FF6B6B" opacity="0.85"/>
-                        <ellipse cx="85" cy="98" rx="5" ry="3" fill="#2d2d2d"/>
-                        <path d="M 80 102 Q 85 107 90 102" fill="none" stroke="#2d2d2d" stroke-width="2.5" stroke-linecap="round"/>
-                        <path d="M 50 135 Q 85 125 120 135 L 120 170 L 50 170 Z" fill="#ffffff" stroke="#2d2d2d" stroke-width="3"/>
                     </g>
                 </svg>
             </div>
@@ -834,19 +771,10 @@
                     <ellipse cx="100" cy="95" rx="70" ry="60" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
                     <circle cx="45" cy="45" r="22" fill="#2d2d2d"/>
                     <circle cx="155" cy="45" r="22" fill="#2d2d2d"/>
-                    <ellipse cx="70" cy="95" rx="16" ry="20" fill="#2d2d2d" transform="rotate(-10 70 95)"/>
-                    <ellipse cx="130" cy="95" rx="16" ry="20" fill="#2d2d2d" transform="rotate(10 130 95)"/>
                     <circle cx="73" cy="93" r="4" fill="#ffffff"/>
                     <circle cx="127" cy="93" r="4" fill="#ffffff"/>
                     <ellipse cx="50" cy="110" rx="14" ry="9" fill="#FF6B6B" opacity="0.85"/>
                     <ellipse cx="150" cy="110" rx="14" ry="9" fill="#FF6B6B" opacity="0.85"/>
-                    <ellipse cx="100" cy="100" rx="6" ry="4" fill="#2d2d2d"/>
-                    <path d="M 94 105 Q 100 110 106 105" fill="none" stroke="#2d2d2d" stroke-width="3" stroke-linecap="round"/>
-                    <ellipse cx="50" cy="155" rx="18" ry="14" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
-                    <ellipse cx="145" cy="140" rx="18" ry="14" fill="#ffffff" stroke="#2d2d2d" stroke-width="4"/>
-                    <path d="M 145 140 L 145 110" fill="none" stroke="#15803d" stroke-width="5" stroke-linecap="round"/>
-                    <circle cx="145" cy="100" r="16" fill="#DC143C"/>
-                    <path d="M 137 98 Q 145 90 153 98" fill="none" stroke="#E61919" stroke-width="3"/>
                 </svg>
             </div>
 
@@ -872,87 +800,131 @@
             </p>
         </div>
 
-        <!-- VIEW 10: GALLERY (FOTO & VIDEO KENANGAN KITA) -->
+        <!-- VIEW 10: GALLERY (12-PHOTO SLIDER + 3 MANUAL VIDEO FRAMES) -->
         <div id="view-gallery" class="w-full hidden flex-col items-center text-center pt-2 pb-14">
             <h1 class="text-3xl font-extrabold font-fredoka text-[#E61919] tracking-tight mb-1">
                 Galeri Kenangan
             </h1>
             <p class="text-xs text-[#DC143C] font-semibold mb-4">
-                Momen Indah &amp; Video Manis Bersama ❤️
+                12 Foto Manis &amp; 3 Video Spesial Kita ❤️
             </p>
 
-            <div class="flex items-center justify-center gap-2 mb-4 bg-white/80 p-1.5 rounded-full shadow-sm border border-[#FF6B6B]/30 text-xs font-bold w-full max-w-xs">
+            <!-- Filter Buttons -->
+            <div class="flex items-center justify-center gap-1.5 mb-4 bg-white/80 p-1.5 rounded-full shadow-sm border border-[#FF6B6B]/30 text-xs font-bold w-full max-w-xs">
                 <button id="filter-all" onclick="filterGallery('all')" class="px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow">
                     ✨ Semua
                 </button>
                 <button id="filter-photo" onclick="filterGallery('photo')" class="px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all">
-                    📸 Foto
+                    📸 12 Foto Slide
                 </button>
                 <button id="filter-video" onclick="filterGallery('video')" class="px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all">
-                    🎥 Video
+                    🎥 3 Video
                 </button>
             </div>
 
-            <div class="w-full max-w-xs flex flex-col gap-4" id="gallery-container">
-                <!-- PHOTO ITEM 1 -->
-                <div class="gallery-item photo-type glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center group">
-                    <div class="w-full h-52 rounded-2xl overflow-hidden relative cursor-pointer" onclick="openMediaModal('image', 'fotokado1.jpg', 'Momen Manis Pertama ✨')">
-                        <img src="fotokado1.jpg" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Foto Kenangan 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-2 right-2 bg-red-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow">📸 Foto</span>
+            <div class="w-full max-w-xs flex flex-col gap-5">
+                
+                <!-- SECTION 1: 12-PHOTO CAROUSEL SLIDER -->
+                <div id="gallery-photo-section" class="w-full glass-card rounded-3xl p-3.5 border-2 border-red-100 shadow-md text-center flex flex-col items-center relative">
+                    <div class="w-full flex justify-between items-center mb-2 px-1">
+                        <span class="text-xs font-bold text-[#E61919] font-fredoka flex items-center gap-1">
+                            <span>📸</span> Slide Foto Kenangan
+                        </span>
+                        <span id="gal-photo-counter" class="text-[10px] bg-red-100 text-[#DC143C] font-extrabold px-2.5 py-0.5 rounded-full">
+                            1 dari 12
+                        </span>
                     </div>
-                    <div class="w-full mt-2.5 px-1 flex justify-between items-center">
-                        <p class="text-xs font-bold text-[#E61919] font-fredoka">Momen Manis Pertama ✨</p>
-                        <span class="text-[10px] text-slate-500 font-semibold">Azi &amp; Adelia</span>
+
+                    <!-- Slide Touch Viewport -->
+                    <div id="gal-slide-touch-area" class="w-full h-64 sm:h-72 rounded-2xl bg-white shadow-inner relative overflow-hidden flex items-center justify-center border border-red-100 cursor-pointer" onclick="zoomCurrentGalleryPhoto()">
+                        <img id="gal-slide-img" src="fotokado1.jpg" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Foto Kenangan" class="w-full h-full object-cover transition-all duration-300 hover:scale-105">
+
+                        <!-- Bottom Caption Overlay -->
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 text-white text-left z-10 flex justify-between items-end">
+                            <div>
+                                <p id="gal-slide-title" class="text-xs font-bold drop-shadow">Momen Manis Pertama ✨</p>
+                                <p class="text-[10px] opacity-80 font-medium">Ketuk foto untuk perbesar 🔍</p>
+                            </div>
+                            <span class="text-[9px] bg-white/30 backdrop-blur-md px-2 py-0.5 rounded-full font-bold whitespace-nowrap">Azi &amp; Adelia</span>
+                        </div>
+
+                        <!-- Left & Right Arrow Buttons -->
+                        <button onclick="event.stopPropagation(); prevGalleryPhoto();" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/85 hover:bg-white text-[#DC143C] flex items-center justify-center shadow z-20 active:scale-90 transition-transform">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <button onclick="event.stopPropagation(); nextGalleryPhoto();" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/85 hover:bg-white text-[#DC143C] flex items-center justify-center shadow z-20 active:scale-90 transition-transform">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Slide Progress Dots (Max 12) -->
+                    <div class="flex items-center justify-center gap-1.5 mt-3 flex-wrap max-w-full px-2" id="gal-dots-container">
+                        <!-- Dynamic Dots Generated via JS -->
                     </div>
                 </div>
 
-                <!-- VIDEO ITEM 1 -->
-                <div class="gallery-item video-type glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
-                    <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
-                        <video src="videokenangan1.mp4" poster="fotokado2.jpg" controls playsinline class="w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Momen Tawa &amp; Canda Kita 🎥')"></video>
-                        <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video</span>
+                <!-- SECTION 2: 3 VIDEO CARDS WITH MANUAL ON/OFF TOGGLE -->
+                <div id="gallery-video-section" class="w-full flex flex-col gap-4">
+                    
+                    <div class="text-left px-1">
+                        <span class="text-xs font-bold text-[#DC143C] font-fredoka flex items-center gap-1">
+                            <span>🎥</span> Video Kenangan Spesial (3 Video)
+                        </span>
                     </div>
-                    <div class="w-full mt-2.5 px-1 flex justify-between items-center">
-                        <p class="text-xs font-bold text-[#DC143C] font-fredoka">Momen Tawa &amp; Canda Kita 🎥</p>
-                        <span class="text-[10px] text-slate-500 font-semibold">Video Kenangan</span>
+
+                    <!-- VIDEO FRAME 1 -->
+                    <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
+                        <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
+                            <video id="gal-video-1" src="videokenangan1.mp4" poster="fotokado1.jpg" controls playsinline class="gal-video-el w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Video 1: Momen Tawa Kita 🎥')"></video>
+                            <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video 1</span>
+                        </div>
+                        <div class="w-full mt-3 px-1 flex justify-between items-center">
+                            <div>
+                                <p class="text-xs font-bold text-[#E61919] font-fredoka">Momen Tawa &amp; Canda Kita 🎬</p>
+                                <p class="text-[10px] text-slate-500 font-semibold">Video Kenangan 1</p>
+                            </div>
+                            <button id="btn-play-gal-video-1" onclick="toggleVideoPlay(this, 'gal-video-1')" class="bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5">
+                                <span>▶ ON Video</span>
+                            </button>
+                        </div>
                     </div>
+
+                    <!-- VIDEO FRAME 2 -->
+                    <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
+                        <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
+                            <video id="gal-video-2" src="videokenangan2.mp4" poster="fotokado2.jpg" controls playsinline class="gal-video-el w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Video 2: Klip Bahagia Bersama 🎥')"></video>
+                            <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video 2</span>
+                        </div>
+                        <div class="w-full mt-3 px-1 flex justify-between items-center">
+                            <div>
+                                <p class="text-xs font-bold text-[#DC143C] font-fredoka">Klip Hari Bahagia Kita 🎬</p>
+                                <p class="text-[10px] text-slate-500 font-semibold">Video Kenangan 2</p>
+                            </div>
+                            <button id="btn-play-gal-video-2" onclick="toggleVideoPlay(this, 'gal-video-2')" class="bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5">
+                                <span>▶ ON Video</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO FRAME 3 -->
+                    <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
+                        <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
+                            <video id="gal-video-3" src="videokenangan3.mp4" poster="fotokado3.jpg" controls playsinline class="gal-video-el w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Video 3: Kenangan Abadi Azi &amp; Adelia 🎥')"></video>
+                            <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video 3</span>
+                        </div>
+                        <div class="w-full mt-3 px-1 flex justify-between items-center">
+                            <div>
+                                <p class="text-xs font-bold text-[#FF4500] font-fredoka">Kenangan Abadi Bersamamu 🎬</p>
+                                <p class="text-[10px] text-slate-500 font-semibold">Video Kenangan 3</p>
+                            </div>
+                            <button id="btn-play-gal-video-3" onclick="toggleVideoPlay(this, 'gal-video-3')" class="bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5">
+                                <span>▶ ON Video</span>
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- PHOTO ITEM 2 -->
-                <div class="gallery-item photo-type glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center group">
-                    <div class="w-full h-52 rounded-2xl overflow-hidden relative cursor-pointer" onclick="openMediaModal('image', 'fotokado2.jpg', 'Senyuman Terindahmu ❤️')">
-                        <img src="fotokado2.jpg" onerror="handleGifError(this, 'DC143C', 'Momen Spesial 2')" alt="Foto Kenangan 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-2 right-2 bg-red-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow">📸 Foto</span>
-                    </div>
-                    <div class="w-full mt-2.5 px-1 flex justify-between items-center">
-                        <p class="text-xs font-bold text-[#E61919] font-fredoka">Senyuman Terindahmu ❤️</p>
-                        <span class="text-[10px] text-slate-500 font-semibold">Bahagia Bersama</span>
-                    </div>
-                </div>
-
-                <!-- VIDEO ITEM 2 -->
-                <div class="gallery-item video-type glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
-                    <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
-                        <video src="videokenangan2.mp4" poster="fotokado3.jpg" controls playsinline class="w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Klip Spesial Hari Bahagia 🎬')"></video>
-                        <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video</span>
-                    </div>
-                    <div class="w-full mt-2.5 px-1 flex justify-between items-center">
-                        <p class="text-xs font-bold text-[#DC143C] font-fredoka">Klip Spesial Hari Bahagia 🎬</p>
-                        <span class="text-[10px] text-slate-500 font-semibold">Kenangan Abadi</span>
-                    </div>
-                </div>
-
-                <!-- PHOTO ITEM 3 -->
-                <div class="gallery-item photo-type glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center group">
-                    <div class="w-full h-52 rounded-2xl overflow-hidden relative cursor-pointer" onclick="openMediaModal('image', 'fotokado3.jpg', 'Petualangan Manis Kita 🌈')">
-                        <img src="fotokado3.jpg" onerror="handleGifError(this, 'FF4500', 'Momen Spesial 3')" alt="Foto Kenangan 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-2 right-2 bg-red-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow">📸 Foto</span>
-                    </div>
-                    <div class="w-full mt-2.5 px-1 flex justify-between items-center">
-                        <p class="text-xs font-bold text-[#E61919] font-fredoka">Petualangan Manis Kita 🌈</p>
-                        <span class="text-[10px] text-slate-500 font-semibold">Selalu Ada</span>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -971,7 +943,7 @@
             </div>
         </div>
 
-        <!-- Floating Bottom Navigation Dock -->
+        <!-- Floating Bottom Navigation Dock (With 5th Camera/Gallery Icon) -->
         <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 glass-dock px-4 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center gap-4 sm:gap-6">
             <button onclick="switchTab('home')" title="Beranda" class="text-xl sm:text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
                 🏠
@@ -1001,12 +973,31 @@
         let isCandleBlown = false;
         let countdownTimer = null;
 
+        // 2-Photo Carousel State & Captions for View 5
         let currentPhotoIndex = 0;
         const photoCaptions = [
             "Momen Manis Kita ❤ (1/2)",
             "Kenangan Indah Bersama ❤ (2/2)"
         ];
 
+        // 12 Gallery Photos Array for View 10
+        const galleryPhotos = [
+            { src: 'fotokado1.jpg', title: 'Momen Manis Pertama ✨', bg: 'E61919' },
+            { src: 'fotokado2.jpg', title: 'Senyuman Terindahmu ❤️', bg: 'DC143C' },
+            { src: 'fotokado3.jpg', title: 'Petualangan Manis Kita 🌈', bg: 'FF4500' },
+            { src: 'fotokado1.jpg', title: 'Saat-saat Bahagia 😊', bg: 'FF6B6B' },
+            { src: 'fotokado2.jpg', title: 'Tawa Canda Bersama 💖', bg: 'DAA520' },
+            { src: 'fotokado3.jpg', title: 'Kenangan Tak Terlupakan 🌟', bg: 'E61919' },
+            { src: 'fotokado1.jpg', title: 'Kencan Spesial 💕', bg: 'DC143C' },
+            { src: 'fotokado2.jpg', title: 'Hari Bahagia Kita 🎉', bg: 'FF4500' },
+            { src: 'fotokado3.jpg', title: 'Tatapan Penuh Cinta 🥰', bg: 'FF6B6B' },
+            { src: 'fotokado1.jpg', title: 'Momen Hangat Bersamamu ☀️', bg: 'DAA520' },
+            { src: 'fotokado2.jpg', title: 'Langkah Bersama 🐾', bg: 'E61919' },
+            { src: 'fotokado3.jpg', title: 'Cinta Abadi Azi & Adelia 💍', bg: 'DC143C' }
+        ];
+        let galleryPhotoIndex = 0;
+
+        // Interactive Wish Sequence
         const wishList = [
             {
                 img: 'fotokado1.jpg',
@@ -1016,14 +1007,14 @@
                 wish: '✨ Semoga Azi selalu diberikan kesehatan yang berlimpah, umur yang panjang, dan selalu dalam perlindungan Tuhan. Semoga setiap langkahmu dimudahkan! 🤲'
             },
             {
-                img: 'fotokado2.jpg',
+                img: 'fotokado3.jpg',
                 fallbackBg: 'DC143C',
                 caption: 'Momen Spesial 2',
                 badge: 'Harapan 2 dari 3 🌟',
                 wish: '💖 Semoga rezekimu selalu mengalir lancar, karier & studimu makin sukses, serta semua impian indahmu satu per satu menjadi kenyataan! 🚀'
             },
             {
-                img: 'fotokado3.jpg',
+                img: 'fotokado2.jpg',
                 fallbackBg: 'FF4500',
                 caption: 'Momen Spesial 3',
                 badge: 'Harapan 3 dari 3 🎁',
@@ -1081,6 +1072,7 @@
             countdownTimer = setInterval(updateTimer, 1000);
         }
 
+        // View 5 Photo Slider
         function updatePhotoDisplay() {
             for (let i = 0; i < 2; i++) {
                 const img = document.getElementById(`slide-img-${i}`);
@@ -1151,6 +1143,103 @@
             }
         }
 
+        // View 10 12-Photo Slider Functions
+        function renderGalleryDots() {
+            const container = document.getElementById('gal-dots-container');
+            if (!container) return;
+            container.innerHTML = '';
+            galleryPhotos.forEach((_, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => goToGalleryPhoto(idx);
+                if (idx === galleryPhotoIndex) {
+                    btn.className = 'w-3 h-3 rounded-full bg-[#E61919] shadow transition-all';
+                } else {
+                    btn.className = 'w-2 h-2 rounded-full bg-red-200 hover:bg-red-300 transition-all';
+                }
+                container.appendChild(btn);
+            });
+        }
+
+        function updateGalleryPhotoDisplay() {
+            const imgEl = document.getElementById('gal-slide-img');
+            const titleEl = document.getElementById('gal-slide-title');
+            const counterEl = document.getElementById('gal-photo-counter');
+
+            if (galleryPhotoIndex >= galleryPhotos.length) galleryPhotoIndex = 0;
+            if (galleryPhotoIndex < 0) galleryPhotoIndex = galleryPhotos.length - 1;
+
+            const currentItem = galleryPhotos[galleryPhotoIndex];
+
+            if (imgEl) {
+                imgEl.style.opacity = '0.3';
+                setTimeout(() => {
+                    imgEl.src = currentItem.src;
+                    imgEl.onerror = function() {
+                        handleGifError(this, currentItem.bg, `Foto ${galleryPhotoIndex + 1}`);
+                    };
+                    imgEl.style.opacity = '1';
+                }, 150);
+            }
+
+            if (titleEl) titleEl.textContent = currentItem.title;
+            if (counterEl) counterEl.textContent = `${galleryPhotoIndex + 1} dari 12`;
+
+            renderGalleryDots();
+        }
+
+        function nextGalleryPhoto() {
+            galleryPhotoIndex = (galleryPhotoIndex + 1) % galleryPhotos.length;
+            updateGalleryPhotoDisplay();
+        }
+
+        function prevGalleryPhoto() {
+            galleryPhotoIndex = (galleryPhotoIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
+            updateGalleryPhotoDisplay();
+        }
+
+        function goToGalleryPhoto(index) {
+            galleryPhotoIndex = index;
+            updateGalleryPhotoDisplay();
+        }
+
+        function zoomCurrentGalleryPhoto() {
+            const item = galleryPhotos[galleryPhotoIndex];
+            openMediaModal('image', item.src, item.title);
+        }
+
+        // Video ON/OFF Toggle Function
+        function toggleVideoPlay(btnEl, videoId) {
+            const video = document.getElementById(videoId);
+            if (!video) return;
+
+            // Pause other videos
+            document.querySelectorAll('.gal-video-el').forEach(v => {
+                if (v !== video) {
+                    v.pause();
+                    const otherBtn = document.getElementById('btn-play-' + v.id);
+                    if (otherBtn) {
+                        otherBtn.innerHTML = '<span>▶ ON Video</span>';
+                        otherBtn.className = "bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5";
+                    }
+                }
+            });
+
+            if (video.paused) {
+                video.play().then(() => {
+                    btnEl.innerHTML = '<span>⏸ OFF Video</span>';
+                    btnEl.className = "bg-gradient-to-r from-red-600 to-rose-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5 animate-pulse";
+                }).catch(err => {
+                    console.log('Video play error:', err);
+                });
+            } else {
+                video.pause();
+                btnEl.innerHTML = '<span>▶ ON Video</span>';
+                btnEl.className = "bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5";
+            }
+        }
+
+        // Pop-up Modal Wish Functions
         function updateWishContent() {
             const readContainer = document.getElementById('wish-read-container');
             const inputContainer = document.getElementById('wish-input-container');
@@ -1329,6 +1418,7 @@
             });
         }
 
+        // Web Audio Synthesizer
         const hbMelody = [
             { note: 261.63, dur: 0.3, delay: 0 },
             { note: 261.63, dur: 0.3, delay: 400 },
@@ -1428,6 +1518,16 @@
                 if (el) {
                     el.classList.add('hidden');
                     el.classList.remove('flex');
+                }
+            });
+
+            // Pause any playing videos when switching views
+            document.querySelectorAll('.gal-video-el').forEach(v => {
+                v.pause();
+                const btn = document.getElementById('btn-play-' + v.id);
+                if (btn) {
+                    btn.innerHTML = '<span>▶ ON Video</span>';
+                    btn.className = "bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5";
                 }
             });
         }
@@ -1580,7 +1680,8 @@
         }
 
         function filterGallery(type) {
-            const items = document.querySelectorAll('.gallery-item');
+            const photoSec = document.getElementById('gallery-photo-section');
+            const videoSec = document.getElementById('gallery-video-section');
             const btnAll = document.getElementById('filter-all');
             const btnPhoto = document.getElementById('filter-photo');
             const btnVideo = document.getElementById('filter-video');
@@ -1591,27 +1692,17 @@
 
             if (type === 'all') {
                 btnAll.className = "px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow";
+                if (photoSec) photoSec.classList.remove('hidden');
+                if (videoSec) videoSec.classList.remove('hidden');
             } else if (type === 'photo') {
                 btnPhoto.className = "px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow";
+                if (photoSec) photoSec.classList.remove('hidden');
+                if (videoSec) videoSec.classList.add('hidden');
             } else if (type === 'video') {
                 btnVideo.className = "px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow";
+                if (photoSec) photoSec.classList.add('hidden');
+                if (videoSec) videoSec.classList.remove('hidden');
             }
-
-            items.forEach(item => {
-                if (type === 'all') {
-                    item.classList.remove('hidden');
-                    item.classList.add('flex');
-                } else if (type === 'photo' && item.classList.contains('photo-type')) {
-                    item.classList.remove('hidden');
-                    item.classList.add('flex');
-                } else if (type === 'video' && item.classList.contains('video-type')) {
-                    item.classList.remove('hidden');
-                    item.classList.add('flex');
-                } else {
-                    item.classList.add('hidden');
-                    item.classList.remove('flex');
-                }
-            });
         }
 
         function openMediaModal(type, src, title) {
@@ -1666,28 +1757,40 @@
         }
 
         function setupTouchGestures() {
+            // View 5 touch gesture
             const touchArea = document.getElementById('slide-touch-area');
-            if (!touchArea) return;
-            let startX = 0;
+            if (touchArea) {
+                let startX = 0;
+                touchArea.addEventListener('touchstart', (e) => {
+                    startX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                touchArea.addEventListener('touchend', (e) => {
+                    let endX = e.changedTouches[0].screenX;
+                    if (startX - endX > 40) nextPhoto();
+                    else if (endX - startX > 40) prevPhoto();
+                }, { passive: true });
+            }
 
-            touchArea.addEventListener('touchstart', (e) => {
-                startX = e.changedTouches[0].screenX;
-            }, { passive: true });
-
-            touchArea.addEventListener('touchend', (e) => {
-                let endX = e.changedTouches[0].screenX;
-                if (startX - endX > 40) {
-                    nextPhoto();
-                } else if (endX - startX > 40) {
-                    prevPhoto();
-                }
-            }, { passive: true });
+            // View 10 Gallery 12-Photo Touch gesture
+            const galTouchArea = document.getElementById('gal-slide-touch-area');
+            if (galTouchArea) {
+                let startGalX = 0;
+                galTouchArea.addEventListener('touchstart', (e) => {
+                    startGalX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                galTouchArea.addEventListener('touchend', (e) => {
+                    let endGalX = e.changedTouches[0].screenX;
+                    if (startGalX - endGalX > 40) nextGalleryPhoto();
+                    else if (endGalX - startGalX > 40) prevGalleryPhoto();
+                }, { passive: true });
+            }
         }
 
         window.addEventListener('load', () => {
             createFloatingHearts();
             startCountdown();
             updatePhotoDisplay();
+            updateGalleryPhotoDisplay();
             setupTouchGestures();
             
             setTimeout(() => {
