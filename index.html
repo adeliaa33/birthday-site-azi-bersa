@@ -75,6 +75,23 @@
             imgEl.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svgData);
         }
         window.handleGifError = handleGifError;
+
+        function handleVideoError(videoEl, labelText) {
+            const parent = videoEl.parentElement;
+            if (parent) {
+                parent.innerHTML = `
+                    <div class="w-full h-52 rounded-2xl bg-gradient-to-br from-[#E61919] via-[#DC143C] to-[#FF4500] flex flex-col items-center justify-center text-white p-4 text-center relative overflow-hidden shadow-inner">
+                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 animate-bounce border border-white/40">
+                            <i class="fa-solid fa-play text-xl text-white ml-0.5"></i>
+                        </div>
+                        <p class="font-bold text-sm drop-shadow font-fredoka">${labelText || 'Video Kenangan Spesial'}</p>
+                        <p class="text-[11px] opacity-90 mt-1 font-medium">❤️ Azi &amp; Adelia ❤️</p>
+                        <span class="absolute bottom-2 right-2 text-[9px] bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded-full font-bold">Video Clip</span>
+                    </div>
+                `;
+            }
+        }
+        window.handleVideoError = handleVideoError;
     </script>
 
     <style>
@@ -82,7 +99,6 @@
             font-family: 'Fredoka', sans-serif;
         }
 
-        /* Glassmorphism Design Tokens - Crimson & Gold Theme */
         .glass-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(18px);
@@ -106,7 +122,6 @@
             border: 1px solid rgba(255, 215, 0, 0.6);
         }
 
-        /* Speech/Wish Bubble tail style */
         .speech-bubble {
             position: relative;
             background: #ffffff;
@@ -138,7 +153,6 @@
             width: 0;
         }
 
-        /* Pulsating Loading Heart */
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.25); }
@@ -147,7 +161,6 @@
             animation: heartbeat 1.2s infinite ease-in-out;
         }
 
-        /* Floating elements */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-8px); }
@@ -156,7 +169,6 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Rolling Gift Animation */
         @keyframes giftRoll {
             0% { transform: rotate(0deg) scale(1); }
             25% { transform: rotate(-15deg) scale(1.1); }
@@ -168,7 +180,6 @@
             animation: giftRoll 1s ease-in-out infinite;
         }
 
-        /* Candle Flame Flicker */
         @keyframes flicker {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.85; transform: scale(0.95) rotate(-2deg); }
@@ -177,7 +188,6 @@
             animation: flicker 0.6s infinite ease-in-out;
         }
 
-        /* Gentle Sway Animation */
         @keyframes gentleSway {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-5px) rotate(1deg); }
@@ -186,7 +196,6 @@
             animation: gentleSway 3s ease-in-out infinite;
         }
 
-        /* Floating Aamiin Animation */
         @keyframes floatUpToTop {
             0% {
                 transform: translateY(0) scale(0.7) rotate(0deg);
@@ -209,7 +218,6 @@
             animation: floatUpToTop 7.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -222,7 +230,6 @@
             border-radius: 10px;
         }
 
-        /* Pulsing Heart Effect */
         @keyframes heartbeatBig {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.08); }
@@ -231,7 +238,6 @@
             animation: heartbeatBig 1.8s ease-in-out infinite;
         }
 
-        /* Photo Slide Transition */
         .photo-slide {
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
@@ -240,8 +246,6 @@
 <body class="min-h-screen flex flex-col items-center justify-between text-slate-800 relative bg-[#fff5f5] transition-colors duration-500 overflow-x-hidden" id="body-bg">
 
     <div id="heart-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
-
-    <!-- Container untuk Efek Aamiin Melayang -->
     <div id="aamiin-container" class="fixed inset-0 overflow-hidden pointer-events-none z-[100]"></div>
 
     <!-- Loading Screen -->
@@ -257,7 +261,7 @@
         </div>
     </div>
 
-    <!-- Top Music Control Button -->
+    <!-- Music Control Button -->
     <div class="fixed top-4 right-4 z-40">
         <button id="music-btn" onclick="toggleAudio()" class="flex items-center gap-1.5 bg-gradient-to-r from-[#E61919] to-[#DC143C] text-white text-[11px] font-bold py-1.5 px-3 rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 border border-[#FFD700]/50 glass-btn">
             <div class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
@@ -486,22 +490,17 @@
         <div id="wish-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
             <div class="relative w-full max-w-md glass-card bg-white/95 rounded-3xl p-4 sm:p-5 shadow-2xl border-2 border-[#FFD700] text-center transform scale-90 transition-all duration-300 flex flex-col items-center max-h-[92vh] overflow-y-auto" id="wish-modal-card">
                 
-                <!-- Close Button -->
                 <button onclick="closeWishModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 text-[#E61919] font-bold flex items-center justify-center text-sm transition-transform active:scale-90 z-20">
                     ✕
                 </button>
 
-                <!-- Header Title -->
                 <div class="flex items-center gap-1.5 text-[#E61919] font-black font-fredoka text-lg mb-3">
                     <span>✨</span>
                     <span id="wish-header-title">Gelembung Harapan Spesial</span>
                     <span>✨</span>
                 </div>
 
-                <!-- WISH BUBBLE / INPUT CONTAINER -->
                 <div class="w-full speech-bubble p-4 mb-3 shadow-sm text-left">
-                    
-                    <!-- Mode Baca Harapan -->
                     <div id="wish-read-container">
                         <p id="wish-text" class="text-slate-800 font-medium text-xs md:text-sm leading-relaxed">
                             "Semoga Azi selalu sehat, panjang umur, dan selalu dalam lindungan Tuhan. Semoga setiap impianmu dipermudah! 🤲✨"
@@ -513,21 +512,16 @@
                         </div>
                     </div>
 
-                    <!-- Mode Tulis Harapan Sendiri -->
                     <div id="wish-input-container" class="hidden flex-col gap-2">
                         <label class="block text-xs font-bold text-[#E61919] tracking-wide">
-                            ✍️ Tulis Doa & Harapanmu Sendiri:
+                            ✍️ Tulis Doa &amp; Harapanmu Sendiri:
                         </label>
                         <textarea id="user-custom-wish" rows="4" placeholder="Tuliskan harapan terindahmu di sini, Sayang... 🤲✨" class="w-full text-xs p-3 rounded-xl border border-red-200 focus:outline-none focus:ring-2 focus:ring-[#E61919] text-slate-800 resize-none bg-red-50/50 font-medium leading-relaxed"></textarea>
                     </div>
-
                 </div>
 
-                <!-- POP-UP PHOTO FRAME (NGEPAS RAPI TANPA SPASI SAMPING, FOTO KANAN KIRI ATAS BAWAH PAS) -->
                 <div id="wish-photo-frame" onclick="nextWish()" class="w-full cursor-pointer transform hover:scale-[1.01] active:scale-95 transition-all duration-300 group mb-3">
                     <div class="w-full bg-white p-2.5 rounded-2xl shadow-md border-2 border-red-100 flex flex-col items-center relative overflow-hidden">
-                        
-                        <!-- Floating Heart Badge -->
                         <span id="photo-tap-badge" class="absolute top-2 right-2 text-xs bg-red-500 text-white px-2.5 py-0.5 rounded-full font-bold shadow animate-pulse z-10">
                             Ketuk Foto 👆
                         </span>
@@ -543,19 +537,16 @@
                     </div>
                 </div>
 
-                <!-- Instant Confirmation Toast inside Modal -->
                 <div id="modal-aamiin-toast" class="hidden w-full bg-gradient-to-r from-[#E61919] via-[#DC143C] to-[#FF4500] text-white font-extrabold py-3 px-4 rounded-2xl shadow-lg border-2 border-[#FFD700] text-sm animate-bounce mb-3">
                     🤲 Aamiin Yaa Rabbal 'Alamin! ✨<br>
-                    <span class="text-xs font-normal opacity-90">Harapanmu telah terpanjat & didoakan! ❤️</span>
+                    <span class="text-xs font-normal opacity-90">Harapanmu telah terpanjat &amp; didoakan! ❤️</span>
                 </div>
 
-                <!-- Action Button 1: Next Wish Button -->
                 <button id="btn-next-wish" onclick="nextWish()" class="w-full bg-gradient-to-r from-[#E61919] to-[#DC143C] text-white font-bold py-2.5 px-5 rounded-full shadow hover:shadow-lg active:scale-95 transition-all text-xs tracking-wide flex items-center justify-center gap-2">
                     <span id="btn-next-text">Lihat Harapan Selanjutnya</span>
                     <i id="btn-next-icon" class="fa-solid fa-arrow-right text-xs"></i>
                 </button>
 
-                <!-- Action Button 2: Send Custom Wish Button -->
                 <button id="btn-send-wish" onclick="sendCustomWish()" class="w-full bg-gradient-to-r from-[#16a34a] via-[#22c55e] to-[#15803d] text-white font-bold py-3 px-5 rounded-full shadow-lg hover:shadow-xl active:scale-95 transition-all text-xs tracking-wide hidden items-center justify-center gap-2 animate-pulse">
                     <span>Kirim Harapan</span>
                     <span class="text-sm">💌🤲</span>
@@ -570,7 +561,6 @@
                 <span class="text-[#E61919]">Azi Bersa</span>
             </h1>
 
-            <!-- Toggle Mode Display -->
             <div class="flex items-center justify-center gap-2 mb-3 bg-white/80 p-1.5 rounded-full shadow-sm border border-[#FF6B6B]/30 text-xs font-bold">
                 <button id="btn-mode-slider" onclick="setPhotoLayout('slider')" class="px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow">
                     📸 Slide Show
@@ -580,28 +570,21 @@
                 </button>
             </div>
 
-            <!-- CONTAINER 2 FOTO - TATA LETAK 1: SLIDER / CAROUSEL -->
             <div id="photo-container-slider" class="w-full max-w-xs glass-card rounded-3xl p-3.5 relative flex flex-col items-center animate-sway">
                 <div class="absolute -top-3 flex justify-center gap-3 w-full z-20">
                     <span class="text-[#E61919] text-xl animate-bounce" style="animation-delay: 0.1s;">❤</span>
                     <span class="text-[#FFD700] text-base animate-pulse" style="animation-delay: 0.3s;">✨</span>
                 </div>
 
-                <!-- Slide Frame -->
                 <div id="slide-touch-area" class="w-full h-56 rounded-2xl bg-white shadow-md relative overflow-hidden flex items-center justify-center border-2 border-red-100 group">
-                    <!-- Foto 1 -->
                     <img id="slide-img-0" src="bubududumerayakan.gif" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Foto 1" class="photo-slide absolute inset-0 w-full h-full object-cover opacity-100 scale-100">
-                    
-                    <!-- Foto 2 -->
                     <img id="slide-img-1" src="bubuhappy.gif" onerror="handleGifError(this, 'DC143C', 'Momen Spesial 2')" alt="Foto 2" class="photo-slide absolute inset-0 w-full h-full object-cover opacity-0 scale-95 pointer-events-none">
 
-                    <!-- Overlay Gradient & Caption -->
                     <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-2.5 text-white text-left z-10 flex justify-between items-end">
                         <span id="slide-caption" class="text-xs font-semibold drop-shadow">Momen Manis Kita ❤ (1/2)</span>
-                        <span class="text-[10px] bg-white/30 backdrop-blur-md px-2 py-0.5 rounded-full font-bold">Azi & Adelia</span>
+                        <span class="text-[10px] bg-white/30 backdrop-blur-md px-2 py-0.5 rounded-full font-bold">Azi &amp; Adelia</span>
                     </div>
 
-                    <!-- Navigasi Panah Kiri & Kanan -->
                     <button onclick="prevPhoto()" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-[#DC143C] flex items-center justify-center shadow z-20 active:scale-90 transition-transform">
                         <i class="fa-solid fa-chevron-left text-xs"></i>
                     </button>
@@ -610,14 +593,12 @@
                     </button>
                 </div>
 
-                <!-- Indikator Titik -->
                 <div class="flex items-center gap-2 mt-3">
                     <button onclick="goToPhoto(0)" id="dot-0" class="w-3.5 h-3.5 rounded-full bg-[#E61919] shadow transition-all"></button>
                     <button onclick="goToPhoto(1)" id="dot-1" class="w-2.5 h-2.5 rounded-full bg-red-200 transition-all"></button>
                 </div>
             </div>
 
-            <!-- CONTAINER 2 FOTO - TATA LETAK 2: GRID KOLASE -->
             <div id="photo-container-grid" class="w-full max-w-xs glass-card rounded-3xl p-3 relative flex-col items-center hidden">
                 <div class="grid grid-cols-2 gap-2.5 w-full">
                     <div class="h-36 rounded-2xl overflow-hidden shadow-sm border border-red-100 relative">
@@ -633,7 +614,6 @@
                 Menuju Hari Spesialmu
             </h2>
 
-            <!-- Countdown Timer Grid -->
             <div class="grid grid-cols-4 gap-2.5 w-full max-w-xs mt-3">
                 <div class="glass-card rounded-2xl p-3 flex flex-col items-center">
                     <span id="cd-days" class="text-2xl font-extrabold text-[#E61919] font-fredoka">00</span>
@@ -653,7 +633,6 @@
                 </div>
             </div>
 
-            <!-- Target Date Card -->
             <div class="w-full max-w-xs glass-card rounded-2xl p-4 mt-5 flex flex-col items-center">
                 <div class="flex items-center gap-2 text-[#E61919] font-bold text-base font-fredoka">
                     <span class="text-lg">📅</span>
@@ -675,7 +654,6 @@
                 Pesan Spesial<br>Untukmu
             </h1>
 
-            <!-- Frame Foto Pesan Spesial -->
             <div class="w-full max-w-xs glass-card rounded-3xl p-2.5 flex flex-col items-center my-2 overflow-hidden border-2 border-red-100 shadow-md">
                 <div class="w-full h-56 sm:h-64 rounded-2xl overflow-hidden relative bg-white">
                     <img src="fotopesan.jpeg" onerror="handleGifError(this, 'E61919', 'Pesan Spesial 💌')" alt="Pesan Spesial" class="w-full h-full object-cover object-center">
@@ -684,7 +662,6 @@
 
             <!-- 3 FRAME KARTU UCAPAN TERPISAH DALAM 1 HALAMAN -->
             <div class="w-full max-w-xs flex flex-col gap-4 mt-2">
-
                 <!-- FRAME KARTU 1 -->
                 <div id="card-1" class="w-full glass-card rounded-3xl p-5 text-left text-xs md:text-sm text-slate-800 leading-relaxed font-medium space-y-3 border-2 border-[#FFD700]/70 shadow-lg relative">
                     <p>
@@ -716,7 +693,6 @@
                         </p>
                     </div>
                 </div>
-
             </div>
 
             <div class="w-full max-w-xs mt-6 flex justify-center">
@@ -822,7 +798,6 @@
         <!-- POP-UP MODAL: DUDU UANG -->
         <div id="dudu-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
             <div class="relative w-full max-w-sm glass-card bg-white/95 rounded-3xl p-5 shadow-2xl border-2 border-[#FFD700] text-center transform scale-90 transition-all duration-300 flex flex-col items-center" id="dudu-modal-card">
-                
                 <button onclick="closeDuduModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 text-[#E61919] font-bold flex items-center justify-center text-sm transition-transform active:scale-90 z-20">
                     ✕
                 </button>
@@ -897,19 +872,121 @@
             </p>
         </div>
 
+        <!-- VIEW 10: GALLERY (FOTO & VIDEO KENANGAN KITA) -->
+        <div id="view-gallery" class="w-full hidden flex-col items-center text-center pt-2 pb-14">
+            <h1 class="text-3xl font-extrabold font-fredoka text-[#E61919] tracking-tight mb-1">
+                Galeri Kenangan
+            </h1>
+            <p class="text-xs text-[#DC143C] font-semibold mb-4">
+                Momen Indah &amp; Video Manis Bersama ❤️
+            </p>
+
+            <div class="flex items-center justify-center gap-2 mb-4 bg-white/80 p-1.5 rounded-full shadow-sm border border-[#FF6B6B]/30 text-xs font-bold w-full max-w-xs">
+                <button id="filter-all" onclick="filterGallery('all')" class="px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow">
+                    ✨ Semua
+                </button>
+                <button id="filter-photo" onclick="filterGallery('photo')" class="px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all">
+                    📸 Foto
+                </button>
+                <button id="filter-video" onclick="filterGallery('video')" class="px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all">
+                    🎥 Video
+                </button>
+            </div>
+
+            <div class="w-full max-w-xs flex flex-col gap-4" id="gallery-container">
+                <!-- PHOTO ITEM 1 -->
+                <div class="gallery-item photo-type glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center group">
+                    <div class="w-full h-52 rounded-2xl overflow-hidden relative cursor-pointer" onclick="openMediaModal('image', 'fotokado1.jpg', 'Momen Manis Pertama ✨')">
+                        <img src="fotokado1.jpg" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Foto Kenangan 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-2 right-2 bg-red-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow">📸 Foto</span>
+                    </div>
+                    <div class="w-full mt-2.5 px-1 flex justify-between items-center">
+                        <p class="text-xs font-bold text-[#E61919] font-fredoka">Momen Manis Pertama ✨</p>
+                        <span class="text-[10px] text-slate-500 font-semibold">Azi &amp; Adelia</span>
+                    </div>
+                </div>
+
+                <!-- VIDEO ITEM 1 -->
+                <div class="gallery-item video-type glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
+                    <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
+                        <video src="videokenangan1.mp4" poster="fotokado2.jpg" controls playsinline class="w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Momen Tawa &amp; Canda Kita 🎥')"></video>
+                        <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video</span>
+                    </div>
+                    <div class="w-full mt-2.5 px-1 flex justify-between items-center">
+                        <p class="text-xs font-bold text-[#DC143C] font-fredoka">Momen Tawa &amp; Canda Kita 🎥</p>
+                        <span class="text-[10px] text-slate-500 font-semibold">Video Kenangan</span>
+                    </div>
+                </div>
+
+                <!-- PHOTO ITEM 2 -->
+                <div class="gallery-item photo-type glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center group">
+                    <div class="w-full h-52 rounded-2xl overflow-hidden relative cursor-pointer" onclick="openMediaModal('image', 'fotokado2.jpg', 'Senyuman Terindahmu ❤️')">
+                        <img src="fotokado2.jpg" onerror="handleGifError(this, 'DC143C', 'Momen Spesial 2')" alt="Foto Kenangan 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-2 right-2 bg-red-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow">📸 Foto</span>
+                    </div>
+                    <div class="w-full mt-2.5 px-1 flex justify-between items-center">
+                        <p class="text-xs font-bold text-[#E61919] font-fredoka">Senyuman Terindahmu ❤️</p>
+                        <span class="text-[10px] text-slate-500 font-semibold">Bahagia Bersama</span>
+                    </div>
+                </div>
+
+                <!-- VIDEO ITEM 2 -->
+                <div class="gallery-item video-type glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
+                    <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
+                        <video src="videokenangan2.mp4" poster="fotokado3.jpg" controls playsinline class="w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Klip Spesial Hari Bahagia 🎬')"></video>
+                        <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video</span>
+                    </div>
+                    <div class="w-full mt-2.5 px-1 flex justify-between items-center">
+                        <p class="text-xs font-bold text-[#DC143C] font-fredoka">Klip Spesial Hari Bahagia 🎬</p>
+                        <span class="text-[10px] text-slate-500 font-semibold">Kenangan Abadi</span>
+                    </div>
+                </div>
+
+                <!-- PHOTO ITEM 3 -->
+                <div class="gallery-item photo-type glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center group">
+                    <div class="w-full h-52 rounded-2xl overflow-hidden relative cursor-pointer" onclick="openMediaModal('image', 'fotokado3.jpg', 'Petualangan Manis Kita 🌈')">
+                        <img src="fotokado3.jpg" onerror="handleGifError(this, 'FF4500', 'Momen Spesial 3')" alt="Foto Kenangan 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-2 right-2 bg-red-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow">📸 Foto</span>
+                    </div>
+                    <div class="w-full mt-2.5 px-1 flex justify-between items-center">
+                        <p class="text-xs font-bold text-[#E61919] font-fredoka">Petualangan Manis Kita 🌈</p>
+                        <span class="text-[10px] text-slate-500 font-semibold">Selalu Ada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- POP-UP LIGHTBOX MEDIA MODAL -->
+        <div id="media-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+            <div class="relative w-full max-w-sm glass-card bg-white/95 rounded-3xl p-4 shadow-2xl border-2 border-[#FFD700] text-center transform scale-90 transition-all duration-300 flex flex-col items-center" id="media-modal-card">
+                <button onclick="closeMediaModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 text-[#E61919] font-bold flex items-center justify-center text-sm transition-transform active:scale-90 z-20">
+                    ✕
+                </button>
+                <p id="media-modal-title" class="text-sm font-bold text-[#E61919] font-fredoka mb-3 pr-8">Detail Kenangan</p>
+                <div class="w-full rounded-2xl overflow-hidden bg-black flex items-center justify-center mb-3 max-h-[65vh]" id="media-modal-content">
+                </div>
+                <button onclick="closeMediaModal()" class="w-full bg-gradient-to-r from-[#E61919] to-[#DC143C] text-white font-bold py-2.5 rounded-full shadow text-xs">
+                    Tutup Preview ❤️
+                </button>
+            </div>
+        </div>
+
         <!-- Floating Bottom Navigation Dock -->
-        <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 glass-dock px-6 py-3 rounded-full flex items-center gap-6">
-            <button onclick="switchTab('home')" title="Beranda" class="text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
+        <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 glass-dock px-4 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center gap-4 sm:gap-6">
+            <button onclick="switchTab('home')" title="Beranda" class="text-xl sm:text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
                 🏠
             </button>
-            <button onclick="switchTab('countdown')" title="Hitung Mundur" class="text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
+            <button onclick="switchTab('countdown')" title="Hitung Mundur" class="text-xl sm:text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
                 ⏳
             </button>
-            <button onclick="switchTab('letter')" title="Pesan Spesial" class="text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
+            <button onclick="switchTab('letter')" title="Pesan Spesial" class="text-xl sm:text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
                 💌
             </button>
-            <button onclick="switchTab('memories')" title="Kenangan Indah Kita" class="text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
+            <button onclick="switchTab('memories')" title="Kenangan Indah Kita" class="text-xl sm:text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
                 📷
+            </button>
+            <button onclick="switchTab('gallery')" title="Galeri Foto &amp; Video Kenangan" class="text-xl sm:text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
+                🎬
             </button>
         </div>
 
@@ -924,14 +1001,12 @@
         let isCandleBlown = false;
         let countdownTimer = null;
 
-        // 2-Photo Carousel State & Captions
         let currentPhotoIndex = 0;
         const photoCaptions = [
             "Momen Manis Kita ❤ (1/2)",
             "Kenangan Indah Bersama ❤ (2/2)"
         ];
 
-        // Interactive Wish Sequence
         const wishList = [
             {
                 img: 'fotokado1.jpg',
@@ -973,6 +1048,37 @@
                 heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
                 container.appendChild(heart);
             }
+        }
+
+        function startCountdown() {
+            const targetDate = new Date('2026-11-07T00:00:00').getTime();
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    if (document.getElementById('cd-days')) document.getElementById('cd-days').textContent = '00';
+                    if (document.getElementById('cd-hours')) document.getElementById('cd-hours').textContent = '00';
+                    if (document.getElementById('cd-mins')) document.getElementById('cd-mins').textContent = '00';
+                    if (document.getElementById('cd-secs')) document.getElementById('cd-secs').textContent = '00';
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (document.getElementById('cd-days')) document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+                if (document.getElementById('cd-hours')) document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+                if (document.getElementById('cd-mins')) document.getElementById('cd-mins').textContent = String(minutes).padStart(2, '0');
+                if (document.getElementById('cd-secs')) document.getElementById('cd-secs').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer();
+            if (countdownTimer) clearInterval(countdownTimer);
+            countdownTimer = setInterval(updateTimer, 1000);
         }
 
         function updatePhotoDisplay() {
@@ -1224,19 +1330,19 @@
         }
 
         const hbMelody = [
-            { note: 261.63, dur: 0.3, delay: 0 },    // C4
-            { note: 261.63, dur: 0.3, delay: 400 },  // C4
-            { note: 293.66, dur: 0.6, delay: 800 },  // D4
-            { note: 261.63, dur: 0.6, delay: 1400 }, // C4
-            { note: 349.23, dur: 0.6, delay: 2000 }, // F4
-            { note: 329.63, dur: 1.0, delay: 2600 }, // E4
+            { note: 261.63, dur: 0.3, delay: 0 },
+            { note: 261.63, dur: 0.3, delay: 400 },
+            { note: 293.66, dur: 0.6, delay: 800 },
+            { note: 261.63, dur: 0.6, delay: 1400 },
+            { note: 349.23, dur: 0.6, delay: 2000 },
+            { note: 329.63, dur: 1.0, delay: 2600 },
 
-            { note: 261.63, dur: 0.3, delay: 3400 }, // C4
-            { note: 261.63, dur: 0.3, delay: 3800 }, // C4
-            { note: 293.66, dur: 0.6, delay: 4200 }, // D4
-            { note: 261.63, dur: 0.6, delay: 4800 }, // C4
-            { note: 392.00, dur: 0.6, delay: 5400 }, // G4
-            { note: 349.23, dur: 1.0, delay: 6000 }, // F4
+            { note: 261.63, dur: 0.3, delay: 3400 },
+            { note: 261.63, dur: 0.3, delay: 3800 },
+            { note: 293.66, dur: 0.6, delay: 4200 },
+            { note: 261.63, dur: 0.6, delay: 4800 },
+            { note: 392.00, dur: 0.6, delay: 5400 },
+            { note: 349.23, dur: 1.0, delay: 6000 },
         ];
 
         function initAudioContext() {
@@ -1315,7 +1421,7 @@
             const views = [
                 'view-home', 'view-gift-intro', 'view-gift-loading', 
                 'view-candle', 'view-countdown', 'view-letter', 
-                'view-love', 'view-memories', 'view-flower'
+                'view-love', 'view-memories', 'view-flower', 'view-gallery'
             ];
             views.forEach(id => {
                 const el = document.getElementById(id);
@@ -1357,8 +1463,10 @@
         function openGiftBox() {
             hideAllViews();
             const loadingView = document.getElementById('view-gift-loading');
-            loadingView.classList.remove('hidden');
-            loadingView.classList.add('flex');
+            if (loadingView) {
+                loadingView.classList.remove('hidden');
+                loadingView.classList.add('flex');
+            }
 
             setTimeout(() => {
                 goToCandleScreen();
@@ -1368,9 +1476,12 @@
         function goToCandleScreen() {
             hideAllViews();
             const candleView = document.getElementById('view-candle');
-            candleView.classList.remove('hidden');
-            candleView.classList.add('flex');
-            document.getElementById('body-bg').style.backgroundColor = SOFT_BG;
+            if (candleView) {
+                candleView.classList.remove('hidden');
+                candleView.classList.add('flex');
+            }
+            const bodyBg = document.getElementById('body-bg');
+            if (bodyBg) bodyBg.style.backgroundColor = SOFT_BG;
 
             triggerConfetti();
             startMicDetection();
@@ -1379,9 +1490,12 @@
         function goToLoveScreen() {
             hideAllViews();
             const loveView = document.getElementById('view-love');
-            loveView.classList.remove('hidden');
-            loveView.classList.add('flex');
-            document.getElementById('body-bg').style.backgroundColor = '#0f0307';
+            if (loveView) {
+                loveView.classList.remove('hidden');
+                loveView.classList.add('flex');
+            }
+            const bodyBg = document.getElementById('body-bg');
+            if (bodyBg) bodyBg.style.backgroundColor = '#0f0307';
             window.scrollTo({ top: 0, behavior: 'smooth' });
             triggerConfetti();
         }
@@ -1389,42 +1503,14 @@
         function goToFlowerScreen() {
             hideAllViews();
             const flowerView = document.getElementById('view-flower');
-            flowerView.classList.remove('hidden');
-            flowerView.classList.add('flex');
-            document.getElementById('body-bg').style.backgroundColor = SOFT_BG;
+            if (flowerView) {
+                flowerView.classList.remove('hidden');
+                flowerView.classList.add('flex');
+            }
+            const bodyBg = document.getElementById('body-bg');
+            if (bodyBg) bodyBg.style.backgroundColor = SOFT_BG;
             window.scrollTo({ top: 0, behavior: 'smooth' });
             triggerConfetti();
-        }
-
-        function startCountdown() {
-            const targetDate = new Date('2026-11-07T00:00:00').getTime();
-
-            function updateTimer() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
-
-                if (distance < 0) {
-                    document.getElementById('cd-days').textContent = '00';
-                    document.getElementById('cd-hours').textContent = '00';
-                    document.getElementById('cd-mins').textContent = '00';
-                    document.getElementById('cd-secs').textContent = '00';
-                    return;
-                }
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
-                document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('cd-mins').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('cd-secs').textContent = String(seconds).padStart(2, '0');
-            }
-
-            updateTimer();
-            if (countdownTimer) clearInterval(countdownTimer);
-            countdownTimer = setInterval(updateTimer, 1000);
         }
 
         function blowOutCandle() {
@@ -1490,6 +1576,81 @@
                 }).catch(err => {
                     console.log("Microphone access unavailable or denied:", err);
                 });
+            }
+        }
+
+        function filterGallery(type) {
+            const items = document.querySelectorAll('.gallery-item');
+            const btnAll = document.getElementById('filter-all');
+            const btnPhoto = document.getElementById('filter-photo');
+            const btnVideo = document.getElementById('filter-video');
+
+            btnAll.className = "px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all";
+            btnPhoto.className = "px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all";
+            btnVideo.className = "px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all";
+
+            if (type === 'all') {
+                btnAll.className = "px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow";
+            } else if (type === 'photo') {
+                btnPhoto.className = "px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow";
+            } else if (type === 'video') {
+                btnVideo.className = "px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow";
+            }
+
+            items.forEach(item => {
+                if (type === 'all') {
+                    item.classList.remove('hidden');
+                    item.classList.add('flex');
+                } else if (type === 'photo' && item.classList.contains('photo-type')) {
+                    item.classList.remove('hidden');
+                    item.classList.add('flex');
+                } else if (type === 'video' && item.classList.contains('video-type')) {
+                    item.classList.remove('hidden');
+                    item.classList.add('flex');
+                } else {
+                    item.classList.add('hidden');
+                    item.classList.remove('flex');
+                }
+            });
+        }
+
+        function openMediaModal(type, src, title) {
+            const modal = document.getElementById('media-modal');
+            const modalCard = document.getElementById('media-modal-card');
+            const titleEl = document.getElementById('media-modal-title');
+            const contentEl = document.getElementById('media-modal-content');
+
+            if (titleEl) titleEl.textContent = title || 'Preview Kenangan';
+            if (contentEl) {
+                if (type === 'image') {
+                    contentEl.innerHTML = `<img src="${src}" onerror="handleGifError(this, 'E61919', 'Foto Kenangan')" class="w-full h-auto max-h-[60vh] object-contain rounded-xl">`;
+                }
+            }
+
+            if (modal) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    if (modalCard) {
+                        modalCard.classList.remove('scale-90');
+                        modalCard.classList.add('scale-100');
+                    }
+                }, 50);
+            }
+        }
+
+        function closeMediaModal() {
+            const modal = document.getElementById('media-modal');
+            const modalCard = document.getElementById('media-modal-card');
+            if (modal) {
+                modal.classList.add('opacity-0');
+                if (modalCard) {
+                    modalCard.classList.remove('scale-100');
+                    modalCard.classList.add('scale-90');
+                }
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
             }
         }
 
