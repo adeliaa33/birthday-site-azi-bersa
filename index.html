@@ -6,30 +6,14 @@
     <title>Kartu Ucapan Ulang Tahun - Azi Bersa</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        pureRed: '#E61919',
-                        crimsonRed: '#DC143C',
-                        redOrange: '#FF4500',
-                        coralGlow: '#FF6B6B',
-                        goldenAccent: '#DAA520',
-                        brightGold: '#FFD700',
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Canvas Confetti CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <!-- FontAwesome Icons CDN -->
+    <!-- Font Awesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts (Fredoka) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
         function finishLoading() {
@@ -80,7 +64,7 @@
             const parent = videoEl.parentElement;
             if (parent) {
                 parent.innerHTML = `
-                    <div class="w-full h-52 rounded-2xl bg-gradient-to-br from-[#E61919] via-[#DC143C] to-[#FF4500] flex flex-col items-center justify-center text-white p-4 text-center relative overflow-hidden shadow-inner">
+                    <div class="w-full h-full min-h-[300px] rounded-2xl bg-gradient-to-br from-[#E61919] via-[#DC143C] to-[#FF4500] flex flex-col items-center justify-center text-white p-4 text-center relative overflow-hidden shadow-inner">
                         <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 animate-bounce border border-white/40">
                             <i class="fa-solid fa-play text-xl text-white ml-0.5"></i>
                         </div>
@@ -97,6 +81,7 @@
     <style>
         body {
             font-family: 'Fredoka', sans-serif;
+            background-color: #fff5f5;
         }
 
         .glass-card {
@@ -243,7 +228,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-between text-slate-800 relative bg-[#fff5f5] transition-colors duration-500 overflow-x-hidden" id="body-bg">
+<body id="body-bg" class="min-h-screen flex flex-col items-center justify-start relative overflow-x-hidden transition-colors duration-500">
 
     <!-- Floating Background Containers -->
     <div id="heart-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
@@ -381,7 +366,7 @@
                     <path d="M 35 150 L 35 205 Q 160 228 285 205 L 285 150 Z" fill="#3d2314"/>
                     <path d="M 35 175 Q 160 198 285 175 L 285 181 Q 160 204 35 181 Z" fill="#fef3c7" opacity="0.9"/>
                     <ellipse cx="160" cy="150" rx="125" ry="18" fill="#4a2c1d"/>
-                    <path d="M 35 150 Q 50 172 62 154 Q 78 180 92 152 Q 110 178 128 152 Q 148 185 160 154 Q 175 180 192 152 Q 210 175 225 152 Q 242 182 255 152 Q 268 170 285 150 Q 160 170 35 150 Z" fill="#23130a"/>
+                    <path d="M 35 150 Q 50 172 62 154 Q 78 180 92 152 Q 110 178 128 152 Q 148 185 160 154 Q 175 180 192 152 Q 210 175 225 152 Q 242 182 255 152 Q 268 170 285 150 Z" fill="#23130a"/>
 
                     <!-- TIER 2 -->
                     <path d="M 65 95 L 65 145 Q 160 165 255 145 L 255 95 Z" fill="#4a2c1d"/>
@@ -590,6 +575,23 @@
                 </p>
             </div>
 
+            <!-- FRAME VIDEO DI BAWAH COUNTDOWN (POTRET) -->
+            <div class="w-full max-w-xs glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center mt-5">
+                <div class="w-full h-[400px] sm:h-[460px] rounded-2xl overflow-hidden relative bg-[#2a2a2a] shadow-inner flex items-center justify-center">
+                    <video id="cd-video" src="video/cotondown.mp4" poster="foto/foto1.jpg" controls playsinline class="gal-video-el w-full h-full object-contain rounded-2xl" onerror="handleVideoError(this, 'Video Spesial Countdown 🎬')"></video>
+                    <span class="absolute top-2 right-2 bg-rose-600/90 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎬 Special Clip</span>
+                </div>
+                <div class="w-full mt-3 px-1 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs font-bold text-[#E61919] font-fredoka">Momen Spesial Kita 💖</p>
+                        <p class="text-[10px] text-slate-500 font-semibold">Video Kenangan</p>
+                    </div>
+                    <button id="btn-play-cd-video" onclick="toggleVideoPlay(this, 'cd-video')" class="bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5">
+                        <span>▶ ON Video</span>
+                    </button>
+                </div>
+            </div>
+
             <p class="text-xs italic text-[#DC143C] font-medium max-w-xs mt-6 leading-relaxed px-2">
                 "today and everyday, i'll always be ur #1 supporter, clap the loudest for u, and praying wholeheartedly for ur happiness ❤️"
             </p>
@@ -674,10 +676,10 @@
                 Kenangan Indah Kita
             </h1>
 
-            <!-- BINGKAI FOTO KENANGAN INDAH KITA (Diubah dari SVG menjadi fotokenangan.jpg) -->
+            <!-- BINGKAI FOTO KENANGAN INDAH KITA -->
             <div class="w-full max-w-xs glass-card rounded-3xl p-2.5 flex justify-center items-center my-2 overflow-hidden border-2 border-red-100 shadow-md">
-                <div class="w-full h-52 sm:h-60 rounded-2xl overflow-hidden relative bg-white">
-                    <img src="fotokenangan.jpg" onerror="handleGifError(this, 'E61919', 'Kenangan Indah Kita 📷')" alt="Kenangan Indah Kita" class="w-full h-full object-cover object-center">
+                <div class="w-full h-[400px] sm:h-[460px] rounded-2xl overflow-hidden relative bg-[#2a2a2a] flex items-center justify-center">
+                    <img src="fotokenangan.jpg" onerror="handleGifError(this, 'E61919', 'Kenangan Indah Kita 📷')" alt="Kenangan Indah Kita" class="w-full h-full object-contain object-center">
                 </div>
             </div>
 
@@ -746,7 +748,7 @@
                 Tutup Bunga
             </button>
 
-            <!-- BINGKAI FOTO BUNGA CINTA (Diubah menjadi bubududulove.gif) -->
+            <!-- BINGKAI FOTO BUNGA CINTA -->
             <div class="w-full max-w-xs glass-card rounded-3xl p-2.5 flex justify-center items-center my-2 overflow-hidden border-2 border-red-100 shadow-md">
                 <div class="w-full h-52 sm:h-60 rounded-2xl overflow-hidden relative bg-white">
                     <img src="bubududulove.gif" onerror="handleGifError(this, 'E61919', 'Bunga Cinta 🌹')" alt="Bunga Cinta" class="w-full h-full object-cover object-center">
@@ -775,13 +777,13 @@
             </p>
         </div>
 
-        <!-- VIEW 10: GALLERY (12-PHOTO SLIDER + 3 MANUAL VIDEO FRAMES) -->
+        <!-- VIEW 10: GALLERY (12-PHOTO SLIDER + 4 MANUAL VIDEO FRAMES) -->
         <div id="view-gallery" class="w-full hidden flex-col items-center text-center pt-2 pb-14">
             <h1 class="text-3xl font-extrabold font-fredoka text-[#E61919] tracking-tight mb-1">
                 Galeri Kenangan
             </h1>
             <p class="text-xs text-[#DC143C] font-semibold mb-4">
-                12 Foto Manis &amp; 3 Video Spesial Kita ❤️
+                12 Foto Manis &amp; 4 Video Spesial Kita ❤️
             </p>
 
             <!-- Filter Buttons -->
@@ -793,7 +795,7 @@
                     📸 12 Foto Slide
                 </button>
                 <button id="filter-video" onclick="filterGallery('video')" class="px-3 py-1 rounded-full text-[#DC143C] hover:bg-red-50 transition-all">
-                    🎥 3 Video
+                    🎥 4 Video
                 </button>
             </div>
 
@@ -811,14 +813,13 @@
                     </div>
 
                     <!-- Slide Touch Viewport -->
-                    <div id="gal-slide-touch-area" class="w-full h-64 sm:h-72 rounded-2xl bg-white shadow-inner relative overflow-hidden flex items-center justify-center border border-red-100 cursor-pointer" onclick="zoomCurrentGalleryPhoto()">
-                        <img id="gal-slide-img" src="fotokado1.jpg" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Foto Kenangan" class="w-full h-full object-cover transition-all duration-300 hover:scale-105">
+                <div id="gal-slide-touch-area" class="w-full h-[420px] sm:h-[480px] rounded-2xl bg-[#2a2a2a] shadow-inner relative overflow-hidden flex items-center justify-center border border-red-100">
+                    <img id="gal-slide-img" src="foto/foto1.jpg" onerror="handleGifError(this, 'E61919', 'Momen Spesial 1')" alt="Foto Kenangan" class="w-full h-full object-cover transition-all duration-300">
 
-                        <!-- Bottom Caption Overlay -->
+                    <!-- Bottom Caption Overlay -->
                         <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 text-white text-left z-10 flex justify-between items-end">
                             <div>
                                 <p id="gal-slide-title" class="text-xs font-bold drop-shadow">Momen Manis Pertama ✨</p>
-                                <p class="text-[10px] opacity-80 font-medium">Ketuk foto untuk perbesar 🔍</p>
                             </div>
                             <span class="text-[9px] bg-white/30 backdrop-blur-md px-2 py-0.5 rounded-full font-bold whitespace-nowrap">Azi &amp; Adelia</span>
                         </div>
@@ -838,21 +839,82 @@
                     </div>
                 </div>
 
-                <!-- SECTION 2: 3 VIDEO CARDS WITH MANUAL ON/OFF TOGGLE -->
+                <!-- SECTION 2: 4 VIDEO CARDS WITH MANUAL ON/OFF TOGGLE -->
                 <div id="gallery-video-section" class="w-full flex flex-col gap-4">
                     
                     <div class="text-left px-1">
                         <span class="text-xs font-bold text-[#DC143C] font-fredoka flex items-center gap-1">
-                            <span>🎥</span> Video Kenangan Spesial (3 Video)
+                            <span>🎥</span> Video Kenangan Spesial (4 Video)
                         </span>
                     </div>
 
-                    <!-- VIDEO FRAME 1 -->
-                    <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
-                        <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
-                            <video id="gal-video-1" src="videokenangan1.mp4" poster="fotokado1.jpg" controls playsinline class="gal-video-el w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Video 1: Momen Tawa Kita 🎥')"></video>
-                            <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video 1</span>
+                    <!-- VIDEO FRAME 1 (POTRET/VERTIKAL) -->
+                <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
+                    <div class="w-full h-[400px] sm:h-[460px] rounded-2xl overflow-hidden relative bg-[#2a2a2a] shadow-inner flex items-center justify-center">
+                        <video id="gal-video-1" src="video/video1.mp4" poster="foto/foto1.jpg" controls playsinline class="gal-video-el w-full h-full object-contain rounded-2xl" onerror="handleVideoError(this, 'Video 1: Momen Tawa Kita 🎥')"></video>
+                        <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video 1</span>
+                    </div>
+                    <div class="w-full mt-3 px-1 flex justify-between items-center">
+                        <div>
+                            <p class="text-xs font-bold text-[#E61919] font-fredoka">Momen Tawa &amp; Canda Kita 🎬</p>
+                            <p class="text-[10px] text-slate-500 font-semibold">Video Kenangan 1</p>
                         </div>
+                        <button id="btn-play-gal-video-1" onclick="toggleVideoPlay(this, 'gal-video-1')" class="bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5">
+                            <span>▶ ON Video</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VIDEO FRAME 2 (POTRET/VERTIKAL) -->
+                <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
+                    <div class="w-full h-[400px] sm:h-[460px] rounded-2xl overflow-hidden relative bg-[#2a2a2a] shadow-inner flex items-center justify-center">
+                        <video id="gal-video-2" src="video/video2.mp4" poster="foto/foto2.jpg" controls playsinline class="gal-video-el w-full h-full object-contain rounded-2xl" onerror="handleVideoError(this, 'Video 2: Klip Bahagia Bersama 🎥')"></video>
+                        <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video 2</span>
+                    </div>
+                    <div class="w-full mt-3 px-1 flex justify-between items-center">
+                        <div>
+                            <p class="text-xs font-bold text-[#DC143C] font-fredoka">Klip Hari Bahagia Kita 🎬</p>
+                            <p class="text-[10px] text-slate-500 font-semibold">Video Kenangan 2</p>
+                        </div>
+                        <button id="btn-play-gal-video-2" onclick="toggleVideoPlay(this, 'gal-video-2')" class="bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5">
+                            <span>▶ ON Video</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VIDEO FRAME 3 (LANDSCAPE / HORISONTAL) -->
+                <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
+                    <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
+                        <video id="gal-video-3" src="video/video3.mp4" poster="foto/foto3.jpg" controls playsinline class="gal-video-el w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Video 3: Kenangan Abadi Azi &amp; Adelia 🎥')"></video>
+                        <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video 3</span>
+                    </div>
+                    <div class="w-full mt-3 px-1 flex justify-between items-center">
+                        <div>
+                            <p class="text-xs font-bold text-[#FF4500] font-fredoka">Kenangan Abadi Bersamamu 🎬</p>
+                            <p class="text-[10px] text-slate-500 font-semibold">Video Kenangan 3</p>
+                        </div>
+                        <button id="btn-play-gal-video-3" onclick="toggleVideoPlay(this, 'gal-video-3')" class="bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5">
+                            <span>▶ ON Video</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VIDEO FRAME 4 (POTRET/VERTIKAL) -->
+                <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
+                    <div class="w-full h-[400px] sm:h-[460px] rounded-2xl overflow-hidden relative bg-[#2a2a2a] shadow-inner flex items-center justify-center">
+                        <video id="gal-video-4" src="video/video4.mp4" poster="foto/foto4.jpg" controls playsinline class="gal-video-el w-full h-full object-contain rounded-2xl" onerror="handleVideoError(this, 'Video 4: Momen Indah Bersama 🎥')"></video>
+                        <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video 4</span>
+                    </div>
+                    <div class="w-full mt-3 px-1 flex justify-between items-center">
+                        <div>
+                            <p class="text-xs font-bold text-[#E61919] font-fredoka">Momen Indah &amp; Manis 🎬</p>
+                            <p class="text-[10px] text-slate-500 font-semibold">Video Kenangan 4</p>
+                        </div>
+                        <button id="btn-play-gal-video-4" onclick="toggleVideoPlay(this, 'gal-video-4')" class="bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5">
+                            <span>▶ ON Video</span>
+                        </button>
+                    </div>
+                </div>
                         <div class="w-full mt-3 px-1 flex justify-between items-center">
                             <div>
                                 <p class="text-xs font-bold text-[#E61919] font-fredoka">Momen Tawa &amp; Canda Kita 🎬</p>
@@ -864,10 +926,10 @@
                         </div>
                     </div>
 
-                    <!-- VIDEO FRAME 2 -->
+                    <!-- VIDEO FRAME 2 (POTRET/VERTIKAL) -->
                     <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
-                        <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
-                            <video id="gal-video-2" src="videokenangan2.mp4" poster="fotokado2.jpg" controls playsinline class="gal-video-el w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Video 2: Klip Bahagia Bersama 🎥')"></video>
+                        <div class="w-full h-[400px] sm:h-[460px] rounded-2xl overflow-hidden relative bg-[#2a2a2a] shadow-inner flex items-center justify-center">
+                            <video id="gal-video-2" src="videokenangan2.mp4" poster="fotokado2.jpg" controls playsinline class="gal-video-el w-full h-full object-contain rounded-2xl" onerror="handleVideoError(this, 'Video 2: Klip Bahagia Bersama 🎥')"></video>
                             <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video 2</span>
                         </div>
                         <div class="w-full mt-3 px-1 flex justify-between items-center">
@@ -881,7 +943,7 @@
                         </div>
                     </div>
 
-                    <!-- VIDEO FRAME 3 -->
+                    <!-- VIDEO FRAME 3 (LANDSCAPE / HORISONTAL) -->
                     <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
                         <div class="w-full rounded-2xl overflow-hidden relative bg-black shadow-inner">
                             <video id="gal-video-3" src="videokenangan3.mp4" poster="fotokado3.jpg" controls playsinline class="gal-video-el w-full h-52 object-cover rounded-2xl" onerror="handleVideoError(this, 'Video 3: Kenangan Abadi Azi &amp; Adelia 🎥')"></video>
@@ -898,27 +960,29 @@
                         </div>
                     </div>
 
+                    <!-- VIDEO FRAME 4 (POTRET/VERTIKAL) -->
+                    <div class="gallery-video-card glass-card rounded-3xl p-3 border-2 border-red-100 shadow-md text-left flex flex-col items-center">
+                        <div class="w-full h-[400px] sm:h-[460px] rounded-2xl overflow-hidden relative bg-[#2a2a2a] shadow-inner flex items-center justify-center">
+                            <video id="gal-video-4" src="videokenangan4.mp4" poster="fotokado4.jpg" controls playsinline class="gal-video-el w-full h-full object-contain rounded-2xl" onerror="handleVideoError(this, 'Video 4: Momen Indah Bersama 🎥')"></video>
+                            <span class="absolute top-2 right-2 bg-purple-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow z-10">🎥 Video 4</span>
+                        </div>
+                        <div class="w-full mt-3 px-1 flex justify-between items-center">
+                            <div>
+                                <p class="text-xs font-bold text-[#E61919] font-fredoka">Momen Indah &amp; Manis 🎬</p>
+                                <p class="text-[10px] text-slate-500 font-semibold">Video Kenangan 4</p>
+                            </div>
+                            <button id="btn-play-gal-video-4" onclick="toggleVideoPlay(this, 'gal-video-4')" class="bg-gradient-to-r from-emerald-600 to-green-500 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow active:scale-95 transition-all flex items-center gap-1.5">
+                                <span>▶ ON Video</span>
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
         </div>
 
-        <!-- POP-UP LIGHTBOX MEDIA MODAL -->
-        <div id="media-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
-            <div class="relative w-full max-w-sm glass-card bg-white/95 rounded-3xl p-4 shadow-2xl border-2 border-[#FFD700] text-center transform scale-90 transition-all duration-300 flex flex-col items-center" id="media-modal-card">
-                <button onclick="closeMediaModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 text-[#E61919] font-bold flex items-center justify-center text-sm transition-transform active:scale-90 z-20">
-                    ✕
-                </button>
-                <p id="media-modal-title" class="text-sm font-bold text-[#E61919] font-fredoka mb-3 pr-8">Detail Kenangan</p>
-                <div class="w-full rounded-2xl overflow-hidden bg-black flex items-center justify-center mb-3 max-h-[65vh]" id="media-modal-content">
-                </div>
-                <button onclick="closeMediaModal()" class="w-full bg-gradient-to-r from-[#E61919] to-[#DC143C] text-white font-bold py-2.5 rounded-full shadow text-xs">
-                    Tutup Preview ❤️
-                </button>
-            </div>
-        </div>
-
-        <!-- Floating Bottom Navigation Dock (With 5th Camera/Gallery Icon) -->
+        <!-- Floating Bottom Navigation Dock -->
         <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 glass-dock px-4 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center gap-4 sm:gap-6">
             <button onclick="switchTab('home')" title="Beranda" class="text-xl sm:text-2xl hover:scale-125 active:scale-95 transition-transform duration-150 focus:outline-none">
                 🏠
@@ -955,20 +1019,20 @@
             "Kenangan Indah Bersama ❤ (2/2)"
         ];
 
-        // 12 Gallery Photos Array for View 10
+        // 12 Gallery Photos Array for View 10 (Membaca dari folder foto/)
         const galleryPhotos = [
-            { src: 'fotokado1.jpg', title: 'Momen Manis Pertama ✨', bg: 'E61919' },
-            { src: 'fotokado2.jpg', title: 'Senyuman Terindahmu ❤️', bg: 'DC143C' },
-            { src: 'fotokado3.jpg', title: 'Petualangan Manis Kita 🌈', bg: 'FF4500' },
-            { src: 'fotokado1.jpg', title: 'Saat-saat Bahagia 😊', bg: 'FF6B6B' },
-            { src: 'fotokado2.jpg', title: 'Tawa Canda Bersama 💖', bg: 'DAA520' },
-            { src: 'fotokado3.jpg', title: 'Kenangan Tak Terlupakan 🌟', bg: 'E61919' },
-            { src: 'fotokado1.jpg', title: 'Kencan Spesial 💕', bg: 'DC143C' },
-            { src: 'fotokado2.jpg', title: 'Hari Bahagia Kita 🎉', bg: 'FF4500' },
-            { src: 'fotokado3.jpg', title: 'Tatapan Penuh Cinta 🥰', bg: 'FF6B6B' },
-            { src: 'fotokado1.jpg', title: 'Momen Hangat Bersamamu ☀️', bg: 'DAA520' },
-            { src: 'fotokado2.jpg', title: 'Langkah Bersama 🐾', bg: 'E61919' },
-            { src: 'fotokado3.jpg', title: 'Cinta Abadi Azi & Adelia 💍', bg: 'DC143C' }
+            { src: 'foto/foto1.jpg', title: 'Momen Manis Pertama ✨', bg: 'E61919' },
+            { src: 'foto/foto2.jpg', title: 'Senyuman Terindahmu ❤️', bg: 'DC143C' },
+            { src: 'foto/foto3.jpg', title: 'Petualangan Manis Kita 🌈', bg: 'FF4500' },
+            { src: 'foto/foto4.jpg', title: 'Saat-saat Bahagia 😊', bg: 'FF6B6B' },
+            { src: 'foto/foto5.jpg', title: 'Tawa Canda Bersama 💖', bg: 'DAA520' },
+            { src: 'foto/foto6.jpg', title: 'Kenangan Tak Terlupakan 🌟', bg: 'E61919' },
+            { src: 'foto/foto7.jpg', title: 'Kencan Spesial 💕', bg: 'DC143C' },
+            { src: 'foto/foto8.jpg', title: 'Hari Bahagia Kita 🎉', bg: 'FF4500' },
+            { src: 'foto/foto9.jpg', title: 'Tatapan Penuh Cinta 🥰', bg: 'FF6B6B' },
+            { src: 'foto/foto10.jpg', title: 'Momen Hangat Bersamamu ☀️', bg: 'DAA520' },
+            { src: 'foto/foto11.jpg', title: 'Langkah Bersama 🐾', bg: 'E61919' },
+            { src: 'foto/foto12.jpg', title: 'Cinta Abadi Azi & Adelia 💍', bg: 'DC143C' }
         ];
         let galleryPhotoIndex = 0;
 
@@ -1178,11 +1242,6 @@
             updateGalleryPhotoDisplay();
         }
 
-        function zoomCurrentGalleryPhoto() {
-            const item = galleryPhotos[galleryPhotoIndex];
-            openMediaModal('image', item.src, item.title);
-        }
-
         // Video ON/OFF Toggle Function
         function toggleVideoPlay(btnEl, videoId) {
             const video = document.getElementById(videoId);
@@ -1379,7 +1438,7 @@
             aamiinItems.forEach((item, index) => {
                 setTimeout(() => {
                     const badge = document.createElement('div');
-                    badge.className = 'fixed bg-gradient-to-r from-[#E61919] via-[#DC143C] to-[#FF4500] text-white font-extrabold px-4 py-2.5 rounded-full shadow-2xl border-2 border-[#FFD700] text-xs md:text-sm pointer-events-none animate-aamiin-float flex items-center gap-2 whitespace-nowrap z-[100]';
+                    badge.className = 'fixed bg-gradient-to-r from-[#E61919] via-[#DC143C] to-[#FF4500] text-[#FFFFFF] font-extrabold px-4 py-2.5 rounded-full shadow-2xl border-2 border-[#FFD700] text-xs md:text-sm pointer-events-none animate-aamiin-float flex items-center gap-2 whitespace-nowrap z-[100]';
                     
                     badge.style.left = item.left;
                     badge.style.bottom = '-60px';
@@ -1677,46 +1736,6 @@
                 btnVideo.className = "px-3 py-1 rounded-full bg-[#DC143C] text-white transition-all shadow";
                 if (photoSec) photoSec.classList.add('hidden');
                 if (videoSec) videoSec.classList.remove('hidden');
-            }
-        }
-
-        function openMediaModal(type, src, title) {
-            const modal = document.getElementById('media-modal');
-            const modalCard = document.getElementById('media-modal-card');
-            const titleEl = document.getElementById('media-modal-title');
-            const contentEl = document.getElementById('media-modal-content');
-
-            if (titleEl) titleEl.textContent = title || 'Preview Kenangan';
-            if (contentEl) {
-                if (type === 'image') {
-                    contentEl.innerHTML = `<img src="${src}" onerror="handleGifError(this, 'E61919', 'Foto Kenangan')" class="w-full h-auto max-h-[60vh] object-contain rounded-xl">`;
-                }
-            }
-
-            if (modal) {
-                modal.classList.remove('hidden');
-                setTimeout(() => {
-                    modal.classList.remove('opacity-0');
-                    if (modalCard) {
-                        modalCard.classList.remove('scale-90');
-                        modalCard.classList.add('scale-100');
-                    }
-                }, 50);
-            }
-        }
-
-        function closeMediaModal() {
-            const modal = document.getElementById('media-modal');
-            const modalCard = document.getElementById('media-modal-card');
-            if (modal) {
-                modal.classList.add('opacity-0');
-                if (modalCard) {
-                    modalCard.classList.remove('scale-100');
-                    modalCard.classList.add('scale-90');
-                }
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                }, 300);
             }
         }
 
